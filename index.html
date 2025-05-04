@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پروفایل حرفه‌ای - ادمین و دیجیتال مارکتر</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* First Section Styles */
+        .ocean {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #0066cc 0%, #000033 100%);
+            overflow: hidden;
+        }
+
+        .giant-bubble {
+            position: relative;
+            width: 60vmin;
+            height: 60vmin;
+            margin-right: 5%;
+            margin-left: 5%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, 
+                      rgba(255, 255, 255, 0.8) 0%, 
+                      rgba(173, 216, 230, 0.6) 30%, 
+                      rgba(100, 200, 255, 0.3) 70%);
+            box-shadow: 
+                0 0 120px rgba(100, 200, 255, 0.8),
+                inset 0 0 60px rgba(255, 255, 255, 0.6);
+            border: 4px solid rgba(255, 255, 255, 0.4);
+            z-index: 10;
+            animation: pulse 8s infinite ease-in-out;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .giant-bubble img {
+            width: 70%;
+            height: 70%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-text {
+            max-width: 50%;
+            padding: 40px;
+            background: linear-gradient(145deg, rgba(0,40,80,0.7) 0%, rgba(0,20,40,0.8) 100%);
+            border-radius: 15px;
+            animation: fadeIn 2s ease-out, floatText 6s infinite ease-in-out;
+            z-index: 5;
+            backdrop-filter: blur(8px);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 -5px 20px rgba(100, 200, 255, 0.1),
+                inset 0 0 20px rgba(100, 200, 255, 0.2),
+                5px 0 15px rgba(0, 0, 0, 0.4);
+            border-top: 1px solid rgba(100, 200, 255, 0.3);
+            border-left: 1px solid rgba(100, 200, 255, 0.2);
+            transform-style: preserve-3d;
+            transform: rotateY(5deg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                      transparent 65%, 
+                      rgba(100, 200, 255, 0.1) 100%);
+            pointer-events: none;
+        }
+
+        .profile-text::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, rgba(100, 200, 255, 0.4) 0%, transparent 70%);
+            filter: blur(5px);
+            z-index: -1;
+        }
+
+        @keyframes floatText {
+            0%, 100% { transform: rotateY(5deg) translateY(0); }
+            50% { transform: rotateY(5deg) translateY(-10px); }
+        }
+
+        .profile-text h1 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: #64c8ff;
+            text-shadow: 
+                0 0 10px rgba(100, 200, 255, 0.5),
+                0 2px 3px rgba(0, 0, 0, 0.3);
+            position: relative;
+            text-align: center;
+        }
+
+        .profile-text h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #64c8ff;
+            text-align: center;
+        }
+
+        .profile-text h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, #64c8ff, transparent);
+            border-radius: 3px;
+        }
+
+        .profile-text p {
+            font-size: 1.1rem;
+            line-height: 2.2;
+            margin-bottom: 20px;
+            text-align: justify;
+            position: relative;
+            padding-right: 15px;
+        }
+
+        .profile-text p::before {
+            content: '»';
+            position: absolute;
+            right: 0;
+            top: 0;
+            color: #64c8ff;
+            font-size: 1.3rem;
+        }
+
+        .small-bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(173, 216, 230, 0.6);
+            box-shadow: 0 0 15px rgba(100, 200, 255, 0.5);
+            animation: float 10s infinite linear;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .small-bubble img {
+            width: 80%;
+            height: 80%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Animation Keyframes */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 120px rgba(100, 200, 255, 0.8);
+            }
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 0 150px rgba(100, 200, 255, 1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(0.8);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes rotate {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(720deg); }
+        }
+
+        /* Bubble Positions */
+        .bubble1 { width: 80px; height: 80px; left: 10%; bottom: -80px; animation-duration: 12s; }
+        .bubble2 { width: 60px; height: 60px; left: 20%; bottom: -60px; animation-duration: 14s; animation-delay: 1s; }
+        .bubble3 { width: 70px; height: 70px; left: 30%; bottom: -70px; animation-duration: 11s; animation-delay: 2s; }
+        .bubble4 { width: 90px; height: 90px; left: 40%; bottom: -90px; animation-duration: 16s; animation-delay: 0.5s; }
+        .bubble5 { width: 50px; height: 50px; left: 50%; bottom: -50px; animation-duration: 10s; animation-delay: 1.5s; }
+        .bubble6 { width: 100px; height: 100px; left: 60%; bottom: -100px; animation-duration: 18s; animation-delay: 3s; }
+        .bubble7 { width: 65px; height: 65px; left: 70%; bottom: -65px; animation-duration: 13s; animation-delay: 0.8s; }
+        .bubble8 { width: 85px; height: 85px; left: 80%; bottom: -85px; animation-duration: 15s; animation-delay: 2.5s; }
+        .bubble9 { width: 55px; height: 55px; left: 90%; bottom: -55px; animation-duration: 9s; animation-delay: 1.2s; }
+        .bubble10 { width: 75px; height: 75px; left: 15%; bottom: -75px; animation-duration: 17s; animation-delay: 4s; }
+        
+        .bubble11 {
+            width: 60px;
+            height: 60px;
+            left: 25%;
+            bottom: -60px;
+            border-radius: 15%;
+            animation: float 12s infinite linear, rotate 8s infinite linear;
+            background: rgba(173, 216, 230, 0.7);
+        }
+
+        .bubble12 { width: 95px; height: 95px; left: 35%; bottom: -95px; animation-duration: 19s; animation-delay: 2.2s; }
+
+        /* Second Section Styles */
+        .skills-section {
+            direction: rtl;
+            background: linear-gradient(135deg, #0066cc 0%, #000033 100%);
+            padding: 4rem 2rem;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skills-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(100,200,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+            background-size: cover;
+            z-index: 0;
+        }
+
+        .skills-section h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #64c8ff;
+            text-shadow: 0 0 15px rgba(100, 200, 255, 0.7);
+            position: relative;
+            z-index: 2;
+            animation: glow 3s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(100, 200, 255, 0.7);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(100, 200, 255, 1), 0 0 30px rgba(100, 200, 255, 0.7);
+            }
+        }
+
+        .skills-section h3 {
+            font-size: 1.8rem;
+            margin: 1.5rem 0;
+            color: white;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .skills-section section {
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(8px);
+            background: rgba(0, 30, 60, 0.6);
+            border: 1px solid rgba(100, 200, 255, 0.2);
+            transition: all 0.5s ease;
+            overflow: hidden;
+        }
+
+        .skills-section section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(100, 200, 255, 0.1) 0%,
+                transparent 50%,
+                rgba(100, 200, 255, 0.1) 100%
+            );
+            transform: rotate(30deg);
+            z-index: -1;
+        }
+
+        .skills-section section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            background: rgba(0, 40, 80, 0.7);
+        }
+
+        .skills-section section:hover::before {
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(30deg) translate(-30%, -30%); }
+            100% { transform: rotate(30deg) translate(30%, 30%); }
+        }
+
+        .design-section {
+            border-top: 3px solid #7e57c2;
+        }
+
+        .marketing-section {
+            border-top: 3px solid #42a5f5;
+        }
+
+        .frontend-section {
+            border-top: 3px solid #66bb6a;
+        }
+
+        .contact-section {
+            border-top: 3px solid #ff7043;
+            text-align: center;
+        }
+
+        .contact-section p {
+            font-size: 1.3rem;
+            margin: 1rem 0;
+            line-height: 2;
+        }
+
+        .contact-section a {
+            color: #64c8ff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-section a:hover {
+            color: white;
+            text-shadow: 0 0 10px rgba(100, 200, 255, 0.7);
+        }
+
+        .charts-container {
+            display: grid;
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .design-tools {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        .marketing-skills {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        .frontend-skills {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+
+        .chart-box {
+            background: rgba(0, 20, 40, 0.7);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 
+                0 5px 15px rgba(0,0,0,0.2),
+                inset 0 0 10px rgba(100, 200, 255, 0.2);
+            text-align: center;
+            transition: all 0.5s ease;
+            border: 1px solid rgba(100, 200, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(100, 200, 255, 0.1) 0%,
+                transparent 50%,
+                rgba(100, 200, 255, 0.1) 100%
+            );
+            z-index: -1;
+        }
+
+        .chart-box:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 8px 25px rgba(0,0,0,0.3),
+                inset 0 0 15px rgba(100, 200, 255, 0.3);
+            background: rgba(0, 30, 60, 0.8);
+        }
+
+        .chart-box:hover::before {
+            animation: shine 2s infinite;
+        }
+
+        .frontend-skills .chart-box {
+            padding: 1rem;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+            transition: all 0.5s ease;
+        }
+
+        .chart-box:hover canvas {
+            transform: scale(1.1);
+        }
+
+        /* Floating Bubbles in Skills Section */
+        .skill-bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(100, 200, 255, 0.1);
+            box-shadow: 0 0 20px rgba(100, 200, 255, 0.3);
+            animation: float 15s infinite linear;
+            z-index: 0;
+        }
+
+        .sb1 { width: 120px; height: 120px; right: 10%; top: 10%; animation-duration: 20s; }
+        .sb2 { width: 80px; height: 80px; left: 15%; top: 30%; animation-duration: 25s; animation-delay: 3s; }
+        .sb3 { width: 150px; height: 150px; right: 20%; bottom: 20%; animation-duration: 30s; animation-delay: 5s; }
+        .sb4 { width: 60px; height: 60px; left: 25%; bottom: 30%; animation-duration: 18s; animation-delay: 2s; }
+        .sb5 { width: 100px; height: 100px; right: 30%; top: 40%; animation-duration: 22s; animation-delay: 4s; }
+
+        /* Explosion Effect */
+        .explosion {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            margin-top: 3rem;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(100, 200, 255, 0.8);
+            animation: explode 2s infinite ease-out;
+            opacity: 0;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Scroll Down Arrow */
+        .scroll-down-arrow {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2.5rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 100;
+            text-shadow: 0 0 10px rgba(100, 200, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .scroll-down-arrow:hover {
+            color: #64c8ff;
+            text-shadow: 0 0 20px rgba(100, 200, 255, 1);
+            transform: translateX(-50%) scale(1.2);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .ocean {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .giant-bubble {
+                width: 50vmin;
+                height: 50vmin;
+                margin: 0 auto 2rem;
+            }
+            
+            .profile-text {
+                max-width: 90%;
+                margin: 0 auto;
+            }
+            
+            .skills-section {
+                padding: 2rem 1rem;
+            }
+            
+            .charts-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-section h2 {
+                font-size: 2rem;
+            }
+            
+            .skills-section h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- First Section -->
+    <div class="ocean">
+        <!-- Main Bubble -->
+        <div class="giant-bubble">
+            <img src="./img/1221.jpg" alt="عکس پروفایل">
+        </div>
+
+        <!-- Profile Text -->
+        <div class="profile-text">
+            <h1>مسعود بهرامی</h1>
+            <h2>ادمین و دیجیتال مارکتر</h2>
+            <p>میتونم بگم من پیکج کاملی از هر آنچه که یک برند برای بهتر دیده شدن خود در فضای دیجیتال لازم داره هستم</p>
+            <p><strong>من چیکار میکنم؟</strong></p>
+            <p>من با بیش از سه سال سابقه ی ادمینی به همراه مهارت در نرم افزار های گرافیکی و طراحی رابط کاربری 
+            با چاشنی استفاده ی درست از هوش مصنوعی
+            کاری میکنم که برند شما در آسمان آینده پرواز کنه</p>
+        </div>
+
+        <!-- Small Bubbles -->
+        <div class="small-bubble bubble1"><img src="./img/after logo.png" alt="لوگو 1"></div>
+        <div class="small-bubble bubble2"><img src="./img/css22.webp" alt="لوگو 2"></div>
+        <div class="small-bubble bubble3"><img src="./img/WPTM-021-005.png" alt="لوگو 3"></div>
+        <div class="small-bubble bubble4"><img src="./img/Illustrator logo.png" alt="لوگو 4"></div>
+        <div class="small-bubble bubble5"><img src="./img/374972.webp" alt="لوگو 5"></div>
+        <div class="small-bubble bubble6"><img src="./img/potoshop logo.png" alt="لوگو 6"></div>
+        <div class="small-bubble bubble7"><img src="./img/pr logo.jpg" alt="لوگو 7"></div>
+        <div class="small-bubble bubble8"><img src="./img/xd logo.jpg" alt="لوگو 8"></div>
+        <div class="small-bubble bubble9"><img src="./img/1764875.png" alt="لوگو 9"></div>
+        <div class="small-bubble bubble10"><img src="./img/1764875.png" alt="لوگو 10"></div>
+        
+        <div class="small-bubble bubble12"><img src="./img/pix.png" alt="لوگو 12"></div>
+
+        <!-- Scroll Down Arrow -->
+        <div class="scroll-down-arrow" onclick="document.getElementById('skills-section').scrollIntoView({ behavior: 'smooth' })">
+            ↓
+        </div>
+    </div>
+
+    <!-- Second Section -->
+    <div id="skills-section" class="skills-section">
+        <!-- Floating Bubbles -->
+        <div class="skill-bubble sb1"></div>
+        <div class="skill-bubble sb2"></div>
+        <div class="skill-bubble sb3"></div>
+        <div class="skill-bubble sb4"></div>
+        <div class="skill-bubble sb5"></div>
+        
+        <h2>مهارت‌های من</h2>
+
+        <!-- Design Tools -->
+        <section class="design-section">
+            <h3>ابزارهای طراحی و ویرایش</h3>
+            <div class="charts-container design-tools">
+                <div class="chart-box"><canvas id="capcut"></canvas></div>
+                <div class="chart-box"><canvas id="picsart"></canvas></div>
+                <div class="chart-box"><canvas id="canva"></canvas></div>
+                <div class="chart-box"><canvas id="photoshop"></canvas></div>
+                <div class="chart-box"><canvas id="premiere"></canvas></div>
+                <div class="chart-box"><canvas id="aftereffects"></canvas></div>
+            </div>
+        </section>
+
+        <!-- Instagram Skills -->
+        <section class="marketing-section">
+            <h3>مهارت‌های اینستاگرامی و مارکتینگ</h3>
+            <div class="charts-container marketing-skills">
+                <div class="chart-box"><canvas id="reels"></canvas></div>
+                <div class="chart-box"><canvas id="caption"></canvas></div>
+                <div class="chart-box"><canvas id="insights"></canvas></div>
+                <div class="chart-box"><canvas id="campaign"></canvas></div>
+            </div>
+        </section>
+
+        <!-- Frontend Skills -->
+        <section class="frontend-section">
+            <h3>مهارت‌های فرانت‌اند</h3>
+            <div class="charts-container frontend-skills">
+                <div class="chart-box"><canvas id="html"></canvas></div>
+                <div class="chart-box"><canvas id="css"></canvas></div>
+                <div class="chart-box"><canvas id="js"></canvas></div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h3>تماس با من</h3>
+            <p>ایمیل: <a href="mailto:masoud.b1999@gmail.com">masoud.b1999@gmail.com</a></p>
+            <p>تلفن: 09334479527</p>
+            <p>تلگرام: <a href="https://t.me/pennyroyalguy" target="_blank">t.me/pennyroyalguy</a></p>
+            
+            <div class="explosion" id="explosion"></div>
+        </section>
+    </div>
+
+    <script>
+        function createChart(canvasId, label, percent, color) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: [label, ''],
+                    datasets: [{
+                        data: [percent, 100 - percent],
+                        backgroundColor: [color, 'rgba(100, 200, 255, 0.1)'],
+                        borderWidth: 0,
+                        hoverBackgroundColor: [color, 'rgba(100, 200, 255, 0.2)']
+                    }]
+                },
+                options: {
+                    cutout: '75%',
+                    rotation: -90,
+                    circumference: 180,
+                    plugins: {
+                        tooltip: { enabled: false },
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: label + ' - ' + percent + '%',
+                            font: { 
+                                size: 16,
+                                family: 'Segoe UI',
+                                weight: 'bold'
+                            },
+                            color: 'white',
+                            padding: {
+                                top: 10,
+                                bottom: 20
+                            }
+                        }
+                    },
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            });
+        }
+
+        function createExplosion() {
+            const explosion = document.getElementById('explosion');
+            explosion.innerHTML = '';
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random direction and distance
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 50 + Math.random() * 100;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                
+                // Random delay
+                const delay = Math.random() * 1.5;
+                
+                // Set CSS variables
+                particle.style.setProperty('--tx', tx + 'px');
+                particle.style.setProperty('--ty', ty + 'px');
+                particle.style.animationDelay = delay + 's';
+                
+                // Random color variation
+                const hue = 200 + Math.random() * 40;
+                particle.style.background = `hsla(${hue}, 100%, 70%, 0.8)`;
+                
+                explosion.appendChild(particle);
+            }
+        }
+
+        // Wait for DOM to load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Design Tools
+            createChart('capcut', 'Capcut', 95, '#7e57c2');
+            createChart('picsart', 'PicsArt', 90, '#42a5f5');
+            createChart('canva', 'Canva', 92, '#26a69a');
+            createChart('photoshop', 'Photoshop', 90, '#ef5350');
+            createChart('premiere', 'Premiere', 89, '#ab47bc');
+            createChart('aftereffects', 'After Effects', 88, '#ffa726');
+
+            // Marketing
+            createChart('reels', 'تولید ریلز', 94, '#66bb6a');
+            createChart('caption', 'نویسندگی کپشن', 91, '#ff7043');
+            createChart('insights', 'تحلیل آمار', 90, '#26c6da');
+            createChart('campaign', 'مدیریت کمپین', 93, '#8d6e63');
+
+            // Frontend
+            createChart('html', 'HTML', 68, '#42a5f5');
+            createChart('css', 'CSS', 70, '#66bb6a');
+            createChart('js', 'JavaScript', 60, '#ffca28');
+
+            // Create explosion effect
+            createExplosion();
+            setInterval(createExplosion, 2000);
+        });
+    </script>
+</body>
+</html>
