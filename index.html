@@ -358,26 +358,127 @@
             border-top: 3px solid #66bb6a;
         }
 
-        .contact-section {
-            border-top: 3px solid #ff7043;
+        /* Video Portfolio Section */
+        .video-portfolio {
+            width: 100%;
+            background: linear-gradient(135deg, #000033 0%, #0066cc 100%);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-portfolio::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(100,200,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+            background-size: cover;
+            z-index: 0;
+        }
+
+        .video-container {
+            width: 540px;
+            height: 960px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border: 3px solid rgba(100, 200, 255, 0.3);
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-portfolio h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
             text-align: center;
+            color: #64c8ff;
+            text-shadow: 0 0 15px rgba(100, 200, 255, 0.7);
+            position: relative;
+            z-index: 2;
+            animation: glow 3s infinite alternate;
         }
 
-        .contact-section p {
+        /* Contact Section */
+        .contact-section {
+            direction: rtl;
+            background: linear-gradient(135deg, #0066cc 0%, #000033 100%);
+            padding: 4rem 2rem;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            border-top: 3px solid #ff7043;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(100,200,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+            background-size: cover;
+            z-index: 0;
+        }
+
+        .contact-section h3 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #64c8ff;
+            text-shadow: 0 0 15px rgba(100, 200, 255, 0.7);
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-info {
+            background: rgba(0, 30, 60, 0.6);
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(100, 200, 255, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info p {
             font-size: 1.3rem;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
             line-height: 2;
+            position: relative;
         }
 
-        .contact-section a {
+        .contact-info a {
             color: #64c8ff;
             text-decoration: none;
             transition: all 0.3s ease;
+            display: inline-block;
+            margin: 0 10px;
         }
 
-        .contact-section a:hover {
+        .contact-info a:hover {
             color: white;
             text-shadow: 0 0 10px rgba(100, 200, 255, 0.7);
+            transform: translateY(-3px);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            margin-left: 10px;
+            vertical-align: middle;
         }
 
         .charts-container {
@@ -553,7 +654,7 @@
                 margin: 0 auto;
             }
             
-            .skills-section {
+            .skills-section, .contact-section {
                 padding: 2rem 1rem;
             }
             
@@ -561,12 +662,26 @@
                 grid-template-columns: 1fr;
             }
             
-            .skills-section h2 {
+            .skills-section h2, .contact-section h3 {
                 font-size: 2rem;
             }
             
             .skills-section h3 {
                 font-size: 1.5rem;
+            }
+
+            .video-container {
+                width: 90%;
+                height: auto;
+                aspect-ratio: 9/16;
+            }
+
+            .contact-info {
+                padding: 1.5rem;
+            }
+
+            .contact-info p {
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -654,17 +769,44 @@
                 <div class="chart-box"><canvas id="js"></canvas></div>
             </div>
         </section>
-
-        <!-- Contact Section -->
-        <section class="contact-section">
-            <h3>تماس با من</h3>
-            <p>ایمیل: <a href="mailto:masoud.b1999@gmail.com">masoud.b1999@gmail.com</a></p>
-            <p>تلفن: 09334479527</p>
-            <p>تلگرام: <a href="https://t.me/pennyroyalguy" target="_blank">t.me/pennyroyalguy</a></p>
-            
-            <div class="explosion" id="explosion"></div>
-        </section>
     </div>
+
+    <!-- Video Portfolio Section -->
+    <div id="video-portfolio" class="video-portfolio">
+        <h2>نمونه کارهای ویدیویی</h2>
+        <div class="video-container">
+            <video controls autoplay muted loop>
+                <source src="./video/lv_0_20250504172418.mp4" type="video/mp4">
+                مرورگر شما از تگ ویدیو پشتیبانی نمی‌کند.
+            </video>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="skill-bubble sb1"></div>
+        <div class="skill-bubble sb2"></div>
+        <div class="skill-bubble sb3"></div>
+        
+        <h3>تماس با من</h3>
+        
+        <div class="contact-info">
+            <p>
+                <span class="contact-icon">📧</span>
+                ایمیل: <a href="mailto:masoud.b1999@gmail.com">masoud.b1999@gmail.com</a>
+            </p>
+            <p>
+                <span class="contact-icon">📱</span>
+                تلفن: <a href="tel:09334479527">09334479527</a>
+            </p>
+            <p>
+                <span class="contact-icon">✈️</span>
+                تلگرام: <a href="https://t.me/pennyroyalguy" target="_blank">t.me/pennyroyalguy</a>
+            </p>
+        </div>
+        
+        <div class="explosion" id="explosion"></div>
+    </section>
 
     <script>
         function createChart(canvasId, label, percent, color) {
