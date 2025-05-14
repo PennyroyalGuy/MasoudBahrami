@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>فروشگاه پرده | خرید آنلاین انواع پرده</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+          font-family: 'Vazirmatn', sans-serif;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background: #3b82f6;
+          cursor: pointer;
+      }
+      input[type="range"]::-moz-range-thumb {
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background: #3b82f6;
+          cursor: pointer;
+          border: none;
+      }
+      .custom-checkbox {
+          position: relative;
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          margin-left: 8px;
+      }
+      .custom-checkbox input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+      }
+      .checkmark {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 20px;
+          height: 20px;
+          background-color: #fff;
+          border: 2px solid #e5e7eb;
+          border-radius: 4px;
+      }
+      .custom-checkbox input:checked ~ .checkmark {
+          background-color: #3b82f6;
+          border-color: #3b82f6;
+      }
+      .checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
+      }
+      .custom-checkbox input:checked ~ .checkmark:after {
+          display: block;
+      }
+      .custom-checkbox .checkmark:after {
+          right: 6px;
+          top: 2px;
+          width: 6px;
+          height: 12px;
+          border: solid white;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+      }
+      .custom-switch {
+          position: relative;
+          display: inline-block;
+          width: 40px;
+          height: 24px;
+      }
+      .custom-switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+      }
+      .switch-slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          right: 0;
+          left: 0;
+          bottom: 0;
+          background-color: #e5e7eb;
+          transition: .4s;
+          border-radius: 24px;
+      }
+      .switch-slider:before {
+          position: absolute;
+          content: "";
+          height: 18px;
+          width: 18px;
+          right: 3px;
+          bottom: 3px;
+          background-color: white;
+          transition: .4s;
+          border-radius: 50%;
+      }
+      .custom-switch input:checked + .switch-slider {
+          background-color: #3b82f6;
+      }
+      .custom-switch input:checked + .switch-slider:before {
+          transform: translateX(-16px);
+      }
+      .product-card:hover .quick-view {
+          opacity: 1;
+      }
+      .color-option {
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          cursor: pointer;
+          position: relative;
+      }
+      .color-option.selected::after {
+          content: "";
+          position: absolute;
+          top: -3px;
+          right: -3px;
+          left: -3px;
+          bottom: -3px;
+          border: 2px solid #3b82f6;
+          border-radius: 50%;
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#3b82f6", secondary: "#6b7280" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-sm">
+      <div
+        class="container mx-auto px-4 py-4 flex items-center justify-between"
+      >
+        <!-- Logo -->
+        <div class="font-['Pacifico'] text-2xl text-primary">logo</div>
+
+        <!-- Search Bar -->
+        <div class="relative w-1/3">
+          <input
+            type="text"
+            placeholder="جستجوی محصولات..."
+            class="w-full py-2 px-4 pr-10 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+          />
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+            <div class="w-5 h-5 flex items-center justify-center text-gray-500">
+              <i class="ri-search-line"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- User Actions -->
+        <div class="flex items-center space-x-6 space-x-reverse">
+          <div class="relative group">
+            <div
+              class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 cursor-pointer"
+            >
+              <i class="ri-shopping-cart-line text-gray-700"></i>
+            </div>
+            <span
+              class="absolute -top-1 -left-1 bg-primary text-white text-xs w-5 h-5 flex items-center justify-center rounded-full"
+              >3</span
+            >
+
+            <!-- Mini Cart -->
+            <div
+              class="absolute left-0 mt-2 w-72 bg-white shadow-lg rounded-md p-4 hidden group-hover:block"
+            >
+              <div class="text-sm font-medium mb-3">سبد خرید (3 محصول)</div>
+              <div class="space-y-3 max-h-60 overflow-y-auto">
+                <div class="flex items-center gap-3">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=elegant%20cream%20curtain%20with%20floral%20pattern%2C%20high%20quality%20fabric%2C%20soft%20lighting%2C%20minimalist%20setting%2C%20product%20photography&width=80&height=80&seq=1&orientation=squarish"
+                    alt="پرده"
+                    class="w-16 h-16 object-cover rounded"
+                  />
+                  <div class="flex-1">
+                    <div class="text-xs font-medium">پرده حریر گلدار کرم</div>
+                    <div class="text-xs text-gray-500">1 × 1,250,000 تومان</div>
+                  </div>
+                  <button class="text-gray-400 hover:text-red-500">
+                    <div class="w-5 h-5 flex items-center justify-center">
+                      <i class="ri-close-line"></i>
+                    </div>
+                  </button>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=blue%20velvet%20curtain%20with%20gold%20accents%2C%20luxury%20fabric%2C%20studio%20lighting%2C%20white%20background%2C%20product%20photography&width=80&height=80&seq=2&orientation=squarish"
+                    alt="پرده"
+                    class="w-16 h-16 object-cover rounded"
+                  />
+                  <div class="flex-1">
+                    <div class="text-xs font-medium">
+                      پرده مخمل آبی طرح سلطنتی
+                    </div>
+                    <div class="text-xs text-gray-500">1 × 2,450,000 تومان</div>
+                  </div>
+                  <button class="text-gray-400 hover:text-red-500">
+                    <div class="w-5 h-5 flex items-center justify-center">
+                      <i class="ri-close-line"></i>
+                    </div>
+                  </button>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=light%20gray%20sheer%20curtain%2C%20simple%20design%2C%20soft%20fabric%2C%20studio%20lighting%2C%20white%20background%2C%20product%20photography&width=80&height=80&seq=3&orientation=squarish"
+                    alt="پرده"
+                    class="w-16 h-16 object-cover rounded"
+                  />
+                  <div class="flex-1">
+                    <div class="text-xs font-medium">پرده شید خاکستری روشن</div>
+                    <div class="text-xs text-gray-500">1 × 980,000 تومان</div>
+                  </div>
+                  <button class="text-gray-400 hover:text-red-500">
+                    <div class="w-5 h-5 flex items-center justify-center">
+                      <i class="ri-close-line"></i>
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <div class="border-t border-gray-100 mt-3 pt-3">
+                <div class="flex justify-between text-sm mb-3">
+                  <span>جمع کل:</span>
+                  <span class="font-medium">4,680,000 تومان</span>
+                </div>
+                <div class="flex gap-2">
+                  <a
+                    href="#"
+                    class="text-sm bg-gray-100 text-gray-800 py-2 px-4 rounded-button whitespace-nowrap flex-1 text-center"
+                    >مشاهده سبد</a
+                  >
+                  <a
+                    href="#"
+                    class="text-sm bg-primary text-white py-2 px-4 rounded-button whitespace-nowrap flex-1 text-center"
+                    >تکمیل خرید</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <div
+              class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 cursor-pointer"
+            >
+              <i class="ri-user-line text-gray-700"></i>
+            </div>
+
+            <!-- User Menu -->
+            <div
+              class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 hidden group-hover:block"
+            >
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >پروفایل</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >سفارش‌های من</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >علاقه‌مندی‌ها</a
+              >
+              <div class="border-t border-gray-100 my-1"></div>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >خروج</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Categories Menu -->
+      <nav class="bg-gray-100">
+        <div class="container mx-auto px-4">
+          <ul class="flex items-center space-x-8 space-x-reverse">
+            <li class="py-3">
+              <a
+                href="#"
+                class="text-sm font-medium text-primary hover:text-primary-dark"
+                >صفحه اصلی</a
+              >
+            </li>
+            <li class="py-3 relative group">
+              <a
+                href="#"
+                class="text-sm font-medium text-gray-700 hover:text-primary flex items-center"
+              >
+                پرده‌های پذیرایی
+                <div class="w-4 h-4 flex items-center justify-center mr-1">
+                  <i class="ri-arrow-down-s-line"></i>
+                </div>
+              </a>
+              <div
+                class="absolute right-0 top-full bg-white shadow-lg rounded-md p-4 w-56 hidden group-hover:block z-10"
+              >
+                <ul class="space-y-2">
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm text-gray-700 hover:text-primary block"
+                      >پرده مخمل</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm text-gray-700 hover:text-primary block"
+                      >پرده حریر</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm text-gray-700 hover:text-primary block"
+                      >پرده کتان</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm text-gray-700 hover:text-primary block"
+                      >پرده ساتن</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm text-gray-700 hover:text-primary block"
+                      >پرده دو لایه</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="py-3 relative group">
+              <a
+                href="#"
+                class="text-sm font-medium text-gray-700 hover:text-primary flex items-center"
+              >
+                پرده‌های اتاق خواب
+                <div class="w-4 h-4 flex items-center justify-center mr-1">
+                  <i class="ri-arrow-down-s-line"></i>
+                </div>
+              </a>
+              <div
+                class="absolute right-0 top-full bg-white shadow-lg rounded-md p-4 w-56 hidden group-hover:block z-10"
+              >
+                <ul class="space-y-2">
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm text-gray-700 hover:text-primary block"
+                      >پرده ضخیم</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm text-gray-700 hover:text-primary block"
+                      >پرده خواب</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm text-gray-700 hover:text-primary block"
+                      >پرده تاریک کننده</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm text-gray-700 hover:text-primary block"
+                      >پرده کودک</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="py-3 relative group">
+              <a
+                href="#"
+                class="text-sm font-medium text-gray-700 hover:text-primary flex items-center"
+              >
+                پرده‌های آشپزخانه
+                <div class="w-4 h-4 flex items-center justify-center mr-1">
+                  <i class="ri-arrow-down-s-line"></i>
+                </div>
+              </a>
+              <div
+                class="absolute right-0 top-full bg-white shadow-lg rounded-md p-4 w-56 hidden group-hover:block z-10"
+              >
+                <ul class="space-y-2">
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm text-gray-700 hover:text-primary block"
+                      >پرده کوتاه</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm text-gray-700 hover:text-primary block"
+                      >پرده کرکره‌ای</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm text-gray-700 hover:text-primary block"
+                      >پرده رولی</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="py-3">
+              <a
+                href="#"
+                class="text-sm font-medium text-gray-700 hover:text-primary"
+                >پرده‌های حمام</a
+              >
+            </li>
+            <li class="py-3">
+              <a
+                href="#"
+                class="text-sm font-medium text-gray-700 hover:text-primary"
+                >لوازم جانبی</a
+              >
+            </li>
+            <li class="py-3">
+              <a
+                href="#"
+                class="text-sm font-medium text-gray-700 hover:text-primary"
+                >تخفیف‌ها</a
+              >
+            </li>
+            <li class="py-3">
+              <a
+                href="#"
+                class="text-sm font-medium text-gray-700 hover:text-primary"
+                >بلاگ</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+      <div class="flex flex-wrap -mx-4">
+        <!-- Filters Sidebar -->
+        <div class="w-1/4 px-4">
+          <div class="bg-white rounded-lg shadow-sm p-6 sticky top-32">
+            <div class="mb-6">
+              <h3 class="font-medium text-gray-800 mb-4">فیلتر محصولات</h3>
+              <div class="border-b border-gray-100 pb-4 mb-4">
+                <h4 class="font-medium text-sm text-gray-700 mb-3">جنس پرده</h4>
+                <div class="space-y-2">
+                  <label class="flex items-center">
+                    <span class="custom-checkbox">
+                      <input type="checkbox" checked />
+                      <span class="checkmark"></span>
+                    </span>
+                    <span class="text-sm text-gray-700">مخمل</span>
+                  </label>
+                  <label class="flex items-center">
+                    <span class="custom-checkbox">
+                      <input type="checkbox" />
+                      <span class="checkmark"></span>
+                    </span>
+                    <span class="text-sm text-gray-700">حریر</span>
+                  </label>
+                  <label class="flex items-center">
+                    <span class="custom-checkbox">
+                      <input type="checkbox" />
+                      <span class="checkmark"></span>
+                    </span>
+                    <span class="text-sm text-gray-700">کتان</span>
+                  </label>
+                  <label class="flex items-center">
+                    <span class="custom-checkbox">
+                      <input type="checkbox" />
+                      <span class="checkmark"></span>
+                    </span>
+                    <span class="text-sm text-gray-700">ساتن</span>
+                  </label>
+                  <label class="flex items-center">
+                    <span class="custom-checkbox">
+                      <input type="checkbox" />
+                      <span class="checkmark"></span>
+                    </span>
+                    <span class="text-sm text-gray-700">ابریشم</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="border-b border-gray-100 pb-4 mb-4">
+                <h4 class="font-medium text-sm text-gray-700 mb-3">رنگ</h4>
+                <div class="flex flex-wrap gap-2">
+                  <div
+                    class="color-option selected"
+                    style="background-color: #f8f8f8;"
+                    title="سفید"
+                  ></div>
+                  <div
+                    class="color-option"
+                    style="background-color: #e0e0e0;"
+                    title="خاکستری روشن"
+                  ></div>
+                  <div
+                    class="color-option"
+                    style="background-color: #6b7280;"
+                    title="خاکستری"
+                  ></div>
+                  <div
+                    class="color-option"
+                    style="background-color: #1f2937;"
+                    title="مشکی"
+                  ></div>
+                  <div
+                    class="color-option"
+                    style="background-color: #fef3c7;"
+                    title="کرم"
+                  ></div>
+                  <div
+                    class="color-option"
+                    style="background-color: #fde68a;"
+                    title="زرد"
+                  ></div>
+                  <div
+                    class="color-option"
+                    style="background-color: #bfdbfe;"
+                    title="آبی روشن"
+                  ></div>
+                  <div
+                    class="color-option"
+                    style="background-color: #3b82f6;"
+                    title="آبی"
+                  ></div>
+                  <div
+                    class="color-option"
+                    style="background-color: #a7f3d0;"
+                    title="سبز روشن"
+                  ></div>
+                  <div
+                    class="color-option"
+                    style="background-color: #34d399;"
+                    title="سبز"
+                  ></div>
+                  <div
+                    class="color-option"
+                    style="background-color: #fecaca;"
+                    title="صورتی"
+                  ></div>
+                  <div
+                    class="color-option"
+                    style="background-color: #f87171;"
+                    title="قرمز"
+                  ></div>
+                </div>
+              </div>
+
+              <div class="border-b border-gray-100 pb-4 mb-4">
+                <h4 class="font-medium text-sm text-gray-700 mb-3">
+                  محدوده قیمت
+                </h4>
+                <div class="mb-4">
+                  <input
+                    type="range"
+                    min="0"
+                    max="10000000"
+                    value="5000000"
+                    class="w-full h-2 bg-gray-200 rounded-full appearance-none"
+                  />
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-xs text-gray-500">از 500,000 تومان</span>
+                  <span class="text-xs text-gray-500">تا 5,000,000 تومان</span>
+                </div>
+              </div>
+
+              <div class="border-b border-gray-100 pb-4 mb-4">
+                <h4 class="font-medium text-sm text-gray-700 mb-3">سایز</h4>
+                <div class="space-y-2">
+                  <label class="flex items-center">
+                    <span class="custom-checkbox">
+                      <input type="checkbox" />
+                      <span class="checkmark"></span>
+                    </span>
+                    <span class="text-sm text-gray-700"
+                      >کوچک (1.5 × 2 متر)</span
+                    >
+                  </label>
+                  <label class="flex items-center">
+                    <span class="custom-checkbox">
+                      <input type="checkbox" checked />
+                      <span class="checkmark"></span>
+                    </span>
+                    <span class="text-sm text-gray-700"
+                      >متوسط (2 × 2.5 متر)</span
+                    >
+                  </label>
+                  <label class="flex items-center">
+                    <span class="custom-checkbox">
+                      <input type="checkbox" />
+                      <span class="checkmark"></span>
+                    </span>
+                    <span class="text-sm text-gray-700"
+                      >بزرگ (2.5 × 3 متر)</span
+                    >
+                  </label>
+                  <label class="flex items-center">
+                    <span class="custom-checkbox">
+                      <input type="checkbox" />
+                      <span class="checkmark"></span>
+                    </span>
+                    <span class="text-sm text-gray-700">سفارشی</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="border-b border-gray-100 pb-4 mb-4">
+                <h4 class="font-medium text-sm text-gray-700 mb-3">
+                  طرح و مدل
+                </h4>
+                <div class="space-y-2">
+                  <label class="flex items-center">
+                    <span class="custom-checkbox">
+                      <input type="checkbox" />
+                      <span class="checkmark"></span>
+                    </span>
+                    <span class="text-sm text-gray-700">ساده</span>
+                  </label>
+                  <label class="flex items-center">
+                    <span class="custom-checkbox">
+                      <input type="checkbox" checked />
+                      <span class="checkmark"></span>
+                    </span>
+                    <span class="text-sm text-gray-700">گلدار</span>
+                  </label>
+                  <label class="flex items-center">
+                    <span class="custom-checkbox">
+                      <input type="checkbox" />
+                      <span class="checkmark"></span>
+                    </span>
+                    <span class="text-sm text-gray-700">هندسی</span>
+                  </label>
+                  <label class="flex items-center">
+                    <span class="custom-checkbox">
+                      <input type="checkbox" />
+                      <span class="checkmark"></span>
+                    </span>
+                    <span class="text-sm text-gray-700">سنتی</span>
+                  </label>
+                  <label class="flex items-center">
+                    <span class="custom-checkbox">
+                      <input type="checkbox" />
+                      <span class="checkmark"></span>
+                    </span>
+                    <span class="text-sm text-gray-700">مدرن</span>
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-medium text-sm text-gray-700 mb-3">
+                  سایر ویژگی‌ها
+                </h4>
+                <div class="space-y-3">
+                  <label class="flex items-center justify-between">
+                    <span class="text-sm text-gray-700">فقط کالاهای موجود</span>
+                    <span class="custom-switch">
+                      <input type="checkbox" checked />
+                      <span class="switch-slider"></span>
+                    </span>
+                  </label>
+                  <label class="flex items-center justify-between">
+                    <span class="text-sm text-gray-700">فقط تخفیف‌دار</span>
+                    <span class="custom-switch">
+                      <input type="checkbox" />
+                      <span class="switch-slider"></span>
+                    </span>
+                  </label>
+                  <label class="flex items-center justify-between">
+                    <span class="text-sm text-gray-700">ارسال رایگان</span>
+                    <span class="custom-switch">
+                      <input type="checkbox" />
+                      <span class="switch-slider"></span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-2">
+              <button
+                class="w-full py-2 px-4 bg-primary text-white rounded-button text-sm whitespace-nowrap"
+              >
+                اعمال فیلتر
+              </button>
+              <button
+                class="py-2 px-4 bg-gray-100 text-gray-700 rounded-button text-sm whitespace-nowrap"
+              >
+                پاک کردن
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="w-3/4 px-4">
+          <div class="mb-6 flex items-center justify-between">
+            <h2 class="text-xl font-medium text-gray-800">
+              پرده‌های مخمل (24 محصول)
+            </h2>
+            <div class="flex items-center">
+              <span class="text-sm text-gray-600 ml-2">مرتب‌سازی:</span>
+              <select
+                class="text-sm border-none bg-white rounded pr-2 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                <option>پرفروش‌ترین</option>
+                <option>جدیدترین</option>
+                <option>ارزان‌ترین</option>
+                <option>گران‌ترین</option>
+                <option>پربازدیدترین</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-6">
+            <!-- Product Card 1 -->
+            <div
+              class="bg-white rounded-lg shadow-sm overflow-hidden product-card group"
+            >
+              <div class="relative">
+                <img
+                  src="https://readdy.ai/api/search-image?query=elegant%20burgundy%20velvet%20curtain%20with%20gold%20pattern%2C%20luxury%20fabric%2C%20soft%20lighting%2C%20minimalist%20setting%2C%20product%20photography%20on%20white%20background&width=400&height=400&seq=4&orientation=squarish"
+                  alt="پرده مخمل زرشکی"
+                  class="w-full h-64 object-cover"
+                />
+                <div
+                  class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 transition-opacity duration-300 quick-view"
+                >
+                  <button
+                    class="bg-white text-gray-800 py-2 px-4 rounded-button text-sm whitespace-nowrap"
+                  >
+                    مشاهده سریع
+                  </button>
+                </div>
+                <div
+                  class="absolute top-3 right-3 bg-primary text-white text-xs py-1 px-2 rounded"
+                >
+                  20% تخفیف
+                </div>
+              </div>
+              <div class="p-4">
+                <h3 class="font-medium text-gray-800 mb-1">
+                  پرده مخمل زرشکی طرح سلطنتی
+                </h3>
+                <div class="flex items-center mb-2">
+                  <div class="flex items-center text-yellow-400 text-sm">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-half-fill"></i>
+                  </div>
+                  <span class="text-xs text-gray-500 mr-1">(48 نظر)</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span class="text-gray-500 text-sm line-through"
+                      >2,850,000 تومان</span
+                    >
+                    <div class="font-medium text-gray-800">2,280,000 تومان</div>
+                  </div>
+                  <button
+                    class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full"
+                  >
+                    <i class="ri-shopping-cart-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div
+              class="bg-white rounded-lg shadow-sm overflow-hidden product-card group"
+            >
+              <div class="relative">
+                <img
+                  src="https://readdy.ai/api/search-image?query=navy%20blue%20velvet%20curtain%20with%20simple%20elegant%20design%2C%20luxury%20fabric%2C%20soft%20lighting%2C%20minimalist%20setting%2C%20product%20photography%20on%20white%20background&width=400&height=400&seq=5&orientation=squarish"
+                  alt="پرده مخمل سرمه‌ای"
+                  class="w-full h-64 object-cover"
+                />
+                <div
+                  class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 transition-opacity duration-300 quick-view"
+                >
+                  <button
+                    class="bg-white text-gray-800 py-2 px-4 rounded-button text-sm whitespace-nowrap"
+                  >
+                    مشاهده سریع
+                  </button>
+                </div>
+              </div>
+              <div class="p-4">
+                <h3 class="font-medium text-gray-800 mb-1">
+                  پرده مخمل سرمه‌ای ساده
+                </h3>
+                <div class="flex items-center mb-2">
+                  <div class="flex items-center text-yellow-400 text-sm">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-line"></i>
+                  </div>
+                  <span class="text-xs text-gray-500 mr-1">(32 نظر)</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="font-medium text-gray-800">1,950,000 تومان</div>
+                  </div>
+                  <button
+                    class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full"
+                  >
+                    <i class="ri-shopping-cart-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div
+              class="bg-white rounded-lg shadow-sm overflow-hidden product-card group"
+            >
+              <div class="relative">
+                <img
+                  src="https://readdy.ai/api/search-image?query=emerald%20green%20velvet%20curtain%20with%20subtle%20pattern%2C%20luxury%20fabric%2C%20soft%20lighting%2C%20minimalist%20setting%2C%20product%20photography%20on%20white%20background&width=400&height=400&seq=6&orientation=squarish"
+                  alt="پرده مخمل سبز"
+                  class="w-full h-64 object-cover"
+                />
+                <div
+                  class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 transition-opacity duration-300 quick-view"
+                >
+                  <button
+                    class="bg-white text-gray-800 py-2 px-4 rounded-button text-sm whitespace-nowrap"
+                  >
+                    مشاهده سریع
+                  </button>
+                </div>
+                <div
+                  class="absolute top-3 right-3 bg-primary text-white text-xs py-1 px-2 rounded"
+                >
+                  15% تخفیف
+                </div>
+              </div>
+              <div class="p-4">
+                <h3 class="font-medium text-gray-800 mb-1">
+                  پرده مخمل سبز زمردی طرح برگ
+                </h3>
+                <div class="flex items-center mb-2">
+                  <div class="flex items-center text-yellow-400 text-sm">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                  </div>
+                  <span class="text-xs text-gray-500 mr-1">(65 نظر)</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span class="text-gray-500 text-sm line-through"
+                      >2,450,000 تومان</span
+                    >
+                    <div class="font-medium text-gray-800">2,082,500 تومان</div>
+                  </div>
+                  <button
+                    class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full"
+                  >
+                    <i class="ri-shopping-cart-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div
+              class="bg-white rounded-lg shadow-sm overflow-hidden product-card group"
+            >
+              <div class="relative">
+                <img
+                  src="https://readdy.ai/api/search-image?query=beige%20velvet%20curtain%20with%20embroidered%20floral%20pattern%2C%20luxury%20fabric%2C%20soft%20lighting%2C%20minimalist%20setting%2C%20product%20photography%20on%20white%20background&width=400&height=400&seq=7&orientation=squarish"
+                  alt="پرده مخمل کرم"
+                  class="w-full h-64 object-cover"
+                />
+                <div
+                  class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 transition-opacity duration-300 quick-view"
+                >
+                  <button
+                    class="bg-white text-gray-800 py-2 px-4 rounded-button text-sm whitespace-nowrap"
+                  >
+                    مشاهده سریع
+                  </button>
+                </div>
+              </div>
+              <div class="p-4">
+                <h3 class="font-medium text-gray-800 mb-1">
+                  پرده مخمل کرم گلدوزی شده
+                </h3>
+                <div class="flex items-center mb-2">
+                  <div class="flex items-center text-yellow-400 text-sm">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-half-fill"></i>
+                  </div>
+                  <span class="text-xs text-gray-500 mr-1">(42 نظر)</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="font-medium text-gray-800">2,750,000 تومان</div>
+                  </div>
+                  <button
+                    class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full"
+                  >
+                    <i class="ri-shopping-cart-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 5 -->
+            <div
+              class="bg-white rounded-lg shadow-sm overflow-hidden product-card group"
+            >
+              <div class="relative">
+                <img
+                  src="https://readdy.ai/api/search-image?query=dark%20gray%20velvet%20curtain%20with%20silver%20geometric%20pattern%2C%20luxury%20fabric%2C%20soft%20lighting%2C%20minimalist%20setting%2C%20product%20photography%20on%20white%20background&width=400&height=400&seq=8&orientation=squarish"
+                  alt="پرده مخمل خاکستری"
+                  class="w-full h-64 object-cover"
+                />
+                <div
+                  class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 transition-opacity duration-300 quick-view"
+                >
+                  <button
+                    class="bg-white text-gray-800 py-2 px-4 rounded-button text-sm whitespace-nowrap"
+                  >
+                    مشاهده سریع
+                  </button>
+                </div>
+                <div
+                  class="absolute top-3 right-3 bg-red-500 text-white text-xs py-1 px-2 rounded"
+                >
+                  پرفروش
+                </div>
+              </div>
+              <div class="p-4">
+                <h3 class="font-medium text-gray-800 mb-1">
+                  پرده مخمل خاکستری طرح هندسی
+                </h3>
+                <div class="flex items-center mb-2">
+                  <div class="flex items-center text-yellow-400 text-sm">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-line"></i>
+                  </div>
+                  <span class="text-xs text-gray-500 mr-1">(38 نظر)</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="font-medium text-gray-800">2,150,000 تومان</div>
+                  </div>
+                  <button
+                    class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full"
+                  >
+                    <i class="ri-shopping-cart-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 6 -->
+            <div
+              class="bg-white rounded-lg shadow-sm overflow-hidden product-card group"
+            >
+              <div class="relative">
+                <img
+                  src="https://readdy.ai/api/search-image?query=royal%20purple%20velvet%20curtain%20with%20gold%20embroidery%2C%20luxury%20fabric%2C%20soft%20lighting%2C%20minimalist%20setting%2C%20product%20photography%20on%20white%20background&width=400&height=400&seq=9&orientation=squarish"
+                  alt="پرده مخمل بنفش"
+                  class="w-full h-64 object-cover"
+                />
+                <div
+                  class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 transition-opacity duration-300 quick-view"
+                >
+                  <button
+                    class="bg-white text-gray-800 py-2 px-4 rounded-button text-sm whitespace-nowrap"
+                  >
+                    مشاهده سریع
+                  </button>
+                </div>
+                <div
+                  class="absolute top-3 right-3 bg-primary text-white text-xs py-1 px-2 rounded"
+                >
+                  25% تخفیف
+                </div>
+              </div>
+              <div class="p-4">
+                <h3 class="font-medium text-gray-800 mb-1">
+                  پرده مخمل بنفش سلطنتی
+                </h3>
+                <div class="flex items-center mb-2">
+                  <div class="flex items-center text-yellow-400 text-sm">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-half-fill"></i>
+                  </div>
+                  <span class="text-xs text-gray-500 mr-1">(56 نظر)</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span class="text-gray-500 text-sm line-through"
+                      >3,200,000 تومان</span
+                    >
+                    <div class="font-medium text-gray-800">2,400,000 تومان</div>
+                  </div>
+                  <button
+                    class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full"
+                  >
+                    <i class="ri-shopping-cart-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pagination -->
+          <div class="mt-10 flex justify-center">
+            <nav class="flex items-center">
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:bg-primary hover:text-white hover:border-primary"
+              >
+                <i class="ri-arrow-right-s-line"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 mx-1 text-gray-700 hover:bg-primary hover:text-white hover:border-primary"
+                >1</a
+              >
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white border border-primary mx-1"
+                >2</a
+              >
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 mx-1 text-gray-700 hover:bg-primary hover:text-white hover:border-primary"
+                >3</a
+              >
+              <span
+                class="w-10 h-10 flex items-center justify-center text-gray-500"
+                >...</span
+              >
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 mx-1 text-gray-700 hover:bg-primary hover:text-white hover:border-primary"
+                >8</a
+              >
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:bg-primary hover:text-white hover:border-primary"
+              >
+                <i class="ri-arrow-left-s-line"></i>
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommended Products -->
+      <div class="mt-16">
+        <h2 class="text-xl font-medium text-gray-800 mb-6">محصولات پیشنهادی</h2>
+        <div class="relative">
+          <div
+            class="flex overflow-x-auto pb-4 -mx-4 px-4 space-x-6 space-x-reverse"
+          >
+            <!-- Recommended Product 1 -->
+            <div
+              class="bg-white rounded-lg shadow-sm overflow-hidden product-card group min-w-[280px] max-w-[280px]"
+            >
+              <div class="relative">
+                <img
+                  src="https://readdy.ai/api/search-image?query=light%20blue%20sheer%20curtain%20with%20white%20floral%20pattern%2C%20elegant%20fabric%2C%20soft%20lighting%2C%20minimalist%20setting%2C%20product%20photography%20on%20white%20background&width=400&height=400&seq=10&orientation=squarish"
+                  alt="پرده حریر آبی"
+                  class="w-full h-64 object-cover"
+                />
+                <div
+                  class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 transition-opacity duration-300 quick-view"
+                >
+                  <button
+                    class="bg-white text-gray-800 py-2 px-4 rounded-button text-sm whitespace-nowrap"
+                  >
+                    مشاهده سریع
+                  </button>
+                </div>
+                <div
+                  class="absolute top-3 right-3 bg-primary text-white text-xs py-1 px-2 rounded"
+                >
+                  جدید
+                </div>
+              </div>
+              <div class="p-4">
+                <h3 class="font-medium text-gray-800 mb-1">
+                  پرده حریر آبی روشن گلدار
+                </h3>
+                <div class="flex items-center mb-2">
+                  <div class="flex items-center text-yellow-400 text-sm">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-line"></i>
+                  </div>
+                  <span class="text-xs text-gray-500 mr-1">(18 نظر)</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="font-medium text-gray-800">1,250,000 تومان</div>
+                  </div>
+                  <button
+                    class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full"
+                  >
+                    <i class="ri-shopping-cart-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recommended Product 2 -->
+            <div
+              class="bg-white rounded-lg shadow-sm overflow-hidden product-card group min-w-[280px] max-w-[280px]"
+            >
+              <div class="relative">
+                <img
+                  src="https://readdy.ai/api/search-image?query=white%20blackout%20curtain%20with%20minimalist%20design%2C%20thick%20fabric%2C%20soft%20lighting%2C%20minimalist%20setting%2C%20product%20photography%20on%20white%20background&width=400&height=400&seq=11&orientation=squarish"
+                  alt="پرده ضخیم سفید"
+                  class="w-full h-64 object-cover"
+                />
+                <div
+                  class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 transition-opacity duration-300 quick-view"
+                >
+                  <button
+                    class="bg-white text-gray-800 py-2 px-4 rounded-button text-sm whitespace-nowrap"
+                  >
+                    مشاهده سریع
+                  </button>
+                </div>
+              </div>
+              <div class="p-4">
+                <h3 class="font-medium text-gray-800 mb-1">
+                  پرده ضخیم سفید تاریک کننده
+                </h3>
+                <div class="flex items-center mb-2">
+                  <div class="flex items-center text-yellow-400 text-sm">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-half-fill"></i>
+                  </div>
+                  <span class="text-xs text-gray-500 mr-1">(45 نظر)</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="font-medium text-gray-800">1,850,000 تومان</div>
+                  </div>
+                  <button
+                    class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full"
+                  >
+                    <i class="ri-shopping-cart-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recommended Product 3 -->
+            <div
+              class="bg-white rounded-lg shadow-sm overflow-hidden product-card group min-w-[280px] max-w-[280px]"
+            >
+              <div class="relative">
+                <img
+                  src="https://readdy.ai/api/search-image?query=light%20pink%20sheer%20curtain%20with%20delicate%20pattern%2C%20elegant%20fabric%2C%20soft%20lighting%2C%20minimalist%20setting%2C%20product%20photography%20on%20white%20background&width=400&height=400&seq=12&orientation=squarish"
+                  alt="پرده حریر صورتی"
+                  class="w-full h-64 object-cover"
+                />
+                <div
+                  class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 transition-opacity duration-300 quick-view"
+                >
+                  <button
+                    class="bg-white text-gray-800 py-2 px-4 rounded-button text-sm whitespace-nowrap"
+                  >
+                    مشاهده سریع
+                  </button>
+                </div>
+                <div
+                  class="absolute top-3 right-3 bg-primary text-white text-xs py-1 px-2 rounded"
+                >
+                  10% تخفیف
+                </div>
+              </div>
+              <div class="p-4">
+                <h3 class="font-medium text-gray-800 mb-1">
+                  پرده حریر صورتی ظریف
+                </h3>
+                <div class="flex items-center mb-2">
+                  <div class="flex items-center text-yellow-400 text-sm">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-line"></i>
+                  </div>
+                  <span class="text-xs text-gray-500 mr-1">(29 نظر)</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span class="text-gray-500 text-sm line-through"
+                      >1,350,000 تومان</span
+                    >
+                    <div class="font-medium text-gray-800">1,215,000 تومان</div>
+                  </div>
+                  <button
+                    class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full"
+                  >
+                    <i class="ri-shopping-cart-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recommended Product 4 -->
+            <div
+              class="bg-white rounded-lg shadow-sm overflow-hidden product-card group min-w-[280px] max-w-[280px]"
+            >
+              <div class="relative">
+                <img
+                  src="https://readdy.ai/api/search-image?query=beige%20linen%20curtain%20with%20brown%20stripes%2C%20natural%20fabric%2C%20soft%20lighting%2C%20minimalist%20setting%2C%20product%20photography%20on%20white%20background&width=400&height=400&seq=13&orientation=squarish"
+                  alt="پرده کتان راه راه"
+                  class="w-full h-64 object-cover"
+                />
+                <div
+                  class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 transition-opacity duration-300 quick-view"
+                >
+                  <button
+                    class="bg-white text-gray-800 py-2 px-4 rounded-button text-sm whitespace-nowrap"
+                  >
+                    مشاهده سریع
+                  </button>
+                </div>
+              </div>
+              <div class="p-4">
+                <h3 class="font-medium text-gray-800 mb-1">
+                  پرده کتان کرم راه راه
+                </h3>
+                <div class="flex items-center mb-2">
+                  <div class="flex items-center text-yellow-400 text-sm">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-half-fill"></i>
+                    <i class="ri-star-line"></i>
+                  </div>
+                  <span class="text-xs text-gray-500 mr-1">(23 نظر)</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="font-medium text-gray-800">1,650,000 تومان</div>
+                  </div>
+                  <button
+                    class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full"
+                  >
+                    <i class="ri-shopping-cart-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recommended Product 5 -->
+            <div
+              class="bg-white rounded-lg shadow-sm overflow-hidden product-card group min-w-[280px] max-w-[280px]"
+            >
+              <div class="relative">
+                <img
+                  src="https://readdy.ai/api/search-image?query=sage%20green%20cotton%20curtain%20with%20leaf%20pattern%2C%20natural%20fabric%2C%20soft%20lighting%2C%20minimalist%20setting%2C%20product%20photography%20on%20white%20background&width=400&height=400&seq=14&orientation=squarish"
+                  alt="پرده سبز ملایم"
+                  class="w-full h-64 object-cover"
+                />
+                <div
+                  class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 transition-opacity duration-300 quick-view"
+                >
+                  <button
+                    class="bg-white text-gray-800 py-2 px-4 rounded-button text-sm whitespace-nowrap"
+                  >
+                    مشاهده سریع
+                  </button>
+                </div>
+                <div
+                  class="absolute top-3 right-3 bg-red-500 text-white text-xs py-1 px-2 rounded"
+                >
+                  محبوب
+                </div>
+              </div>
+              <div class="p-4">
+                <h3 class="font-medium text-gray-800 mb-1">
+                  پرده نخی سبز ملایم طرح برگ
+                </h3>
+                <div class="flex items-center mb-2">
+                  <div class="flex items-center text-yellow-400 text-sm">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                  </div>
+                  <span class="text-xs text-gray-500 mr-1">(72 نظر)</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="font-medium text-gray-800">1,780,000 تومان</div>
+                  </div>
+                  <button
+                    class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full"
+                  >
+                    <i class="ri-shopping-cart-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scroll Buttons -->
+          <button
+            class="absolute top-1/2 right-0 transform -translate-y-1/2 w-10 h-10 bg-white shadow-md rounded-full flex items-center justify-center text-gray-700 z-10"
+          >
+            <i class="ri-arrow-right-s-line"></i>
+          </button>
+          <button
+            class="absolute top-1/2 left-0 transform -translate-y-1/2 w-10 h-10 bg-white shadow-md rounded-full flex items-center justify-center text-gray-700 z-10"
+          >
+            <i class="ri-arrow-left-s-line"></i>
+          </button>
+        </div>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-16">
+      <div class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-4 gap-8">
+          <div>
+            <div class="font-['Pacifico'] text-2xl text-white mb-4">logo</div>
+            <p class="text-gray-300 text-sm leading-relaxed mb-4">
+              فروشگاه آنلاین انواع پرده با بیش از 10 سال سابقه درخشان. ارائه
+              دهنده انواع پرده‌های مدرن و کلاسیک با بالاترین کیفیت و قیمت مناسب.
+            </p>
+            <div class="flex space-x-4 space-x-reverse">
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-primary"
+              >
+                <i class="ri-instagram-line"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-primary"
+              >
+                <i class="ri-telegram-line"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-primary"
+              >
+                <i class="ri-whatsapp-line"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-primary"
+              >
+                <i class="ri-twitter-x-line"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-medium mb-4">دسترسی سریع</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm"
+                  >صفحه اصلی</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm"
+                  >محصولات</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm"
+                  >درباره ما</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm"
+                  >تماس با ما</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm"
+                  >بلاگ</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm"
+                  >سوالات متداول</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-medium mb-4">خدمات مشتریان</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm"
+                  >نحوه سفارش</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm"
+                  >رویه ارسال سفارش</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm"
+                  >شیوه‌های پرداخت</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm"
+                  >گارانتی و خدمات پس از فروش</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm"
+                  >رویه بازگرداندن کالا</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm"
+                  >حریم خصوصی</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-medium mb-4">تماس با ما</h4>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-gray-400 mt-0.5 ml-2"
+                >
+                  <i class="ri-map-pin-line"></i>
+                </div>
+                <span class="text-gray-300 text-sm"
+                  >تهران، خیابان ولیعصر، نرسیده به میدان ونک، پاساژ ونک، طبقه
+                  دوم، پلاک 42</span
+                >
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-gray-400 ml-2"
+                >
+                  <i class="ri-phone-line"></i>
+                </div>
+                <span class="text-gray-300 text-sm">021-88776655</span>
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-gray-400 ml-2"
+                >
+                  <i class="ri-mail-line"></i>
+                </div>
+                <span class="text-gray-300 text-sm">info@curtainshop.com</span>
+              </li>
+            </ul>
+
+            <div class="mt-6">
+              <h5 class="text-sm font-medium mb-3">عضویت در خبرنامه</h5>
+              <div class="flex">
+                <input
+                  type="email"
+                  placeholder="ایمیل خود را وارد کنید"
+                  class="bg-gray-700 text-white text-sm rounded-r-md px-4 py-2 w-full border-none focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+                <button
+                  class="bg-primary text-white px-4 py-2 rounded-l-md whitespace-nowrap"
+                >
+                  عضویت
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-gray-700 mt-10 pt-6 flex justify-between items-center"
+        >
+          <p class="text-gray-400 text-sm">
+            © 1404 فروشگاه پرده. تمامی حقوق محفوظ است.
+          </p>
+          <div class="flex items-center space-x-4 space-x-reverse">
+            <div
+              class="w-10 h-6 flex items-center justify-center bg-white rounded"
+            >
+              <i class="ri-bank-card-fill text-gray-800"></i>
+            </div>
+            <div
+              class="w-10 h-6 flex items-center justify-center bg-white rounded"
+            >
+              <i class="ri-paypal-fill text-gray-800"></i>
+            </div>
+            <div
+              class="w-10 h-6 flex items-center justify-center bg-white rounded"
+            >
+              <i class="ri-visa-fill text-gray-800"></i>
+            </div>
+            <div
+              class="w-10 h-6 flex items-center justify-center bg-white rounded"
+            >
+              <i class="ri-mastercard-fill text-gray-800"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Color options selection
+        const colorOptions = document.querySelectorAll(".color-option");
+        colorOptions.forEach((option) => {
+          option.addEventListener("click", function () {
+            colorOptions.forEach((opt) => opt.classList.remove("selected"));
+            this.classList.add("selected");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+
