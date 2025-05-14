@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مربی شخصی بدنسازی</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#0056b3", secondary: "#ff4757" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+          font-family: 'Vazirmatn', sans-serif;
+          scroll-behavior: smooth;
+      }
+      .typing-effect {
+          overflow: hidden;
+          white-space: nowrap;
+          animation: typing 3.5s steps(40, end);
+      }
+      @keyframes typing {
+          from { width: 0 }
+          to { width: 100% }
+      }
+      .before-after-slider {
+          position: relative;
+          overflow: hidden;
+      }
+      .before-after-slider .before {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 50%;
+          height: 100%;
+          overflow: hidden;
+      }
+      .before-after-slider .slider-handle {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          width: 4px;
+          height: 100%;
+          background: #fff;
+          cursor: ew-resize;
+          transform: translateX(-50%);
+          z-index: 10;
+      }
+      .before-after-slider .slider-handle::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 40px;
+          height: 40px;
+          background: #fff;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <!-- Nav Bar -->
+    <nav class="fixed top-0 w-full bg-white shadow-md z-50 py-3 px-4">
+      <div class="flex justify-between items-center">
+        <div class="font-['Pacifico'] text-primary text-xl">logo</div>
+        <div class="w-10 h-10 flex items-center justify-center cursor-pointer">
+          <i class="ri-menu-line ri-lg"></i>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="pt-16 h-screen flex flex-col justify-center items-center relative overflow-hidden"
+    >
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://readdy.ai/api/search-image?query=professional%20fitness%20trainer%2C%20muscular%20male%20trainer%20in%20gym%2C%20dynamic%20pose%2C%20high-quality%20fitness%20photoshoot%2C%20professional%20lighting%2C%20gym%20equipment%20in%20background%2C%20athletic%20physique%2C%20confident%20expression%2C%20fitness%20attire%2C%20inspiring%20pose%2C%20high%20contrast&width=375&height=500&seq=1&orientation=portrait"
+          alt="مربی شخصی"
+          class="w-full h-full object-cover object-top"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"
+        ></div>
+      </div>
+      <div class="relative z-10 text-center px-6">
+        <h1 class="text-white text-4xl font-bold mb-2">علی محمدی</h1>
+        <p class="text-white text-xl mb-6 typing-effect">
+          بدنت رو بساز، زندگیت رو تغییر بده
+        </p>
+        <button
+          class="bg-primary text-white py-3 px-8 font-medium !rounded-button cursor-pointer hover:bg-blue-700 transition-all"
+        >
+          شروع مشاوره
+        </button>
+      </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section class="py-12 px-4">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold mb-2">درباره من</h2>
+        <div class="w-16 h-1 bg-primary mx-auto"></div>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <div class="w-32 h-32 rounded-full overflow-hidden mb-6">
+          <img
+            src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20fitness%20trainer%2C%20headshot%2C%20professional%20lighting%2C%20confident%20expression%2C%20athletic%20build%2C%20neutral%20background%2C%20high%20quality&width=128&height=128&seq=2&orientation=squarish"
+            alt="علی محمدی"
+            class="w-full h-full object-cover"
+          />
+        </div>
+
+        <p class="text-center mb-6">
+          با بیش از ۸ سال تجربه در زمینه بدنسازی و تناسب اندام، من به شما کمک
+          می‌کنم تا به بهترین فرم بدنی خود برسید. مربیگری برای من فقط یک شغل
+          نیست، بلکه یک اشتیاق است که هر روز با آن زندگی می‌کنم.
+        </p>
+
+        <div class="grid grid-cols-2 gap-4 w-full mb-8">
+          <div class="bg-white p-4 rounded shadow text-center">
+            <div
+              class="w-12 h-12 mx-auto mb-2 flex items-center justify-center"
+            >
+              <i class="ri-user-star-line ri-2x text-primary"></i>
+            </div>
+            <h3 class="font-bold text-lg mb-1">+۵۰۰</h3>
+            <p class="text-sm text-gray-600">مشتری راضی</p>
+          </div>
+          <div class="bg-white p-4 rounded shadow text-center">
+            <div
+              class="w-12 h-12 mx-auto mb-2 flex items-center justify-center"
+            >
+              <i class="ri-award-line ri-2x text-primary"></i>
+            </div>
+            <h3 class="font-bold text-lg mb-1">۸ سال</h3>
+            <p class="text-sm text-gray-600">تجربه مربیگری</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow w-full">
+          <h3 class="font-bold mb-3">مدارک و گواهینامه‌ها</h3>
+          <ul class="space-y-2">
+            <li class="flex items-center">
+              <div class="w-6 h-6 mr-2 flex items-center justify-center">
+                <i class="ri-check-line text-primary"></i>
+              </div>
+              <span>مربی رسمی فدراسیون بدنسازی و پرورش اندام</span>
+            </li>
+            <li class="flex items-center">
+              <div class="w-6 h-6 mr-2 flex items-center justify-center">
+                <i class="ri-check-line text-primary"></i>
+              </div>
+              <span>مدرک تغذیه ورزشی از دانشگاه تهران</span>
+            </li>
+            <li class="flex items-center">
+              <div class="w-6 h-6 mr-2 flex items-center justify-center">
+                <i class="ri-check-line text-primary"></i>
+              </div>
+              <span>گواهینامه مربیگری TRX</span>
+            </li>
+            <li class="flex items-center">
+              <div class="w-6 h-6 mr-2 flex items-center justify-center">
+                <i class="ri-check-line text-primary"></i>
+              </div>
+              <span>مدرک مربیگری CrossFit سطح ۲</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-12 px-4 bg-white">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold mb-2">خدمات من</h2>
+        <div class="w-16 h-1 bg-primary mx-auto"></div>
+      </div>
+
+      <div class="space-y-4">
+        <div
+          class="bg-gray-50 rounded shadow p-4 transition-all hover:shadow-md"
+        >
+          <div class="flex items-start">
+            <div class="w-12 h-12 flex items-center justify-center">
+              <i class="ri-user-settings-line ri-2x text-primary"></i>
+            </div>
+            <div class="flex-1 mr-3">
+              <h3 class="font-bold text-lg mb-1">برنامه تمرینی شخصی</h3>
+              <p class="text-sm text-gray-600 mb-2">
+                برنامه تمرینی کاملاً شخصی‌سازی شده بر اساس اهداف و شرایط بدنی
+                شما
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-primary"
+                  >۱,۵۰۰,۰۰۰ تومان / ماه</span
+                >
+                <button class="text-sm text-primary cursor-pointer">
+                  جزئیات بیشتر
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="bg-gray-50 rounded shadow p-4 transition-all hover:shadow-md"
+        >
+          <div class="flex items-start">
+            <div class="w-12 h-12 flex items-center justify-center">
+              <i class="ri-restaurant-line ri-2x text-primary"></i>
+            </div>
+            <div class="flex-1 mr-3">
+              <h3 class="font-bold text-lg mb-1">برنامه تغذیه اختصاصی</h3>
+              <p class="text-sm text-gray-600 mb-2">
+                برنامه غذایی متناسب با اهداف، سلیقه و شرایط بدنی شما
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-primary"
+                  >۱,۲۰۰,۰۰۰ تومان / ماه</span
+                >
+                <button class="text-sm text-primary cursor-pointer">
+                  جزئیات بیشتر
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="bg-gray-50 rounded shadow p-4 transition-all hover:shadow-md"
+        >
+          <div class="flex items-start">
+            <div class="w-12 h-12 flex items-center justify-center">
+              <i class="ri-vidicon-line ri-2x text-primary"></i>
+            </div>
+            <div class="flex-1 mr-3">
+              <h3 class="font-bold text-lg mb-1">مشاوره آنلاین</h3>
+              <p class="text-sm text-gray-600 mb-2">
+                جلسات مشاوره آنلاین برای پاسخ به سوالات و راهنمایی شما
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-primary">۵۰۰,۰۰۰ تومان / جلسه</span>
+                <button class="text-sm text-primary cursor-pointer">
+                  جزئیات بیشتر
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="bg-gray-50 rounded shadow p-4 transition-all hover:shadow-md"
+        >
+          <div class="flex items-start">
+            <div class="w-12 h-12 flex items-center justify-center">
+              <i class="ri-group-line ri-2x text-primary"></i>
+            </div>
+            <div class="flex-1 mr-3">
+              <h3 class="font-bold text-lg mb-1">پکیج کامل (VIP)</h3>
+              <p class="text-sm text-gray-600 mb-2">
+                ترکیب برنامه تمرینی، تغذیه و پشتیبانی ۲۴ ساعته
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-primary"
+                  >۲,۵۰۰,۰۰۰ تومان / ماه</span
+                >
+                <button class="text-sm text-primary cursor-pointer">
+                  جزئیات بیشتر
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Before/After Section -->
+    <section class="py-12 px-4">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold mb-2">نتایج شاگردان</h2>
+        <div class="w-16 h-1 bg-primary mx-auto"></div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="before-after-slider h-64 rounded overflow-hidden shadow">
+          <img
+            src="https://readdy.ai/api/search-image?query=fitness%20transformation%2C%20after%20photo%2C%20muscular%20male%2C%20athletic%20physique%2C%20confident%20pose%2C%20fitness%20attire%2C%20gym%20background%2C%20professional%20lighting&width=375&height=256&seq=3&orientation=landscape"
+            alt="بعد"
+            class="w-full h-full object-cover"
+          />
+          <div class="before">
+            <img
+              src="https://readdy.ai/api/search-image?query=fitness%20transformation%2C%20before%20photo%2C%20overweight%20male%2C%20neutral%20pose%2C%20casual%20attire%2C%20neutral%20background%2C%20same%20person%20as%20after%20photo&width=375&height=256&seq=4&orientation=landscape"
+              alt="قبل"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="slider-handle"></div>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow">
+          <div class="flex items-start">
+            <div class="w-12 h-12 rounded-full overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=portrait%20of%20a%20fit%20young%20man%2C%20confident%20smile%2C%20casual%20attire%2C%20neutral%20background%2C%20headshot&width=48&height=48&seq=5&orientation=squarish"
+                alt="محمد رضایی"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="mr-3">
+              <h3 class="font-bold">محمد رضایی</h3>
+              <p class="text-sm text-gray-600">کاهش وزن: ۱۸ کیلوگرم در ۶ ماه</p>
+              <p class="text-sm mt-2">
+                با برنامه تمرینی و تغذیه‌ای که علی برام طراحی کرد، تونستم در ۶
+                ماه به هدفم برسم. پشتیبانی و انگیزه‌ای که بهم داد فوق‌العاده
+                بود.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="before-after-slider h-64 rounded overflow-hidden shadow">
+          <img
+            src="https://readdy.ai/api/search-image?query=fitness%20transformation%2C%20after%20photo%2C%20fit%20female%2C%20toned%20physique%2C%20confident%20pose%2C%20fitness%20attire%2C%20gym%20background%2C%20professional%20lighting&width=375&height=256&seq=6&orientation=landscape"
+            alt="بعد"
+            class="w-full h-full object-cover"
+          />
+          <div class="before">
+            <img
+              src="https://readdy.ai/api/search-image?query=fitness%20transformation%2C%20before%20photo%2C%20slightly%20overweight%20female%2C%20neutral%20pose%2C%20casual%20attire%2C%20neutral%20background%2C%20same%20person%20as%20after%20photo&width=375&height=256&seq=7&orientation=landscape"
+              alt="قبل"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="slider-handle"></div>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow">
+          <div class="flex items-start">
+            <div class="w-12 h-12 rounded-full overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=portrait%20of%20a%20fit%20young%20woman%2C%20confident%20smile%2C%20casual%20attire%2C%20neutral%20background%2C%20headshot&width=48&height=48&seq=8&orientation=squarish"
+                alt="سارا احمدی"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="mr-3">
+              <h3 class="font-bold">سارا احمدی</h3>
+              <p class="text-sm text-gray-600">
+                افزایش قدرت و تناسب اندام در ۴ ماه
+              </p>
+              <p class="text-sm mt-2">
+                برنامه‌های علی کاملاً علمی و اصولی هستند. من نه تنها ظاهر بدنم
+                رو بهبود دادم، بلکه قدرت و انرژی بیشتری هم پیدا کردم.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-12 px-4 bg-white">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold mb-2">نظرات مشتریان</h2>
+        <div class="w-16 h-1 bg-primary mx-auto"></div>
+      </div>
+
+      <div class="testimonial-slider">
+        <div class="bg-gray-50 p-4 rounded shadow mb-4">
+          <div class="flex items-center mb-3">
+            <div class="w-12 h-12 rounded-full overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=portrait%20of%20a%20fit%20middle-aged%20man%2C%20confident%20smile%2C%20casual%20attire%2C%20neutral%20background%2C%20headshot&width=48&height=48&seq=9&orientation=squarish"
+                alt="امیر حسینی"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="mr-3">
+              <h3 class="font-bold">امیر حسینی</h3>
+              <div class="flex text-yellow-400">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-sm">
+            من ۴۵ سالمه و فکر می‌کردم دیگه برای تناسب اندام دیر شده، اما علی بهم
+            ثابت کرد که هیچوقت دیر نیست. با برنامه‌های متناسب با سن و شرایط من،
+            تونستم به نتایج فوق‌العاده‌ای برسم.
+          </p>
+        </div>
+
+        <div class="bg-gray-50 p-4 rounded shadow mb-4">
+          <div class="flex items-center mb-3">
+            <div class="w-12 h-12 rounded-full overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=portrait%20of%20a%20fit%20young%20woman%2C%20confident%20smile%2C%20casual%20attire%2C%20neutral%20background%2C%20headshot&width=48&height=48&seq=10&orientation=squarish"
+                alt="نیلوفر کریمی"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="mr-3">
+              <h3 class="font-bold">نیلوفر کریمی</h3>
+              <div class="flex text-yellow-400">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-half-fill"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-sm">
+            بعد از زایمان، خیلی نگران بودم که نتونم به فرم قبلی برگردم. علی با
+            صبر و حوصله و برنامه‌ریزی دقیق کمکم کرد تا حتی از قبل هم بهتر بشم.
+            واقعاً ممنونم!
+          </p>
+        </div>
+
+        <div class="bg-gray-50 p-4 rounded shadow">
+          <div class="flex items-center mb-3">
+            <div class="w-12 h-12 rounded-full overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=portrait%20of%20a%20fit%20young%20man%2C%20confident%20smile%2C%20casual%20attire%2C%20neutral%20background%2C%20headshot&width=48&height=48&seq=11&orientation=squarish"
+                alt="پویا محمودی"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="mr-3">
+              <h3 class="font-bold">پویا محمودی</h3>
+              <div class="flex text-yellow-400">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-sm">
+            من قبلاً با چند مربی کار کرده بودم، اما هیچکدوم مثل علی نبودن. دانش
+            علمی و تجربه عملی اون واقعاً بی‌نظیره. بعد از ۳ ماه کار با
+            برنامه‌های علی، به رکوردهایی رسیدم که فکرشو هم نمی‌کردم.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-4">
+        <div
+          class="w-3 h-3 bg-gray-300 rounded-full mx-1 cursor-pointer testimonial-dot active"
+        ></div>
+        <div
+          class="w-3 h-3 bg-gray-300 rounded-full mx-1 cursor-pointer testimonial-dot"
+        ></div>
+        <div
+          class="w-3 h-3 bg-gray-300 rounded-full mx-1 cursor-pointer testimonial-dot"
+        ></div>
+      </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="py-12 px-4">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold mb-2">مقالات آموزشی</h2>
+        <div class="w-16 h-1 bg-primary mx-auto"></div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 mb-4">
+        <div class="bg-white rounded shadow overflow-hidden">
+          <div class="h-48 overflow-hidden">
+            <img
+              src="https://readdy.ai/api/search-image?query=healthy%20meal%20prep%2C%20various%20healthy%20foods%2C%20protein%20sources%2C%20vegetables%2C%20meal%20planning%2C%20fitness%20nutrition%2C%20high%20quality%20food%20photography&width=375&height=192&seq=12&orientation=landscape"
+              alt="اصول تغذیه برای عضله‌سازی"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="p-4">
+            <span
+              class="text-xs bg-blue-100 text-primary px-2 py-1 rounded-full"
+              >تغذیه</span
+            >
+            <h3 class="font-bold text-lg mt-2">اصول تغذیه برای عضله‌سازی</h3>
+            <p class="text-sm text-gray-600 mt-2 mb-3">
+              در این مقاله، اصول پایه‌ای تغذیه برای افزایش حجم عضلانی را به زبان
+              ساده توضیح می‌دهیم...
+            </p>
+            <button class="text-primary text-sm cursor-pointer">
+              ادامه مطلب
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white rounded shadow overflow-hidden">
+          <div class="h-48 overflow-hidden">
+            <img
+              src="https://readdy.ai/api/search-image?query=weight%20training%2C%20proper%20form%2C%20squat%20exercise%20demonstration%2C%20gym%20setting%2C%20professional%20fitness%20photography&width=375&height=192&seq=13&orientation=landscape"
+              alt="تکنیک‌های صحیح اسکوات"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="p-4">
+            <span
+              class="text-xs bg-blue-100 text-primary px-2 py-1 rounded-full"
+              >تمرین</span
+            >
+            <h3 class="font-bold text-lg mt-2">تکنیک‌های صحیح اسکوات</h3>
+            <p class="text-sm text-gray-600 mt-2 mb-3">
+              اسکوات یکی از پایه‌ای‌ترین حرکات بدنسازی است. در این مقاله نحوه
+              صحیح انجام آن را آموزش می‌دهیم...
+            </p>
+            <button class="text-primary text-sm cursor-pointer">
+              ادامه مطلب
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button
+          class="border border-primary text-primary py-2 px-6 !rounded-button cursor-pointer hover:bg-primary hover:text-white transition-all"
+        >
+          مشاهده همه مقالات
+        </button>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-12 px-4 bg-white">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold mb-2">تماس با من</h2>
+        <div class="w-16 h-1 bg-primary mx-auto"></div>
+      </div>
+
+      <div class="bg-gray-50 p-4 rounded shadow mb-6">
+        <form id="contactForm">
+          <div class="mb-4">
+            <label class="block text-sm font-medium mb-1"
+              >نام و نام خانوادگی</label
+            >
+            <input
+              type="text"
+              class="w-full p-3 border border-gray-300 rounded"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium mb-1">شماره تماس</label>
+            <input
+              type="tel"
+              class="w-full p-3 border border-gray-300 rounded"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium mb-1">هدف شما</label>
+            <select
+              class="w-full p-3 border border-gray-300 rounded appearance-none bg-white"
+              required
+            >
+              <option value="">انتخاب کنید</option>
+              <option value="muscle">افزایش حجم عضلانی</option>
+              <option value="fat-loss">کاهش چربی</option>
+              <option value="fitness">افزایش آمادگی جسمانی</option>
+              <option value="other">سایر</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium mb-1">پیام شما</label>
+            <textarea
+              class="w-full p-3 border border-gray-300 rounded h-24"
+              required
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-primary text-white py-3 !rounded-button cursor-pointer hover:bg-blue-700 transition-all"
+          >
+            ارسال پیام
+          </button>
+        </form>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <a
+          href="https://wa.me/989123456789"
+          class="flex items-center justify-center bg-green-500 text-white p-3 rounded cursor-pointer"
+        >
+          <div class="w-6 h-6 flex items-center justify-center">
+            <i class="ri-whatsapp-line"></i>
+          </div>
+          <span class="mr-2">واتساپ</span>
+        </a>
+        <a
+          href="https://instagram.com/fitness_coach"
+          class="flex items-center justify-center bg-gradient-to-r from-purple-500 to-pink-500 text-white p-3 rounded cursor-pointer"
+        >
+          <div class="w-6 h-6 flex items-center justify-center">
+            <i class="ri-instagram-line"></i>
+          </div>
+          <span class="mr-2">اینستاگرام</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Tab Bar -->
+    <div
+      class="fixed bottom-0 w-full bg-white shadow-lg border-t border-gray-200 z-50"
+    >
+      <div class="grid grid-cols-5 text-center">
+        <a href="#" class="py-2 cursor-pointer">
+          <div class="w-6 h-6 mx-auto flex items-center justify-center">
+            <i class="ri-home-line ri-lg text-primary"></i>
+          </div>
+          <span class="text-xs block mt-1">خانه</span>
+        </a>
+        <a href="#" class="py-2 cursor-pointer">
+          <div class="w-6 h-6 mx-auto flex items-center justify-center">
+            <i class="ri-user-line ri-lg"></i>
+          </div>
+          <span class="text-xs block mt-1">درباره من</span>
+        </a>
+        <a href="#" class="py-2 cursor-pointer">
+          <div class="w-6 h-6 mx-auto flex items-center justify-center">
+            <i class="ri-service-line ri-lg"></i>
+          </div>
+          <span class="text-xs block mt-1">خدمات</span>
+        </a>
+        <a href="#" class="py-2 cursor-pointer">
+          <div class="w-6 h-6 mx-auto flex items-center justify-center">
+            <i class="ri-article-line ri-lg"></i>
+          </div>
+          <span class="text-xs block mt-1">مقالات</span>
+        </a>
+        <a href="#" class="py-2 cursor-pointer">
+          <div class="w-6 h-6 mx-auto flex items-center justify-center">
+            <i class="ri-phone-line ri-lg"></i>
+          </div>
+          <span class="text-xs block mt-1">تماس</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Modal -->
+    <div
+      id="mobileMenu"
+      class="fixed inset-0 bg-black bg-opacity-50 z-[100] hidden"
+    >
+      <div
+        class="bg-white h-screen w-3/4 p-4 transform transition-transform duration-300 -translate-x-full"
+      >
+        <div class="flex justify-between items-center mb-6">
+          <div class="font-['Pacifico'] text-primary text-xl">logo</div>
+          <div
+            id="closeMenu"
+            class="w-10 h-10 flex items-center justify-center cursor-pointer"
+          >
+            <i class="ri-close-line ri-lg"></i>
+          </div>
+        </div>
+
+        <nav>
+          <ul class="space-y-4">
+            <li>
+              <a href="#" class="block py-2 border-b border-gray-100">خانه</a>
+            </li>
+            <li>
+              <a href="#" class="block py-2 border-b border-gray-100"
+                >درباره من</a
+              >
+            </li>
+            <li>
+              <a href="#" class="block py-2 border-b border-gray-100">خدمات</a>
+            </li>
+            <li>
+              <a href="#" class="block py-2 border-b border-gray-100"
+                >نتایج شاگردان</a
+              >
+            </li>
+            <li>
+              <a href="#" class="block py-2 border-b border-gray-100"
+                >نظرات مشتریان</a
+              >
+            </li>
+            <li>
+              <a href="#" class="block py-2 border-b border-gray-100"
+                >مقالات آموزشی</a
+              >
+            </li>
+            <li>
+              <a href="#" class="block py-2">تماس با من</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mobile Menu Toggle
+        const menuButton = document.querySelector(".ri-menu-line").parentElement;
+        const mobileMenu = document.getElementById("mobileMenu");
+        const closeMenu = document.getElementById("closeMenu");
+        const menuContent = mobileMenu.querySelector(".bg-white");
+
+        menuButton.addEventListener("click", function () {
+          mobileMenu.classList.remove("hidden");
+          setTimeout(() => {
+            menuContent.classList.remove("-translate-x-full");
+          }, 10);
+        });
+
+        closeMenu.addEventListener("click", function () {
+          menuContent.classList.add("-translate-x-full");
+          setTimeout(() => {
+            mobileMenu.classList.add("hidden");
+          }, 300);
+        });
+
+        mobileMenu.addEventListener("click", function (e) {
+          if (e.target === mobileMenu) {
+            menuContent.classList.add("-translate-x-full");
+            setTimeout(() => {
+              mobileMenu.classList.add("hidden");
+            }, 300);
+          }
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Before/After Slider
+        const sliders = document.querySelectorAll(".before-after-slider");
+
+        sliders.forEach((slider) => {
+          const handle = slider.querySelector(".slider-handle");
+          const before = slider.querySelector(".before");
+          let isDragging = false;
+
+          const updateSliderPosition = (x) => {
+            const sliderRect = slider.getBoundingClientRect();
+            const newPosition = (x - sliderRect.left) / sliderRect.width;
+            const clampedPosition = Math.max(0, Math.min(1, newPosition));
+            const percentage = clampedPosition * 100;
+
+            before.style.width = `${percentage}%`;
+            handle.style.left = `${percentage}%`;
+          };
+
+          // Mouse events
+          handle.addEventListener("mousedown", () => {
+            isDragging = true;
+          });
+
+          document.addEventListener("mousemove", (e) => {
+            if (isDragging) {
+              updateSliderPosition(e.clientX);
+            }
+          });
+
+          document.addEventListener("mouseup", () => {
+            isDragging = false;
+          });
+
+          // Touch events
+          handle.addEventListener("touchstart", () => {
+            isDragging = true;
+          });
+
+          document.addEventListener("touchmove", (e) => {
+            if (isDragging) {
+              updateSliderPosition(e.touches[0].clientX);
+            }
+          });
+
+          document.addEventListener("touchend", () => {
+            isDragging = false;
+          });
+
+          // Initial position
+          updateSliderPosition(
+            slider.getBoundingClientRect().left +
+              slider.getBoundingClientRect().width / 2,
+          );
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Testimonial Slider
+        const dots = document.querySelectorAll(".testimonial-dot");
+        const testimonials = document.querySelectorAll(".testimonial-slider > div");
+
+        dots.forEach((dot, index) => {
+          dot.addEventListener("click", () => {
+            // Hide all testimonials
+            testimonials.forEach((testimonial) => {
+              testimonial.style.display = "none";
+            });
+
+            // Remove active class from all dots
+            dots.forEach((d) => {
+              d.classList.remove("bg-primary");
+              d.classList.add("bg-gray-300");
+            });
+
+            // Show selected testimonial and activate dot
+            testimonials[index].style.display = "block";
+            dot.classList.remove("bg-gray-300");
+            dot.classList.add("bg-primary");
+          });
+        });
+
+        // Initialize first testimonial as active
+        dots[0].click();
+
+        // Auto slide every 5 seconds
+        let currentIndex = 0;
+        setInterval(() => {
+          currentIndex = (currentIndex + 1) % dots.length;
+          dots[currentIndex].click();
+        }, 5000);
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Contact Form Submission
+        const contactForm = document.getElementById("contactForm");
+
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Create success message
+          const successMessage = document.createElement("div");
+          successMessage.className =
+            "fixed top-0 left-0 right-0 bg-green-500 text-white p-4 text-center transform transition-transform duration-300 -translate-y-full";
+          successMessage.textContent =
+            "پیام شما با موفقیت ارسال شد. به زودی با شما تماس خواهیم گرفت.";
+          document.body.appendChild(successMessage);
+
+          // Show success message
+          setTimeout(() => {
+            successMessage.classList.remove("-translate-y-full");
+          }, 100);
+
+          // Hide success message after 3 seconds
+          setTimeout(() => {
+            successMessage.classList.add("-translate-y-full");
+            setTimeout(() => {
+              successMessage.remove();
+            }, 300);
+          }, 3000);
+
+          // Reset form
+          contactForm.reset();
+        });
+      });
+    </script>
+  </body>
+</html>
