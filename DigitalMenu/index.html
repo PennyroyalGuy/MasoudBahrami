@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>منوی دیجیتال کافه‌رستوران</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#8B4513", secondary: "#D2B48C" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      @font-face {
+          font-family: 'Vazir';
+          src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir.woff2') format('woff2');
+          font-weight: normal;
+          font-style: normal;
+      }
+      body {
+          font-family: 'Vazir', sans-serif;
+      }
+      .menu-item-image {
+          transition: transform 0.3s ease;
+      }
+      .menu-item:hover .menu-item-image {
+          transform: scale(1.05);
+      }
+      .sidebar-item.active {
+          background-color: #8B4513;
+          color: white;
+      }
+      .cafe-submenu {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease;
+      }
+      .cafe-submenu.show {
+          max-height: 500px;
+      }
+      .modal {
+          transition: opacity 0.3s ease;
+      }
+      .modal.hidden {
+          opacity: 0;
+          pointer-events: none;
+      }
+      @media (max-width: 768px) {
+          .sidebar {
+              transform: translateX(100%);
+              transition: transform 0.3s ease;
+          }
+          .sidebar.open {
+              transform: translateX(0);
+          }
+      }
+    </style>
+  </head>
+  <body class="bg-[#FFF8E1] text-[#3E2723]">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-primary text-white shadow-md z-50">
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <div class="flex items-center">
+          <span class="font-['Pacifico'] text-2xl">logo</span>
+          <h1 class="text-xl mr-2">کافه‌رستوران ایرانی</h1>
+        </div>
+        <button
+          id="mobile-menu-button"
+          class="md:hidden w-10 h-10 flex items-center justify-center"
+        >
+          <i class="ri-menu-line ri-2x"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="flex flex-col md:flex-row mt-16">
+      <!-- Sidebar -->
+      <aside
+        id="sidebar"
+        class="sidebar fixed md:static md:transform-none h-screen md:h-[calc(100vh-4rem)] bg-[#3E2723] text-white w-64 z-40 top-16 right-0 overflow-y-auto"
+      >
+        <nav class="py-4">
+          <ul>
+            <li
+              class="sidebar-item px-4 py-3 cursor-pointer hover:bg-[#5D4037] flex items-center"
+              data-category="appetizers"
+            >
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-restaurant-line ri-lg"></i>
+              </div>
+              <span class="mr-2">پیش‌غذا</span>
+            </li>
+            <li
+              class="sidebar-item px-4 py-3 cursor-pointer hover:bg-[#5D4037] flex items-center"
+              data-category="pizza"
+            >
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-pie-chart-line ri-lg"></i>
+              </div>
+              <span class="mr-2">پیتزا</span>
+            </li>
+            <li
+              class="sidebar-item px-4 py-3 cursor-pointer hover:bg-[#5D4037] flex items-center"
+              data-category="burger"
+            >
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-burger-line ri-lg"></i>
+              </div>
+              <span class="mr-2">برگر</span>
+            </li>
+            <li
+              class="sidebar-item px-4 py-3 cursor-pointer hover:bg-[#5D4037] flex items-center"
+              data-category="fried"
+            >
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-restaurant-2-line ri-lg"></i>
+              </div>
+              <span class="mr-2">سوخاری</span>
+            </li>
+            <li
+              class="sidebar-item px-4 py-3 cursor-pointer hover:bg-[#5D4037] flex items-center"
+              data-category="pasta"
+            >
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-bowl-line ri-lg"></i>
+              </div>
+              <span class="mr-2">پاستا</span>
+            </li>
+            <li
+              class="sidebar-item px-4 py-3 cursor-pointer hover:bg-[#5D4037] flex items-center"
+              data-category="main"
+            >
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-restaurant-line ri-lg"></i>
+              </div>
+              <span class="mr-2">غذای اصلی</span>
+            </li>
+            <li
+              class="sidebar-item px-4 py-3 cursor-pointer hover:bg-[#5D4037] flex items-center"
+              data-category="iranian"
+            >
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-fire-line ri-lg"></i>
+              </div>
+              <span class="mr-2">غذای ایرانی</span>
+            </li>
+            <li
+              class="sidebar-item px-4 py-3 cursor-pointer hover:bg-[#5D4037] flex items-center"
+              data-category="salad"
+            >
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-plant-line ri-lg"></i>
+              </div>
+              <span class="mr-2">سالاد</span>
+            </li>
+            <li
+              class="sidebar-item px-4 py-3 cursor-pointer hover:bg-[#5D4037] flex items-center"
+              data-category="hookah"
+            >
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-flask-line ri-lg"></i>
+              </div>
+              <span class="mr-2">قلیان</span>
+            </li>
+            <li
+              id="cafe-menu"
+              class="px-4 py-3 cursor-pointer hover:bg-[#5D4037] flex items-center justify-between"
+            >
+              <div class="flex items-center">
+                <div class="w-8 h-8 flex items-center justify-center">
+                  <i class="ri-cup-line ri-lg"></i>
+                </div>
+                <span class="mr-2">منوی کافه</span>
+              </div>
+              <i id="cafe-arrow" class="ri-arrow-down-s-line ri-lg"></i>
+            </li>
+            <ul id="cafe-submenu" class="cafe-submenu bg-[#4E342E] pr-8">
+              <li
+                class="sidebar-item px-4 py-3 cursor-pointer hover:bg-[#5D4037] flex items-center"
+                data-category="juice"
+              >
+                <div class="w-8 h-8 flex items-center justify-center">
+                  <i class="ri-cup-line ri-lg"></i>
+                </div>
+                <span class="mr-2">آبمیوه طبیعی</span>
+              </li>
+              <li
+                class="sidebar-item px-4 py-3 cursor-pointer hover:bg-[#5D4037] flex items-center"
+                data-category="smoothie"
+              >
+                <div class="w-8 h-8 flex items-center justify-center">
+                  <i class="ri-goblet-line ri-lg"></i>
+                </div>
+                <span class="mr-2">اسموتی</span>
+              </li>
+              <li
+                class="sidebar-item px-4 py-3 cursor-pointer hover:bg-[#5D4037] flex items-center"
+                data-category="herbal"
+              >
+                <div class="w-8 h-8 flex items-center justify-center">
+                  <i class="ri-cup-line ri-lg"></i>
+                </div>
+                <span class="mr-2">دمنوش</span>
+              </li>
+              <li
+                class="sidebar-item px-4 py-3 cursor-pointer hover:bg-[#5D4037] flex items-center"
+                data-category="mocktail"
+              >
+                <div class="w-8 h-8 flex items-center justify-center">
+                  <i class="ri-goblet-line ri-lg"></i>
+                </div>
+                <span class="mr-2">ماکتل</span>
+              </li>
+              <li
+                class="sidebar-item px-4 py-3 cursor-pointer hover:bg-[#5D4037] flex items-center"
+                data-category="shake"
+              >
+                <div class="w-8 h-8 flex items-center justify-center">
+                  <i class="ri-cup-line ri-lg"></i>
+                </div>
+                <span class="mr-2">شیک</span>
+              </li>
+              <li
+                class="sidebar-item px-4 py-3 cursor-pointer hover:bg-[#5D4037] flex items-center"
+                data-category="coffee"
+              >
+                <div class="w-8 h-8 flex items-center justify-center">
+                  <i class="ri-cup-line ri-lg"></i>
+                </div>
+                <span class="mr-2">قهوه</span>
+              </li>
+              <li
+                class="sidebar-item px-4 py-3 cursor-pointer hover:bg-[#5D4037] flex items-center"
+                data-category="espresso"
+              >
+                <div class="w-8 h-8 flex items-center justify-center">
+                  <i class="ri-cup-line ri-lg"></i>
+                </div>
+                <span class="mr-2">نوشیدنی بر پایه اسپرسو</span>
+              </li>
+              <li
+                class="sidebar-item px-4 py-3 cursor-pointer hover:bg-[#5D4037] flex items-center"
+                data-category="hotdrink"
+              >
+                <div class="w-8 h-8 flex items-center justify-center">
+                  <i class="ri-cup-line ri-lg"></i>
+                </div>
+                <span class="mr-2">نوشیدنی گرم</span>
+              </li>
+            </ul>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 p-4 md:p-8 md:mr-64 mb-16">
+        <div
+          id="category-title"
+          class="text-2xl font-bold mb-6 pb-2 border-b-2 border-primary"
+        >
+          پیش‌غذا
+        </div>
+
+        <div
+          id="menu-items"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <!-- Menu items will be loaded here -->
+        </div>
+
+        <!-- Location and Contact Section -->
+        <section class="mt-16 bg-white rounded-lg shadow-lg p-6">
+          <h2 class="text-xl font-bold mb-4 text-primary">
+            اطلاعات تماس و آدرس
+          </h2>
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-1/2 mb-6 md:mb-0">
+              <p class="mb-2">
+                <i class="ri-map-pin-line ri-lg text-primary ml-2"></i>تهران،
+                خیابان ولیعصر، کوچه بهار، پلاک ۴۲
+              </p>
+              <p class="mb-2">
+                <i class="ri-phone-line ri-lg text-primary ml-2"></i
+                >۰۲۱-۸۸۷۷۶۶۵۵
+              </p>
+              <p class="mb-2">
+                <i class="ri-time-line ri-lg text-primary ml-2"></i>همه روزه از
+                ساعت ۱۰ صبح تا ۱۲ شب
+              </p>
+              <div class="flex mt-4">
+                <a
+                  href="#"
+                  class="w-8 h-8 flex items-center justify-center text-primary hover:text-white hover:bg-primary rounded-full transition-colors duration-300 ml-2"
+                >
+                  <i class="ri-instagram-line ri-lg"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-8 h-8 flex items-center justify-center text-primary hover:text-white hover:bg-primary rounded-full transition-colors duration-300 ml-2"
+                >
+                  <i class="ri-telegram-line ri-lg"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-8 h-8 flex items-center justify-center text-primary hover:text-white hover:bg-primary rounded-full transition-colors duration-300"
+                >
+                  <i class="ri-whatsapp-line ri-lg"></i>
+                </a>
+              </div>
+            </div>
+            <div
+              class="md:w-1/2 h-48 md:h-64 bg-gray-200 rounded overflow-hidden"
+            >
+              <div
+                class="w-full h-full bg-cover bg-center"
+                style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png')"
+              ></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Welcome Modal -->
+    <div
+      id="welcome-modal"
+      class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+    >
+      <div class="bg-white rounded-lg shadow-xl p-6 max-w-md mx-4">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-bold text-primary">توجه</h2>
+          <button
+            id="close-modal"
+            class="text-gray-500 hover:text-gray-700 focus:outline-none"
+          >
+            <i class="ri-close-line ri-lg"></i>
+          </button>
+        </div>
+        <div class="mb-6">
+          <p class="mb-4">
+            این منو یک نسخه‌ی دمو است که توسط مسعود بهرامی برای کسب‌وکار شما
+            طراحی شده. تمامی بخش‌ها، رنگ‌ها و محتوا قابل شخصی‌سازی کامل بر اساس
+            سلیقه و برند و نیاز شما هستند.
+          </p>
+          <p class="font-bold">برای اطلاعات بیشتر:</p>
+          <p>
+            وب‌سایت:
+            <a
+              href="https://pennyroyalguy.github.io/MasoudBahrami"
+              class="text-primary hover:underline"
+              target="_blank"
+              >pennyroyalguy.github.io/MasoudBahrami</a
+            >
+          </p>
+          <p>شماره تماس: ۰۹۳۳۴۴۷۹۵۲۷</p>
+        </div>
+        <button
+          id="close-modal-btn"
+          class="w-full bg-primary text-white py-2 rounded-button hover:bg-opacity-90 transition-colors duration-300"
+        >
+          متوجه شدم
+        </button>
+      </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div
+      id="image-modal"
+      class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+    >
+      <div class="relative">
+        <button
+          id="close-image-modal"
+          class="absolute top-2 right-2 text-white bg-black bg-opacity-50 rounded-full w-8 h-8 flex items-center justify-center"
+        >
+          <i class="ri-close-line ri-lg"></i>
+        </button>
+        <img
+          id="modal-image"
+          src=""
+          alt="تصویر بزرگ"
+          class="max-w-[90vw] max-h-[90vh] rounded"
+        />
+      </div>
+    </div>
+
+    // Menu data const menuData = { appetizers: [ { name: "سوپ قارچ",
+    description: "سوپ خامه‌ای با قارچ تازه و جعفری", price: "۹۸,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Creamy%20mushroom%20soup%20with%20fresh%20parsley%20garnish%20in%20a%20white%20bowl%2C%20appetizing%20presentation%2C%20warm%20lighting%2C%20restaurant%20quality%20food%20photography&width=300&height=200&seq=1&orientation=landscape"
+    }, { name: "نان سیر", description: "نان تازه با کره سیر و پنیر پارمزان",
+    price: "۸۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Garlic%20bread%20with%20melted%20cheese%20and%20herbs%20on%20a%20wooden%20serving%20board%2C%20rustic%20presentation%2C%20warm%20lighting%2C%20appetizing%20close-up&width=300&height=200&seq=2&orientation=landscape"
+    }, { name: "سیب زمینی سرخ شده", description: "سیب زمینی تازه سرخ شده با سس
+    مخصوص", price: "۷۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Golden%20crispy%20french%20fries%20in%20a%20rustic%20basket%20with%20special%20dipping%20sauce%2C%20restaurant%20presentation%2C%20warm%20lighting&width=300&height=200&seq=3&orientation=landscape"
+    }, { name: "میگو سوخاری", description: "میگو سوخاری با سس مخصوص و لیمو
+    تازه", price: "۱۸۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Crispy%20breaded%20shrimp%20with%20special%20sauce%20and%20fresh%20lemon%20wedge%2C%20elegant%20plating%2C%20restaurant%20quality%20food%20photography&width=300&height=200&seq=4&orientation=landscape"
+    }, { name: "بال مرغ سوخاری", description: "بال مرغ سوخاری تند با سس مخصوص",
+    price: "۱۲۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Spicy%20chicken%20wings%20with%20special%20sauce%2C%20restaurant%20style%20presentation%2C%20warm%20lighting%2C%20appetizing%20close-up&width=300&height=200&seq=5&orientation=landscape"
+    }, { name: "اسنک پنیر", description: "اسنک پنیر با سس گوجه فرنگی", price:
+    "۹۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Cheese%20sticks%20with%20tomato%20sauce%2C%20golden%20crispy%20exterior%2C%20melted%20cheese%20interior%2C%20appetizing%20presentation&width=300&height=200&seq=6&orientation=landscape"
+    } ], pizza: [ { name: "پیتزا مخصوص", description: "خمیر تازه با سس مخصوص،
+    پنیر، ژامبون، قارچ، فلفل دلمه و زیتون", price: "۲۲۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Special%20pizza%20with%20fresh%20dough%2C%20cheese%2C%20ham%2C%20mushrooms%2C%20bell%20peppers%20and%20olives%2C%20appetizing%20presentation%2C%20restaurant%20quality&width=300&height=200&seq=7&orientation=landscape"
+    }, { name: "پیتزا پپرونی", description: "خمیر تازه با سس مخصوص، پنیر و
+    پپرونی", price: "۱۹۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Pepperoni%20pizza%20with%20melted%20cheese%20and%20crispy%20crust%2C%20warm%20lighting%2C%20appetizing%20close-up&width=300&height=200&seq=8&orientation=landscape"
+    }, { name: "پیتزا سبزیجات", description: "خمیر تازه با سس مخصوص، پنیر، قارچ،
+    فلفل دلمه، گوجه، زیتون و ذرت", price: "۱۸۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Vegetable%20pizza%20with%20fresh%20vegetables%2C%20melted%20cheese%20on%20thin%20crust%2C%20colorful%20presentation%2C%20restaurant%20quality&width=300&height=200&seq=9&orientation=landscape"
+    }, { name: "پیتزا مرغ و قارچ", description: "خمیر تازه با سس مخصوص، پنیر،
+    مرغ گریل شده و قارچ", price: "۲۱۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Chicken%20and%20mushroom%20pizza%20with%20melted%20cheese%2C%20grilled%20chicken%20pieces%2C%20fresh%20mushrooms%2C%20appetizing%20presentation&width=300&height=200&seq=10&orientation=landscape"
+    }, { name: "پیتزا گوشت و قارچ", description: "خمیر تازه با سس مخصوص، پنیر،
+    گوشت چرخ کرده و قارچ", price: "۲۳۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Meat%20and%20mushroom%20pizza%20with%20ground%20beef%2C%20fresh%20mushrooms%2C%20melted%20cheese%2C%20restaurant%20quality%20presentation&width=300&height=200&seq=11&orientation=landscape"
+    } ], burger: [ { name: "برگر کلاسیک", description: "گوشت گوساله، کاهو، گوجه،
+    خیارشور، پنیر چدار و سس مخصوص", price: "۱۸۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Classic%20burger%20with%20beef%20patty%2C%20lettuce%2C%20tomato%2C%20pickles%2C%20cheddar%20cheese%20and%20special%20sauce%2C%20appetizing%20presentation&width=300&height=200&seq=12&orientation=landscape"
+    }, { name: "چیز برگر", description: "گوشت گوساله، دو لایه پنیر چدار، کاهو،
+    گوجه، خیارشور و سس مخصوص", price: "۲۰۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Cheeseburger%20with%20double%20cheddar%20cheese%2C%20beef%20patty%2C%20lettuce%2C%20tomato%2C%20pickles%2C%20restaurant%20quality%20presentation&width=300&height=200&seq=13&orientation=landscape"
+    }, { name: "برگر قارچ و پنیر", description: "گوشت گوساله، قارچ سوته شده،
+    پنیر چدار، کاهو و سس مخصوص", price: "۲۱۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Mushroom%20and%20cheese%20burger%20with%20sauteed%20mushrooms%2C%20melted%20cheese%2C%20beef%20patty%2C%20lettuce%2C%20appetizing%20close-up&width=300&height=200&seq=14&orientation=landscape"
+    }, { name: "برگر مرغ", description: "فیله مرغ سوخاری، کاهو، گوجه و سس
+    مخصوص", price: "۱۷۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Crispy%20chicken%20burger%20with%20lettuce%2C%20tomato%20and%20special%20sauce%2C%20golden%20crispy%20chicken%20fillet%2C%20appetizing%20presentation&width=300&height=200&seq=15&orientation=landscape"
+    }, { name: "برگر دوبل", description: "دو عدد گوشت گوساله، پنیر چدار، کاهو،
+    گوجه، خیارشور و سس مخصوص", price: "۲۴۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Double%20beef%20burger%20with%20cheddar%20cheese%2C%20lettuce%2C%20tomato%2C%20pickles%20and%20special%20sauce%2C%20impressive%20size%2C%20restaurant%20quality&width=300&height=200&seq=16&orientation=landscape"
+    } ], fried: [ { name: "مرغ سوخاری", description: "فیله مرغ سوخاری با سیب
+    زمینی و سس مخصوص", price: "۱۹۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Crispy%20fried%20chicken%20with%20french%20fries%20and%20special%20sauce%2C%20golden%20crispy%20coating%2C%20appetizing%20presentation&width=300&height=200&seq=17&orientation=landscape"
+    }, { name: "استریپس مرغ", description: "استریپس مرغ سوخاری با سیب زمینی و سس
+    مخصوص", price: "۱۸۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Chicken%20strips%20with%20french%20fries%20and%20special%20sauce%2C%20crispy%20golden%20coating%2C%20restaurant%20quality%20presentation&width=300&height=200&seq=18&orientation=landscape"
+    }, { name: "میگو سوخاری", description: "میگو سوخاری با سیب زمینی و سس
+    مخصوص", price: "۲۲۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Crispy%20fried%20shrimp%20with%20french%20fries%20and%20special%20sauce%2C%20golden%20coating%2C%20appetizing%20presentation&width=300&height=200&seq=19&orientation=landscape"
+    }, { name: "ناگت مرغ", description: "ناگت مرغ با سیب زمینی و سس مخصوص",
+    price: "۱۶۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Chicken%20nuggets%20with%20french%20fries%20and%20special%20sauce%2C%20golden%20crispy%20nuggets%2C%20restaurant%20quality%20presentation&width=300&height=200&seq=20&orientation=landscape"
+    } ], pasta: [ { name: "پاستا آلفردو", description: "پاستا با سس خامه، قارچ،
+    مرغ و پنیر پارمزان", price: "۱۸۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Alfredo%20pasta%20with%20creamy%20sauce%2C%20mushrooms%2C%20chicken%20and%20parmesan%20cheese%2C%20elegant%20plating%2C%20restaurant%20quality&width=300&height=200&seq=21&orientation=landscape"
+    }, { name: "پاستا بولونز", description: "پاستا با سس گوجه، گوشت چرخ کرده و
+    پنیر پارمزان", price: "۱۹۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Bolognese%20pasta%20with%20tomato%20sauce%2C%20ground%20beef%20and%20parmesan%20cheese%2C%20appetizing%20presentation%2C%20warm%20lighting&width=300&height=200&seq=22&orientation=landscape"
+    }, { name: "پاستا سبزیجات", description: "پاستا با سس گوجه، سبزیجات تازه و
+    پنیر پارمزان", price: "۱۶۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Vegetable%20pasta%20with%20tomato%20sauce%2C%20fresh%20vegetables%20and%20parmesan%20cheese%2C%20colorful%20presentation%2C%20restaurant%20quality&width=300&height=200&seq=23&orientation=landscape"
+    }, { name: "پاستا میگو", description: "پاستا با سس خامه، میگو، سیر و پنیر
+    پارمزان", price: "۲۲۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Shrimp%20pasta%20with%20creamy%20sauce%2C%20garlic%20and%20parmesan%20cheese%2C%20elegant%20plating%2C%20restaurant%20quality%20presentation&width=300&height=200&seq=24&orientation=landscape"
+    } ], main: [ { name: "استیک گوساله", description: "استیک گوساله با سس قارچ،
+    سبزیجات گریل شده و سیب زمینی", price: "۳۴۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Beef%20steak%20with%20mushroom%20sauce%2C%20grilled%20vegetables%20and%20potatoes%2C%20elegant%20plating%2C%20restaurant%20quality&width=300&height=200&seq=25&orientation=landscape"
+    }, { name: "ماهی قزل آلا", description: "ماهی قزل آلا با سبزیجات گریل شده و
+    سس مخصوص", price: "۲۸۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Grilled%20salmon%20with%20vegetables%20and%20special%20sauce%2C%20elegant%20plating%2C%20restaurant%20quality%20presentation&width=300&height=200&seq=26&orientation=landscape"
+    }, { name: "مرغ گریل", description: "سینه مرغ گریل شده با سبزیجات و سس
+    مخصوص", price: "۲۲۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Grilled%20chicken%20breast%20with%20vegetables%20and%20special%20sauce%2C%20elegant%20plating%2C%20restaurant%20quality%20presentation&width=300&height=200&seq=27&orientation=landscape"
+    }, { name: "میگو گریل", description: "میگو گریل شده با سبزیجات و سس مخصوص",
+    price: "۲۹۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Grilled%20shrimp%20with%20vegetables%20and%20special%20sauce%2C%20elegant%20plating%2C%20restaurant%20quality%20presentation&width=300&height=200&seq=28&orientation=landscape"
+    } ], iranian: [ { name: "چلو کباب کوبیده", description: "دو سیخ کباب کوبیده
+    با برنج ایرانی، گوجه گریل شده و کره", price: "۲۲۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Persian%20Koobideh%20kebab%20with%20saffron%20rice%2C%20grilled%20tomato%20and%20butter%2C%20traditional%20presentation%2C%20appetizing&width=300&height=200&seq=29&orientation=landscape"
+    }, { name: "چلو جوجه کباب", description: "جوجه کباب زعفرانی با برنج ایرانی،
+    گوجه گریل شده و کره", price: "۲۴۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Persian%20saffron%20chicken%20kebab%20with%20rice%2C%20grilled%20tomato%20and%20butter%2C%20traditional%20presentation%2C%20appetizing&width=300&height=200&seq=30&orientation=landscape"
+    }, { name: "چلو کباب برگ", description: "کباب برگ با برنج ایرانی، گوجه گریل
+    شده و کره", price: "۲۹۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Persian%20Barg%20kebab%20%28filet%20mignon%29%20with%20saffron%20rice%2C%20grilled%20tomato%20and%20butter%2C%20traditional%20presentation&width=300&height=200&seq=31&orientation=landscape"
+    }, { name: "قرمه سبزی", description: "خورشت قرمه سبزی با برنج ایرانی",
+    price: "۱۸۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Persian%20Ghormeh%20Sabzi%20stew%20with%20rice%2C%20traditional%20presentation%2C%20appetizing%20close-up&width=300&height=200&seq=32&orientation=landscape"
+    }, { name: "قیمه", description: "خورشت قیمه با برنج ایرانی", price:
+    "۱۷۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Persian%20Gheymeh%20stew%20with%20rice%2C%20traditional%20presentation%2C%20appetizing%20close-up&width=300&height=200&seq=33&orientation=landscape"
+    } ], salad: [ { name: "سالاد سزار", description: "کاهو، مرغ گریل شده، نان
+    تست، پنیر پارمزان و سس سزار", price: "۱۶۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Caesar%20salad%20with%20grilled%20chicken%2C%20croutons%2C%20parmesan%20cheese%20and%20caesar%20dressing%2C%20elegant%20plating&width=300&height=200&seq=34&orientation=landscape"
+    }, { name: "سالاد یونانی", description: "کاهو، خیار، گوجه، فلفل دلمه، پنیر
+    فتا، زیتون و سس مخصوص", price: "۱۴۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Greek%20salad%20with%20cucumber%2C%20tomato%2C%20bell%20pepper%2C%20feta%20cheese%2C%20olives%20and%20special%20dressing%2C%20colorful%20presentation&width=300&height=200&seq=35&orientation=landscape"
+    }, { name: "سالاد شیرازی", description: "خیار، گوجه، پیاز و آبلیمو", price:
+    "۸۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Persian%20Shirazi%20salad%20with%20cucumber%2C%20tomato%2C%20onion%20and%20lime%20juice%2C%20traditional%20presentation&width=300&height=200&seq=36&orientation=landscape"
+    }, { name: "سالاد فصل", description: "کاهو، خیار، گوجه، هویج و سس مخصوص",
+    price: "۹۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Season%20salad%20with%20lettuce%2C%20cucumber%2C%20tomato%2C%20carrot%20and%20special%20dressing%2C%20fresh%20presentation&width=300&height=200&seq=37&orientation=landscape"
+    } ], hookah: [ { name: "قلیان میوه‌ای", description: "قلیان با طعم‌های مختلف
+    میوه‌ای", price: "۱۲۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Hookah%20with%20fruit%20flavors%2C%20elegant%20presentation%2C%20atmospheric%20lighting%2C%20restaurant%20quality&width=300&height=200&seq=38&orientation=landscape"
+    }, { name: "قلیان دو سیب", description: "قلیان با طعم دو سیب", price:
+    "۱۳۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Double%20apple%20flavored%20hookah%2C%20elegant%20presentation%2C%20atmospheric%20lighting%2C%20restaurant%20quality&width=300&height=200&seq=39&orientation=landscape"
+    }, { name: "قلیان نعناع", description: "قلیان با طعم نعناع", price:
+    "۱۳۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Mint%20flavored%20hookah%2C%20elegant%20presentation%2C%20atmospheric%20lighting%2C%20restaurant%20quality&width=300&height=200&seq=40&orientation=landscape"
+    }, { name: "قلیان بلوبری", description: "قلیان با طعم بلوبری", price:
+    "۱۴۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Blueberry%20flavored%20hookah%2C%20elegant%20presentation%2C%20atmospheric%20lighting%2C%20restaurant%20quality&width=300&height=200&seq=41&orientation=landscape"
+    } ], juice: [ { name: "آب پرتقال", description: "آب پرتقال تازه", price:
+    "۸۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Fresh%20orange%20juice%20in%20a%20clear%20glass%20with%20ice%2C%20vibrant%20color%2C%20restaurant%20quality%20presentation&width=300&height=200&seq=42&orientation=landscape"
+    }, { name: "آب هویج", description: "آب هویج تازه", price: "۸۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Fresh%20carrot%20juice%20in%20a%20clear%20glass%2C%20vibrant%20orange%20color%2C%20restaurant%20quality%20presentation&width=300&height=200&seq=43&orientation=landscape"
+    }, { name: "آب سیب", description: "آب سیب تازه", price: "۸۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Fresh%20apple%20juice%20in%20a%20clear%20glass%20with%20ice%2C%20restaurant%20quality%20presentation&width=300&height=200&seq=44&orientation=landscape"
+    }, { name: "آب انار", description: "آب انار تازه", price: "۹۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Fresh%20pomegranate%20juice%20in%20a%20clear%20glass%2C%20vibrant%20red%20color%2C%20restaurant%20quality%20presentation&width=300&height=200&seq=45&orientation=landscape"
+    } ], smoothie: [ { name: "اسموتی توت فرنگی", description: "اسموتی توت فرنگی
+    با شیر و عسل", price: "۱۰۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Strawberry%20smoothie%20with%20milk%20and%20honey%20in%20a%20clear%20glass%2C%20vibrant%20color%2C%20restaurant%20quality%20presentation&width=300&height=200&seq=46&orientation=landscape"
+    }, { name: "اسموتی موز", description: "اسموتی موز با شیر و عسل", price:
+    "۱۰۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Banana%20smoothie%20with%20milk%20and%20honey%20in%20a%20clear%20glass%2C%20creamy%20texture%2C%20restaurant%20quality%20presentation&width=300&height=200&seq=47&orientation=landscape"
+    }, { name: "اسموتی آناناس", description: "اسموتی آناناس با شیر نارگیل",
+    price: "۱۱۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Pineapple%20smoothie%20with%20coconut%20milk%20in%20a%20clear%20glass%2C%20tropical%20presentation%2C%20restaurant%20quality&width=300&height=200&seq=48&orientation=landscape"
+    }, { name: "اسموتی میکس بری", description: "اسموتی مخلوط توت ها با شیر و
+    عسل", price: "۱۲۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Mixed%20berry%20smoothie%20with%20milk%20and%20honey%20in%20a%20clear%20glass%2C%20vibrant%20purple%20color%2C%20restaurant%20quality&width=300&height=200&seq=49&orientation=landscape"
+    } ], herbal: [ { name: "دمنوش بابونه", description: "دمنوش بابونه با عسل",
+    price: "۷۵,۰۰۰", image:
+    "https://readdy.ai/api/search-image?query=Chamomile%20tea%20with%20honey%20in%20a%20clear%20glass%2C%20elegant%20presentation%2C%20warm%20lighting&width=300&height=200&seq=50&orientation=landscape"
+    },
+    <!DOCTYPE html>
+    <html lang="fa" dir="rtl">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=375px, initial-scale=1.0" />
+        <title>منوی دیجیتال کافه‌رستوران</title>
+        <script src="https://cdn.tailwindcss.com/3.4.16">
+              <script>
+          tailwind.config = {
+            theme: {
+              extend: {
+                colors: { primary: "#8B4513", secondary: "#D2B48C" },
+                borderRadius: {
+                  none: "0px",
+                  sm: "4px",
+                  DEFAULT: "8px",
+                  md: "12px",
+                  lg: "16px",
+                  xl: "20px",
+                  "2xl": "24px",
+                  "3xl": "32px",
+                  full: "9999px",
+                  button: "8px",
+                },
+              },
+            },
+          };
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+        />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+        <style>
+          :where([class^="ri-"])::before { content: "\f3c2"; }
+          @font-face {
+              font-family: 'Vazir';
+              src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir.woff2') format('woff2');
+              font-weight: normal;
+              font-style: normal;
+          }
+          body {
+              font-family: 'Vazir', sans-serif;
+          }
+          .scrollbar-hide::-webkit-scrollbar {
+              display: none;
+          }
+          .scrollbar-hide {
+              -ms-overflow-style: none;
+              scrollbar-width: none;
+          }
+        </style>
+      </head>
+      <body class="bg-[#F9F5F0] text-[#3A2618]">
+        <!-- Nav Bar -->
+        <nav class="fixed top-0 w-full bg-primary text-white shadow-md z-50">
+          <div class="flex items-center justify-between px-4 py-3">
+            <div class="flex items-center">
+              <button
+                id="menu-toggle"
+                class="w-8 h-8 flex items-center justify-center lg:hidden"
+              >
+                <i class="ri-menu-line ri-lg"></i>
+              </button>
+              <h1 class="text-xl font-['Pacifico'] mr-2">logo</h1>
+            </div>
+            <div class="flex items-center space-x-2">
+              <button
+                class="w-8 h-8 flex items-center justify-center !rounded-button"
+              >
+                <i class="ri-search-line ri-lg"></i>
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center !rounded-button"
+              >
+                <i class="ri-information-line ri-lg"></i>
+              </button>
+            </div>
+          </div>
+        </nav>
+        <div class="flex mt-14 mb-16">
+          <!-- Sidebar for categories -->
+          <aside
+            id="sidebar"
+            class="fixed top-14 bottom-0 right-0 w-0 lg:w-1/4 lg:max-w-[250px] bg-white shadow-lg z-40 transition-all duration-300 overflow-hidden"
+          >
+            <div class="h-full flex flex-col">
+              <div class="overflow-y-auto scrollbar-hide flex-grow">
+                <ul class="py-2">
+                  <li
+                    class="category-item px-4 py-3 flex items-center cursor-pointer hover:bg-secondary/20"
+                    data-category="appetizers"
+                  >
+                    <div
+                      class="w-8 h-8 flex items-center justify-center ml-3 text-primary"
+                    >
+                      <i class="ri-restaurant-line ri-lg"></i>
+                    </div>
+                    <span>پیش‌غذا</span>
+                  </li>
+                  <li
+                    class="category-item px-4 py-3 flex items-center cursor-pointer hover:bg-secondary/20"
+                    data-category="pizza"
+                  >
+                    <div
+                      class="w-8 h-8 flex items-center justify-center ml-3 text-primary"
+                    >
+                      <i class="ri-pie-chart-line ri-lg"></i>
+                    </div>
+                    <span>پیتزا</span>
+                  </li>
+                  <li
+                    class="category-item px-4 py-3 flex items-center cursor-pointer hover:bg-secondary/20"
+                    data-category="burger"
+                  >
+                    <div
+                      class="w-8 h-8 flex items-center justify-center ml-3 text-primary"
+                    >
+                      <i class="ri-burger-line ri-lg"></i>
+                    </div>
+                    <span>برگر</span>
+                  </li>
+                  <li
+                    class="category-item px-4 py-3 flex items-center cursor-pointer hover:bg-secondary/20"
+                    data-category="fried"
+                  >
+                    <div
+                      class="w-8 h-8 flex items-center justify-center ml-3 text-primary"
+                    >
+                      <i class="ri-restaurant-2-line ri-lg"></i>
+                    </div>
+                    <span>سوخاری</span>
+                  </li>
+                  <li
+                    class="category-item px-4 py-3 flex items-center cursor-pointer hover:bg-secondary/20"
+                    data-category="pasta"
+                  >
+                    <div
+                      class="w-8 h-8 flex items-center justify-center ml-3 text-primary"
+                    >
+                      <i class="ri-bowl-line ri-lg"></i>
+                    </div>
+                    <span>پاستا</span>
+                  </li>
+                  <li
+                    class="category-item px-4 py-3 flex items-center cursor-pointer hover:bg-secondary/20"
+                    data-category="main"
+                  >
+                    <div
+                      class="w-8 h-8 flex items-center justify-center ml-3 text-primary"
+                    >
+                      <i class="ri-restaurant-line ri-lg"></i>
+                    </div>
+                    <span>غذای اصلی</span>
+                  </li>
+                  <li
+                    class="category-item px-4 py-3 flex items-center cursor-pointer hover:bg-secondary/20"
+                    data-category="iranian"
+                  >
+                    <div
+                      class="w-8 h-8 flex items-center justify-center ml-3 text-primary"
+                    >
+                      <i class="ri-fire-line ri-lg"></i>
+                    </div>
+                    <span>غذای ایرانی</span>
+                  </li>
+                  <li
+                    class="category-item px-4 py-3 flex items-center cursor-pointer hover:bg-secondary/20"
+                    data-category="salad"
+                  >
+                    <div
+                      class="w-8 h-8 flex items-center justify-center ml-3 text-primary"
+                    >
+                      <i class="ri-plant-line ri-lg"></i>
+                    </div>
+                    <span>سالاد</span>
+                  </li>
+                  <li
+                    class="category-item px-4 py-3 flex items-center cursor-pointer hover:bg-secondary/20"
+                    data-category="hookah"
+                  >
+                    <div
+                      class="w-8 h-8 flex items-center justify-center ml-3 text-primary"
+                    >
+                      <i class="ri-cloud-line ri-lg"></i>
+                    </div>
+                    <span>قلیان</span>
+                  </li>
+                  <li
+                    class="category-item px-4 py-3 flex items-center cursor-pointer hover:bg-secondary/20"
+                    data-category="cafe"
+                  >
+                    <div
+                      class="w-8 h-8 flex items-center justify-center ml-3 text-primary"
+                    >
+                      <i class="ri-cup-line ri-lg"></i>
+                    </div>
+                    <span>منوی کافه</span>
+                    <i class="ri-arrow-left-s-line mr-auto"></i>
+                  </li>
+                </ul>
+
+                <!-- Cafe submenu -->
+                <div id="cafe-submenu" class="hidden bg-[#F5EFE6] py-2">
+                  <ul>
+                    <li
+                      class="subcategory-item px-6 py-2 flex items-center cursor-pointer hover:bg-secondary/20"
+                      data-subcategory="juice"
+                    >
+                      <div
+                        class="w-6 h-6 flex items-center justify-center ml-2 text-primary"
+                      >
+                        <i class="ri-goblet-line"></i>
+                      </div>
+                      <span>آبمیوه طبیعی</span>
+                    </li>
+                    <li
+                      class="subcategory-item px-6 py-2 flex items-center cursor-pointer hover:bg-secondary/20"
+                      data-subcategory="smoothie"
+                    >
+                      <div
+                        class="w-6 h-6 flex items-center justify-center ml-2 text-primary"
+                      >
+                        <i class="ri-cup-line"></i>
+                      </div>
+                      <span>اسموتی</span>
+                    </li>
+                    <li
+                      class="subcategory-item px-6 py-2 flex items-center cursor-pointer hover:bg-secondary/20"
+                      data-subcategory="herbal"
+                    >
+                      <div
+                        class="w-6 h-6 flex items-center justify-center ml-2 text-primary"
+                      >
+                        <i class="ri-plant-line"></i>
+                      </div>
+                      <span>دمنوش</span>
+                    </li>
+                    <li
+                      class="subcategory-item px-6 py-2 flex items-center cursor-pointer hover:bg-secondary/20"
+                      data-subcategory="mocktail"
+                    >
+                      <div
+                        class="w-6 h-6 flex items-center justify-center ml-2 text-primary"
+                      >
+                        <i class="ri-glass-line"></i>
+                      </div>
+                      <span>ماکتل</span>
+                    </li>
+                    <li
+                      class="subcategory-item px-6 py-2 flex items-center cursor-pointer hover:bg-secondary/20"
+                      data-subcategory="shake"
+                    >
+                      <div
+                        class="w-6 h-6 flex items-center justify-center ml-2 text-primary"
+                      >
+                        <i class="ri-cup-line"></i>
+                      </div>
+                      <span>شیک</span>
+                    </li>
+                    <li
+                      class="subcategory-item px-6 py-2 flex items-center cursor-pointer hover:bg-secondary/20"
+                      data-subcategory="coffee"
+                    >
+                      <div
+                        class="w-6 h-6 flex items-center justify-center ml-2 text-primary"
+                      >
+                        <i class="ri-coffee-line"></i>
+                      </div>
+                      <span>قهوه</span>
+                    </li>
+                    <li
+                      class="subcategory-item px-6 py-2 flex items-center cursor-pointer hover:bg-secondary/20"
+                      data-subcategory="espresso"
+                    >
+                      <div
+                        class="w-6 h-6 flex items-center justify-center ml-2 text-primary"
+                      >
+                        <i class="ri-cup-line"></i>
+                      </div>
+                      <span>نوشیدنی بر پایه اسپرسو</span>
+                    </li>
+                    <li
+                      class="subcategory-item px-6 py-2 flex items-center cursor-pointer hover:bg-secondary/20"
+                      data-subcategory="hot"
+                    >
+                      <div
+                        class="w-6 h-6 flex items-center justify-center ml-2 text-primary"
+                      >
+                        <i class="ri-cup-line"></i>
+                      </div>
+                      <span>نوشیدنی گرم</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Main content area -->
+          <main class="w-full lg:w-3/4 lg:mr-[250px] p-4">
+            <div class="mb-4">
+              <h2 id="category-title" class="text-2xl font-bold text-primary">
+                پیش‌غذا
+              </h2>
+              <p id="category-description" class="text-sm text-gray-600">
+                انتخاب متنوعی از پیش‌غذاهای خوشمزه برای شروع وعده غذایی شما
+              </p>
+            </div>
+
+            <!-- Products grid -->
+            <div
+              id="products-container"
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4"
+            >
+              <!-- Products will be loaded here -->
+            </div>
+          </main>
+        </div>
+
+        <!-- Footer with map -->
+        <footer
+          class="fixed bottom-0 w-full bg-[#3A2618] text-white py-3 px-4 z-40"
+        >
+          <div class="flex justify-between items-center">
+            <div class="flex items-center">
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-map-pin-line ri-lg"></i>
+              </div>
+              <span class="text-sm"
+                >تهران، خیابان ولیعصر، کوچه بهار، پلاک ۲۳</span
+              >
+            </div>
+            <div class="flex items-center">
+              <div class="w-8 h-8 flex items-center justify-center">
+                <i class="ri-phone-line ri-lg"></i>
+              </div>
+              <span class="text-sm">۰۲۱-۸۸۷۷۶۶۵۵</span>
+            </div>
+          </div>
+        </footer>
+
+        <!-- Welcome popup -->
+        <div
+          id="welcome-popup"
+          class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+        >
+          <div class="bg-white rounded-lg p-6 w-[90%] max-w-md">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-xl font-bold text-primary">توجه</h3>
+              <button
+                id="close-popup"
+                class="w-8 h-8 flex items-center justify-center !rounded-button"
+              >
+                <i class="ri-close-line ri-lg"></i>
+              </button>
+            </div>
+            <div class="mb-4">
+              <p class="mb-2">
+                این منو یک نسخه‌ی دمو است که توسط مسعود بهرامی برای کسب‌وکار شما
+                طراحی شده. تمامی بخش‌ها، رنگ‌ها و محتوا قابل شخصی‌سازی کامل بر
+                اساس سلیقه و برند و نیاز شما هستند.
+              </p>
+              <p class="font-bold mt-4">برای اطلاعات بیشتر:</p>
+              <p>وب‌سایت: pennyroyalguy.github.io/MasoudBahrami</p>
+              <p>شماره تماس: ۰۹۳۳۴۴۷۹۵۲۷</p>
+            </div>
+            <button
+              id="close-popup-btn"
+              class="w-full bg-primary text-white py-2 !rounded-button"
+            >
+              متوجه شدم
+            </button>
+          </div>
+        </div>
+
+        <!-- Image preview modal -->
+        <div
+          id="image-modal"
+          class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden"
+        >
+          <div class="relative">
+            <button
+              id="close-modal"
+              class="absolute top-2 right-2 bg-white rounded-full w-8 h-8 flex items-center justify-center"
+            >
+              <i class="ri-close-line ri-lg"></i>
+            </button>
+            <img
+              id="modal-image"
+              src=""
+              alt="تصویر بزرگ"
+              class="max-w-[90vw] max-h-[80vh] rounded-lg"
+            />
+          </div>
+        </div>
+
+        <script>
+          // Menu data
+          const menuData = {
+            appetizers: {
+              title: "پیش‌غذا",
+              description: "انتخاب متنوعی از پیش‌غذاهای خوشمزه برای شروع وعده غذایی شما",
+              items: [
+                {
+                  name: "سوپ قارچ",
+                  description: "سوپ خامه‌ای با قارچ تازه و جعفری",
+                  price: "۱۲۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Creamy%20mushroom%20soup%20with%20fresh%20parsley%20garnish%20in%20a%20white%20bowl%2C%20top%20view%2C%20soft%20natural%20lighting%2C%20restaurant%20quality%20presentation&width=400&height=300&seq=1&orientation=landscape",
+                },
+                {
+                  name: "سالاد سزار",
+                  description: "کاهو، مرغ گریل شده، نان تست، پنیر پارمزان و سس مخصوص",
+                  price: "۱۸۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Caesar%20salad%20with%20grilled%20chicken%2C%20croutons%2C%20parmesan%20cheese%20and%20special%20dressing%2C%20restaurant%20style%20presentation&width=400&height=300&seq=2&orientation=landscape",
+                },
+                {
+                  name: "نان سیر",
+                  description: "نان تازه با کره سیر و پنیر موزارلا",
+                  price: "۹۵,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Garlic%20bread%20with%20melted%20mozzarella%20cheese%2C%20fresh%20from%20oven%2C%20golden%20crust%2C%20restaurant%20style&width=400&height=300&seq=3&orientation=landscape",
+                },
+                {
+                  name: "اسپرینگ رول سبزیجات",
+                  description: "رول سبزیجات تازه با سس مخصوص",
+                  price: "۱۴۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Vegetable%20spring%20rolls%20with%20dipping%20sauce%2C%20fresh%20and%20crispy%2C%20restaurant%20presentation&width=400&height=300&seq=4&orientation=landscape",
+                },
+              ],
+            },
+            pizza: {
+              title: "پیتزا",
+              description: "پیتزاهای خوشمزه با خمیر تازه و مواد مرغوب",
+              items: [
+                {
+                  name: "پیتزا مخصوص",
+                  description: "ژامبون گوشت، قارچ، فلفل دلمه، زیتون و پنیر موزارلا",
+                  price: "۲۲۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Special%20pizza%20with%20ham%2C%20mushrooms%2C%20bell%20peppers%2C%20olives%20and%20mozzarella%20cheese%2C%20fresh%20from%20oven&width=400&height=300&seq=5&orientation=landscape",
+                },
+                {
+                  name: "پیتزا مارگاریتا",
+                  description: "سس گوجه، ریحان تازه و پنیر موزارلا",
+                  price: "۱۸۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Margherita%20pizza%20with%20tomato%20sauce%2C%20fresh%20basil%20and%20mozzarella%20cheese%2C%20Italian%20style&width=400&height=300&seq=6&orientation=landscape",
+                },
+                {
+                  name: "پیتزا پپرونی",
+                  description: "پپرونی، فلفل، سس گوجه و پنیر موزارلا",
+                  price: "۲۱۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Pepperoni%20pizza%20with%20tomato%20sauce%20and%20mozzarella%20cheese%2C%20spicy%20and%20delicious&width=400&height=300&seq=7&orientation=landscape",
+                },
+                {
+                  name: "پیتزا سبزیجات",
+                  description: "قارچ، فلفل دلمه، گوجه، زیتون، ذرت و پنیر موزارلا",
+                  price: "۱۹۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Vegetable%20pizza%20with%20mushrooms%2C%20bell%20peppers%2C%20tomatoes%2C%20olives%2C%20corn%20and%20mozzarella%20cheese&width=400&height=300&seq=8&orientation=landscape",
+                },
+              ],
+            },
+            burger: {
+              title: "برگر",
+              description: "برگرهای دست‌ساز با گوشت تازه و سس‌های مخصوص",
+              items: [
+                {
+                  name: "چیز برگر",
+                  description: "گوشت گوساله، پنیر چدار، کاهو، گوجه و خیارشور با سس مخصوص",
+                  price: "۱۹۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Cheeseburger%20with%20beef%20patty%2C%20cheddar%20cheese%2C%20lettuce%2C%20tomato%20and%20pickles%20with%20special%20sauce&width=400&height=300&seq=9&orientation=landscape",
+                },
+                {
+                  name: "برگر قارچ و پنیر",
+                  description: "گوشت گوساله، قارچ سوته شده، پنیر گودا و سس قارچ",
+                  price: "۲۱۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Mushroom%20and%20cheese%20burger%20with%20beef%20patty%2C%20sauteed%20mushrooms%2C%20gouda%20cheese%20and%20mushroom%20sauce&width=400&height=300&seq=10&orientation=landscape",
+                },
+                {
+                  name: "چیکن برگر",
+                  description: "فیله مرغ سوخاری، کاهو، گوجه و سس مخصوص",
+                  price: "۱۸۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Crispy%20chicken%20burger%20with%20lettuce%2C%20tomato%20and%20special%20sauce&width=400&height=300&seq=11&orientation=landscape",
+                },
+                {
+                  name: "برگر مخصوص",
+                  description: "دو لایه گوشت، پنیر، بیکن، تخم مرغ و سس باربیکیو",
+                  price: "۲۵۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Double%20beef%20burger%20with%20cheese%2C%20bacon%2C%20fried%20egg%20and%20barbecue%20sauce%2C%20gourmet%20presentation&width=400&height=300&seq=12&orientation=landscape",
+                },
+              ],
+            },
+            fried: {
+              title: "سوخاری",
+              description: "انواع غذاهای سوخاری با طعم بی‌نظیر",
+              items: [
+                {
+                  name: "مرغ سوخاری",
+                  description: "فیله مرغ سوخاری با سس مخصوص و سیب زمینی سرخ شده",
+                  price: "۲۲۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Crispy%20fried%20chicken%20with%20special%20sauce%20and%20french%20fries&width=400&height=300&seq=13&orientation=landscape",
+                },
+                {
+                  name: "میگو سوخاری",
+                  description: "میگو سوخاری با سس تارتار و لیمو تازه",
+                  price: "۲۸۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Crispy%20fried%20shrimp%20with%20tartar%20sauce%20and%20fresh%20lemon&width=400&height=300&seq=14&orientation=landscape",
+                },
+                {
+                  name: "قارچ سوخاری",
+                  description: "قارچ سوخاری با سس سیر و جعفری",
+                  price: "۱۵۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Crispy%20fried%20mushrooms%20with%20garlic%20and%20parsley%20sauce&width=400&height=300&seq=15&orientation=landscape",
+                },
+                {
+                  name: "سبزیجات سوخاری",
+                  description: "مخلوط سبزیجات سوخاری با سس مخصوص",
+                  price: "۱۶۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Mixed%20fried%20vegetables%20with%20special%20dipping%20sauce&width=400&height=300&seq=16&orientation=landscape",
+                },
+              ],
+            },
+            pasta: {
+              title: "پاستا",
+              description: "پاستاهای ایتالیایی با سس‌های مخصوص",
+              items: [
+                {
+                  name: "پاستا آلفردو",
+                  description: "پاستا فتوچینی با سس خامه، قارچ و مرغ",
+                  price: "۱۹۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Fettuccine%20Alfredo%20pasta%20with%20cream%20sauce%2C%20mushrooms%20and%20chicken&width=400&height=300&seq=17&orientation=landscape",
+                },
+                {
+                  name: "پاستا بولونز",
+                  description: "پاستا اسپاگتی با سس گوشت و گوجه",
+                  price: "۲۰۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Spaghetti%20Bolognese%20with%20meat%20and%20tomato%20sauce&width=400&height=300&seq=18&orientation=landscape",
+                },
+                {
+                  name: "پاستا سبزیجات",
+                  description: "پاستا پنه با سبزیجات تازه و سس روغن زیتون",
+                  price: "۱۷۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Penne%20pasta%20with%20fresh%20vegetables%20and%20olive%20oil%20sauce&width=400&height=300&seq=19&orientation=landscape",
+                },
+                {
+                  name: "پاستا میگو",
+                  description: "پاستا لینگوئینی با میگو، سیر و روغن زیتون",
+                  price: "۲۵۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Linguine%20pasta%20with%20shrimp%2C%20garlic%20and%20olive%20oil&width=400&height=300&seq=20&orientation=landscape",
+                },
+              ],
+            },
+            main: {
+              title: "غذای اصلی",
+              description: "غذاهای اصلی با مواد مرغوب و طعم بی‌نظیر",
+              items: [
+                {
+                  name: "استیک گوساله",
+                  description: "استیک گوساله با سس قارچ و سیب زمینی سرخ شده",
+                  price: "۳۵۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Beef%20steak%20with%20mushroom%20sauce%20and%20french%20fries%2C%20medium%20rare&width=400&height=300&seq=21&orientation=landscape",
+                },
+                {
+                  name: "ماهی سالمون",
+                  description: "فیله ماهی سالمون گریل شده با سبزیجات فصل",
+                  price: "۳۲۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Grilled%20salmon%20fillet%20with%20seasonal%20vegetables&width=400&height=300&seq=22&orientation=landscape",
+                },
+                {
+                  name: "مرغ گریل",
+                  description: "سینه مرغ گریل شده با سس لیمو و سبزیجات",
+                  price: "۲۳۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Grilled%20chicken%20breast%20with%20lemon%20sauce%20and%20vegetables&width=400&height=300&seq=23&orientation=landscape",
+                },
+                {
+                  name: "خوراک میگو",
+                  description: "میگو سوته شده با سیر، لیمو و سبزیجات",
+                  price: "۲۹۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Sauteed%20shrimp%20with%20garlic%2C%20lemon%20and%20vegetables&width=400&height=300&seq=24&orientation=landscape",
+                },
+              ],
+            },
+            iranian: {
+              title: "غذای ایرانی",
+              description: "غذاهای سنتی ایرانی با طعم اصیل",
+              items: [
+                {
+                  name: "چلو کباب کوبیده",
+                  description: "دو سیخ کباب کوبیده گوشت با برنج ایرانی، گوجه و کره",
+                  price: "۲۵۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Persian%20Koobideh%20kebab%20with%20saffron%20rice%2C%20grilled%20tomato%20and%20butter&width=400&height=300&seq=25&orientation=landscape",
+                },
+                {
+                  name: "چلو جوجه کباب",
+                  description: "جوجه کباب زعفرانی با برنج ایرانی و گوجه گریل شده",
+                  price: "۲۳۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Persian%20saffron%20chicken%20kebab%20with%20rice%20and%20grilled%20tomato&width=400&height=300&seq=26&orientation=landscape",
+                },
+                {
+                  name: "قورمه سبزی",
+                  description: "خورشت قورمه سبزی با برنج ایرانی",
+                  price: "۱۹۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Persian%20Ghormeh%20Sabzi%20stew%20with%20rice%2C%20traditional%20Iranian%20dish&width=400&height=300&seq=27&orientation=landscape",
+                },
+                {
+                  name: "چلو خورشت قیمه",
+                  description: "خورشت قیمه با برنج ایرانی و سیب زمینی سرخ شده",
+                  price: "۱۸۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Persian%20Gheymeh%20stew%20with%20rice%20and%20fried%20potatoes&width=400&height=300&seq=28&orientation=landscape",
+                },
+              ],
+            },
+            salad: {
+              title: "سالاد",
+              description: "سالادهای تازه و خوشمزه",
+              items: [
+                {
+                  name: "سالاد یونانی",
+                  description: "کاهو، خیار، گوجه، فلفل دلمه، زیتون، پنیر فتا و سس مخصوص",
+                  price: "۱۶۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Greek%20salad%20with%20lettuce%2C%20cucumber%2C%20tomato%2C%20bell%20pepper%2C%20olives%2C%20feta%20cheese%20and%20special%20dressing&width=400&height=300&seq=29&orientation=landscape",
+                },
+                {
+                  name: "سالاد سزار با مرغ",
+                  description: "کاهو، مرغ گریل شده، نان تست، پنیر پارمزان و سس سزار",
+                  price: "۱۸۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Caesar%20salad%20with%20grilled%20chicken%2C%20croutons%2C%20parmesan%20cheese%20and%20caesar%20dressing&width=400&height=300&seq=30&orientation=landscape",
+                },
+                {
+                  name: "سالاد فصل",
+                  description: "مخلوط سبزیجات فصل با سس روغن زیتون و آبلیمو",
+                  price: "۱۲۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Seasonal%20mixed%20vegetable%20salad%20with%20olive%20oil%20and%20lemon%20dressing&width=400&height=300&seq=31&orientation=landscape",
+                },
+                {
+                  name: "سالاد شیرازی",
+                  description: "خیار، گوجه، پیاز و سبزیجات معطر با چاشنی آبلیمو",
+                  price: "۹۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Persian%20Shirazi%20salad%20with%20cucumber%2C%20tomato%2C%20onion%20and%20herbs%20with%20lemon%20juice&width=400&height=300&seq=32&orientation=landscape",
+                },
+              ],
+            },
+            hookah: {
+              title: "قلیان",
+              description: "انواع قلیان با طعم‌های مختلف",
+              items: [
+                {
+                  name: "قلیان میوه‌ای",
+                  description: "قلیان با طعم‌های میوه‌ای مختلف",
+                  price: "۱۵۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Hookah%20with%20fruit%20flavors%2C%20elegant%20presentation%20in%20a%20cafe%20setting&width=400&height=300&seq=33&orientation=landscape",
+                },
+                {
+                  name: "قلیان دو سیب",
+                  description: "قلیان با طعم محبوب دو سیب",
+                  price: "۱۶۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Double%20apple%20flavored%20hookah%2C%20traditional%20style%20in%20a%20cafe%20setting&width=400&height=300&seq=34&orientation=landscape",
+                },
+                {
+                  name: "قلیان نعنا",
+                  description: "قلیان با طعم خنک نعنا",
+                  price: "۱۵۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Mint%20flavored%20hookah%2C%20refreshing%20presentation%20in%20a%20cafe%20setting&width=400&height=300&seq=35&orientation=landscape",
+                },
+                {
+                  name: "قلیان ویژه",
+                  description: "قلیان با ترکیب طعم‌های مخصوص",
+                  price: "۱۸۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Special%20hookah%20with%20mixed%20flavors%2C%20premium%20presentation%20in%20a%20cafe%20setting&width=400&height=300&seq=36&orientation=landscape",
+                },
+              ],
+            },
+            cafe: {
+              title: "منوی کافه",
+              description: "نوشیدنی‌های گرم و سرد کافه",
+              items: [],
+            },
+            juice: {
+              title: "آبمیوه طبیعی",
+              description: "آبمیوه‌های تازه و طبیعی",
+              items: [
+                {
+                  name: "آب پرتقال",
+                  description: "آب پرتقال تازه و طبیعی",
+                  price: "۹۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Fresh%20orange%20juice%20in%20a%20clear%20glass%20with%20ice%2C%20natural%20and%20refreshing&width=400&height=300&seq=37&orientation=landscape",
+                },
+                {
+                  name: "آب هویج",
+                  description: "آب هویج تازه و طبیعی",
+                  price: "۸۵,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Fresh%20carrot%20juice%20in%20a%20glass%2C%20natural%20and%20healthy&width=400&height=300&seq=38&orientation=landscape",
+                },
+                {
+                  name: "آب سیب",
+                  description: "آب سیب تازه و طبیعی",
+                  price: "۸۵,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Fresh%20apple%20juice%20in%20a%20glass%20with%20ice%20and%20apple%20slices&width=400&height=300&seq=39&orientation=landscape",
+                },
+                {
+                  name: "آب انار",
+                  description: "آب انار تازه و طبیعی",
+                  price: "۱۱۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Fresh%20pomegranate%20juice%20in%20a%20glass%20with%20ice%20and%20pomegranate%20seeds&width=400&height=300&seq=40&orientation=landscape",
+                },
+              ],
+            },
+            smoothie: {
+              title: "اسموتی",
+              description: "اسموتی‌های خوشمزه و مغذی",
+              items: [
+                {
+                  name: "اسموتی توت فرنگی",
+                  description: "اسموتی توت فرنگی با شیر و عسل",
+                  price: "۱۲۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Strawberry%20smoothie%20with%20milk%20and%20honey%20in%20a%20glass&width=400&height=300&seq=41&orientation=landscape",
+                },
+                {
+                  name: "اسموتی موز",
+                  description: "اسموتی موز با شیر، عسل و دارچین",
+                  price: "۱۱۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Banana%20smoothie%20with%20milk%2C%20honey%20and%20cinnamon%20in%20a%20glass&width=400&height=300&seq=42&orientation=landscape",
+                },
+                {
+                  name: "اسموتی آناناس",
+                  description: "اسموتی آناناس با نارگیل",
+                  price: "۱۳۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Pineapple%20smoothie%20with%20coconut%20in%20a%20glass&width=400&height=300&seq=43&orientation=landscape",
+                },
+                {
+                  name: "اسموتی سبز",
+                  description: "اسموتی سبز با اسفناج، کیوی و سیب",
+                  price: "۱۴۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Green%20smoothie%20with%20spinach%2C%20kiwi%20and%20apple%20in%20a%20glass&width=400&height=300&seq=44&orientation=landscape",
+                },
+              ],
+            },
+            herbal: {
+              title: "دمنوش",
+              description: "دمنوش‌های گیاهی و آرامش‌بخش",
+              items: [
+                {
+                  name: "دمنوش بابونه",
+                  description: "دمنوش آرامش‌بخش بابونه",
+                  price: "۷۵,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Chamomile%20tea%20in%20a%20glass%20cup%20with%20chamomile%20flowers&width=400&height=300&seq=45&orientation=landscape",
+                },
+                {
+                  name: "دمنوش نعناع",
+                  description: "دمنوش خنک و معطر نعناع",
+                  price: "۷۵,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Mint%20tea%20in%20a%20glass%20cup%20with%20fresh%20mint%20leaves&width=400&height=300&seq=46&orientation=landscape",
+                },
+                {
+                  name: "دمنوش زنجبیل",
+                  description: "دمنوش زنجبیل با عسل و لیمو",
+                  price: "۸۵,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Ginger%20tea%20with%20honey%20and%20lemon%20in%20a%20glass%20cup&width=400&height=300&seq=47&orientation=landscape",
+                },
+                {
+                  name: "دمنوش به لیمو",
+                  description: "دمنوش معطر به لیمو",
+                  price: "۸۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Lemon%20verbena%20tea%20in%20a%20glass%20cup%20with%20lemon%20slice&width=400&height=300&seq=48&orientation=landscape",
+                },
+              ],
+            },
+            mocktail: {
+              title: "ماکتل",
+              description: "نوشیدنی‌های ترکیبی بدون الکل",
+              items: [
+                {
+                  name: "موهیتو",
+                  description: "نوشیدنی خنک با نعناع، لیمو و سودا",
+                  price: "۱۲۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Mojito%20mocktail%20with%20mint%20leaves%2C%20lime%20and%20soda%20in%20a%20glass&width=400&height=300&seq=49&orientation=landscape",
+                },
+                {
+                  name: "پینا کولادا",
+                  description: "نوشیدنی با آناناس و نارگیل",
+                  price: "۱۳۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Pina%20colada%20mocktail%20with%20pineapple%20and%20coconut%20in%20a%20glass&width=400&height=300&seq=50&orientation=landscape",
+                },
+                {
+                  name: "بلو لاگون",
+                  description: "نوشیدنی آبی رنگ با طعم میوه‌ای",
+                  price: "۱۳۵,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Blue%20lagoon%20mocktail%20in%20a%20glass%20with%20fruit%20garnish&width=400&height=300&seq=51&orientation=landscape",
+                },
+                {
+                  name: "سانرایز",
+                  description: "نوشیدنی لایه‌ای با طعم مرکبات",
+                  price: "۱۲۵,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Sunrise%20mocktail%20with%20layered%20colors%20and%20citrus%20flavors%20in%20a%20glass&width=400&height=300&seq=52&orientation=landscape",
+                },
+              ],
+            },
+            shake: {
+              title: "شیک",
+              description: "شیک‌های خوشمزه و خنک",
+              items: [
+                {
+                  name: "شیک شکلات",
+                  description: "شیک شکلاتی غلیظ و خوشمزه",
+                  price: "۱۲۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Chocolate%20milkshake%20with%20whipped%20cream%20and%20chocolate%20sauce%20in%20a%20glass&width=400&height=300&seq=53&orientation=landscape",
+                },
+                {
+                  name: "شیک وانیل",
+                  description: "شیک وانیلی کلاسیک",
+                  price: "۱۱۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Vanilla%20milkshake%20with%20whipped%20cream%20in%20a%20glass&width=400&height=300&seq=54&orientation=landscape",
+                },
+                {
+                  name: "شیک توت فرنگی",
+                  description: "شیک توت فرنگی با خامه",
+                  price: "۱۱۵,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Strawberry%20milkshake%20with%20whipped%20cream%20and%20fresh%20strawberries%20in%20a%20glass&width=400&height=300&seq=55&orientation=landscape",
+                },
+                {
+                  name: "شیک کارامل",
+                  description: "شیک با طعم کارامل و خامه",
+                  price: "۱۲۵,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Caramel%20milkshake%20with%20whipped%20cream%20and%20caramel%20sauce%20in%20a%20glass&width=400&height=300&seq=56&orientation=landscape",
+                },
+              ],
+            },
+            coffee: {
+              title: "قهوه",
+              description: "انواع قهوه با دانه‌های مرغوب",
+              items: [
+                {
+                  name: "اسپرسو",
+                  description: "قهوه غلیظ و قوی",
+                  price: "۶۵,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Espresso%20coffee%20in%20a%20small%20cup%2C%20rich%20and%20strong&width=400&height=300&seq=57&orientation=landscape",
+                },
+                {
+                  name: "آمریکانو",
+                  description: "اسپرسو با آب جوش",
+                  price: "۷۵,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Americano%20coffee%20in%20a%20cup%2C%20espresso%20with%20hot%20water&width=400&height=300&seq=58&orientation=landscape",
+                },
+                {
+                  name: "کاپوچینو",
+                  description: "اسپرسو با شیر بخارپز و فوم شیر",
+                  price: "۹۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Cappuccino%20coffee%20with%20milk%20foam%20in%20a%20cup&width=400&height=300&seq=59&orientation=landscape",
+                },
+                {
+                  name: "لاته",
+                  description: "اسپرسو با شیر بخارپز و کمی فوم",
+                  price: "۹۵,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Latte%20coffee%20with%20steamed%20milk%20in%20a%20glass&width=400&height=300&seq=60&orientation=landscape",
+                },
+              ],
+            },
+            espresso: {
+              title: "نوشیدنی بر پایه اسپرسو",
+              description: "نوشیدنی‌های متنوع بر پایه اسپرسو",
+              items: [
+                {
+                  name: "موکا",
+                  description: "اسپرسو با شیر بخارپز، شکلات و خامه",
+                  price: "۱۰۵,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Mocha%20coffee%20with%20steamed%20milk%2C%20chocolate%20and%20whipped%20cream%20in%20a%20glass&width=400&height=300&seq=61&orientation=landscape",
+                },
+                {
+                  name: "کارامل ماکیاتو",
+                  description: "اسپرسو با سس کارامل و فوم شیر",
+                  price: "۱۱۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Caramel%20macchiato%20with%20espresso%2C%20caramel%20sauce%20and%20milk%20foam%20in%20a%20glass&width=400&height=300&seq=62&orientation=landscape",
+                },
+                {
+                  name: "افوگاتو",
+                  description: "اسپرسو روی بستنی وانیلی",
+                  price: "۱۰۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Affogato%20with%20espresso%20poured%20over%20vanilla%20ice%20cream%20in%20a%20glass&width=400&height=300&seq=63&orientation=landscape",
+                },
+                {
+                  name: "فلت وایت",
+                  description: "اسپرسو با شیر مخملی",
+                  price: "۹۵,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Flat%20white%20coffee%20with%20velvety%20milk%20in%20a%20cup&width=400&height=300&seq=64&orientation=landscape",
+                },
+              ],
+            },
+            hot: {
+              title: "نوشیدنی گرم",
+              description: "نوشیدنی‌های گرم و دلچسب",
+              items: [
+                {
+                  name: "هات چاکلت",
+                  description: "شکلات داغ با خامه",
+                  price: "۸۵,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Hot%20chocolate%20with%20whipped%20cream%20in%20a%20mug&width=400&height=300&seq=65&orientation=landscape",
+                },
+                {
+                  name: "چای سیاه",
+                  description: "چای سیاه ایرانی",
+                  price: "۵۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Persian%20black%20tea%20in%20a%20glass%20with%20sugar%20cubes&width=400&height=300&seq=66&orientation=landscape",
+                },
+                {
+                  name: "چای سبز",
+                  description: "چای سبز با عسل",
+                  price: "۶۰,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Green%20tea%20with%20honey%20in%20a%20glass%20cup&width=400&height=300&seq=67&orientation=landscape",
+                },
+                {
+                  name: "چای ماسالا",
+                  description: "چای هندی با ادویه‌جات معطر",
+                  price: "۷۵,۰۰۰",
+                  image:
+                    "https://readdy.ai/api/search-image?query=Masala%20chai%20tea%20with%20spices%20in%20a%20cup&width=400&height=300&seq=68&orientation=landscape",
+                },
+              ],
+            },
+          };
+
+          document.addEventListener("DOMContentLoaded", function () {
+            // Toggle menu on mobile
+            const menuToggle = document.getElementById("menu-toggle");
+            const sidebar = document.getElementById("sidebar");
+
+            menuToggle.addEventListener("click", function () {
+              if (sidebar.classList.contains("w-0")) {
+                sidebar.classList.remove("w-0");
+                sidebar.classList.add("w-3/4");
+              } else {
+                sidebar.classList.remove("w-3/4");
+                sidebar.classList.add("w-0");
+              }
+            });
+            // Close popup
+            const welcomePopup = document.getElementById("welcome-popup");
+            const closePopup = document.getElementById("close-popup");
+            const closePopupBtn = document.getElementById("close-popup-btn");
+
+            closePopup.addEventListener("click", function () {
+              welcomePopup.classList.add("hidden");
+            });
+
+            closePopupBtn.addEventListener("click", function () {
+              welcomePopup.classList.add("hidden");
+            });
+
+            // Handle category clicks
+            const categoryItems = document.querySelectorAll(".category-item");
+            const cafeSubmenu = document.getElementById("cafe-submenu");
+
+            categoryItems.forEach((item) => {
+              item.addEventListener("click", function () {
+                const category = this.getAttribute("data-category");
+
+                // Remove active class from all categories
+                categoryItems.forEach((cat) => {
+                  cat.classList.remove("bg-secondary/20", "font-bold");
+                });
+
+                // Add active class to clicked category
+                this.classList.add("bg-secondary/20", "font-bold");
+
+                // Handle cafe menu specially
+                if (category === "cafe") {
+                  cafeSubmenu.classList.toggle("hidden");
+                } else {
+                  cafeSubmenu.classList.add("hidden");
+                  loadProducts(category);
+                }
+
+                // Close sidebar on mobile after selection
+                if (window.innerWidth < 1024) {
+                  sidebar.classList.remove("w-3/4");
+                  sidebar.classList.add("w-0");
+                }
+              });
+            });
+
+            // Handle subcategory clicks
+            const subcategoryItems = document.querySelectorAll(".subcategory-item");
+
+            subcategoryItems.forEach((item) => {
+              item.addEventListener("click", function () {
+                const subcategory = this.getAttribute("data-subcategory");
+
+                // Remove active class from all subcategories
+                subcategoryItems.forEach((subcat) => {
+                  subcat.classList.remove("bg-secondary/20", "font-bold");
+                });
+
+                // Add active class to clicked subcategory
+                this.classList.add("bg-secondary/20", "font-bold");
+
+                loadProducts(subcategory);
+
+                // Close sidebar on mobile after selection
+                if (window.innerWidth < 1024) {
+                  sidebar.classList.remove("w-3/4");
+                  sidebar.classList.add("w-0");
+                }
+              });
+            });
+
+            // Image modal functionality
+            const imageModal = document.getElementById("image-modal");
+            const modalImage = document.getElementById("modal-image");
+            const closeModal = document.getElementById("close-modal");
+
+            closeModal.addEventListener("click", function () {
+              imageModal.classList.add("hidden");
+            });
+            // Load initial category
+            loadProducts("appetizers");
+            categoryItems[0].classList.add("bg-secondary/20", "font-bold");
+          });
+
+          function loadProducts(category) {
+            const productsContainer = document.getElementById("products-container");
+            const categoryTitle = document.getElementById("category-title");
+            const categoryDescription = document.getElementById("category-description");
+
+            // Update title and description
+            categoryTitle.textContent = menuData[category].title;
+            categoryDescription.textContent = menuData[category].description;
+
+            // Clear previous products
+            productsContainer.innerHTML = "";
+
+            // Add new products
+            menuData[category].items.forEach((item) => {
+              const productCard = document.createElement("div");
+              productCard.className = "bg-white rounded-lg shadow-md overflow-hidden";
+
+              productCard.innerHTML = `
+                              <div class="relative h-48 overflow-hidden cursor-pointer product-image">
+                                  <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover object-top">
+                              </div>
+                              <div class="p-4">
+                                  <div class="flex justify-between items-start mb-2">
+                                      <h3 class="text-lg font-bold">${item.name}</h3>
+                                      <span class="text-primary font-bold">${item.price} تومان</span>
+                                  </div>
+                                  <p class="text-gray-600 text-sm">${item.description}</p>
+                              </div>
+                          `;
+
+              productsContainer.appendChild(productCard);
+            });
+
+            // Add click event to product images
+            const productImages = document.querySelectorAll(".product-image");
+            productImages.forEach((image) => {
+              image.addEventListener("click", function () {
+                const imgSrc = this.querySelector("img").src;
+                const imgAlt = this.querySelector("img").alt;
+
+                const imageModal = document.getElementById("image-modal");
+                const modalImage = document.getElementById("modal-image");
+
+                modalImage.src = imgSrc;
+                modalImage.alt = imgAlt;
+                imageModal.classList.remove("hidden");
+              });
+            });
+          }
+        </script>
+      </body>
+    </html>
+  </body>
+</html>
