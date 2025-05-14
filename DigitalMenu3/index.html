@@ -63,8 +63,9 @@
   <body class="bg-[#1C1C1C] text-[#E0E0E0]">
     <!-- Nav Bar -->
     <nav
-      class="fixed top-0 w-full bg-black/90 text-white shadow-lg z-50 backdrop-blur-md"
+      class="fixed top-0 w-full bg-black/90 text-white shadow-lg z-50 backdrop-blur-md h-16"
     >
+      =======
       <div class="flex items-center justify-between px-6 py-4">
         <div class="flex items-center">
           <h1 class="text-2xl font-['Pacifico'] mr-3 text-primary">logo</h1>
@@ -87,13 +88,13 @@
       <!-- Welcome section -->
       <div
         id="welcome-section"
-        class="w-full min-h-screen bg-black text-white px-6 py-12"
+        class="w-full min-h-screen bg-[#1C1C1C] text-white px-6 py-12"
       >
         <div class="max-w-4xl mx-auto">
           <h1 class="text-4xl md:text-5xl font-['Pacifico'] text-primary mb-6">
             به رستوران ما خوش آمدید
           </h1>
-          <p class="text-lg md:text-xl mb-8 text-gray-300">
+          <p class="text-lg md:text-xl mb-8 text-white">
             تجربه‌ای منحصر به فرد از غذاهای لذیذ در فضایی دلنشین
           </p>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -122,10 +123,10 @@
       <!-- Sidebar for categories - Now fixed and always visible -->
       <aside
         id="sidebar"
-        class="fixed top-16 bottom-0 right-0 w-[80px] bg-black/90 backdrop-blur-md shadow-xl z-40 overflow-hidden"
+        class="fixed top-16 bottom-12 right-0 w-[80px] bg-black/90 backdrop-blur-md shadow-xl z-40 overflow-y-auto scrollbar-hide"
       >
         <div class="h-full flex flex-col">
-          <div class="overflow-y-auto scrollbar-hide flex-grow">
+          <div class="flex-grow">
             <ul class="py-4">
               <li
                 class="category-item px-2 py-2.5 flex flex-col items-center cursor-pointer hover:bg-primary/20 text-xs"
@@ -394,7 +395,7 @@
         </div>
         <div class="mb-4 overflow-y-auto max-h-[60vh]">
           <p class="mb-2 text-sm leading-relaxed">
-            این منو یک نسخه‌ی دمو است که توسط مسعود بهرامی برای کسب‌وکار شما
+            این منوی دیجیتالی یک نسخه‌ی دمو است که توسط "مسعود بهرامی" برای کسب‌وکار شما
             طراحی شده. تمامی بخش‌ها، رنگ‌ها و محتوا قابل شخصی‌سازی کامل بر اساس
             سلیقه و برند و نیاز شما هستند.
           </p>
@@ -1017,7 +1018,6 @@
           ],
         },
       };
-
       // Cafe subcategories
       const cafeSubcategories = [
         { id: "juice", name: "آبمیوه طبیعی", icon: "ri-goblet-line" },
@@ -1029,69 +1029,56 @@
         { id: "espresso", name: "نوشیدنی اسپرسو", icon: "ri-cup-line" },
         { id: "hot", name: "نوشیدنی گرم", icon: "ri-cup-line" },
       ];
-
       function preventScroll(e) {
         e.preventDefault();
       }
-
       document.addEventListener("DOMContentLoaded", function () {
         // Prevent background scroll when popup is open
         document.body.addEventListener("touchmove", preventScroll, {
           passive: false,
         });
-
         // Handle category clicks
         const categoryItems = document.querySelectorAll(".category-item");
         const subcategoriesContainer = document.getElementById(
           "subcategories-container",
         );
-
         categoryItems.forEach((item) => {
           item.addEventListener("click", function () {
             const category = this.getAttribute("data-category");
-
             // Remove active class from all categories
             categoryItems.forEach((cat) => {
               cat.classList.remove("bg-secondary/20", "font-bold");
             });
-
             // Add active class to clicked category
             this.classList.add("bg-secondary/20", "font-bold");
-
             // Handle cafe menu specially
             if (category === "cafe") {
               // Show subcategories
               subcategoriesContainer.innerHTML = "";
               subcategoriesContainer.classList.remove("hidden");
-
               cafeSubcategories.forEach((subcat) => {
                 const subcatElement = document.createElement("div");
                 subcatElement.className =
                   "subcategory-item bg-[#2C2C2C] rounded-lg p-3 flex flex-col items-center cursor-pointer hover:bg-primary/20 text-xs";
                 subcatElement.setAttribute("data-subcategory", subcat.id);
                 subcatElement.innerHTML = `
-                  <div class="w-8 h-8 flex items-center justify-center mb-1 text-primary">
-                    <i class="${subcat.icon} ri-lg"></i>
-                  </div>
-                  <span class="text-center">${subcat.name}</span>
-                `;
+      <div class="w-8 h-8 flex items-center justify-center mb-1 text-primary">
+      <i class="${subcat.icon} ri-lg"></i>
+      </div>
+      <span class="text-center">${subcat.name}</span>
+      `;
                 subcategoriesContainer.appendChild(subcatElement);
-
                 subcatElement.addEventListener("click", function () {
                   const subcategory = this.getAttribute("data-subcategory");
-
                   // Remove active class from all subcategories
                   document.querySelectorAll(".subcategory-item").forEach((el) => {
                     el.classList.remove("bg-primary/20", "font-bold");
                   });
-
                   // Add active class to clicked subcategory
                   this.classList.add("bg-primary/20", "font-bold");
-
                   loadProducts(subcategory);
                 });
               });
-
               // Load first subcategory by default
               loadProducts("juice");
             } else {
@@ -1101,33 +1088,26 @@
             }
           });
         });
-
         // Image modal functionality
         const imageModal = document.getElementById("image-modal");
         const modalImage = document.getElementById("modal-image");
         const closeModal = document.getElementById("close-modal");
-
         closeModal.addEventListener("click", function () {
           imageModal.classList.add("hidden");
         });
-
         // Close popup
         const welcomePopup = document.getElementById("welcome-popup");
         const closePopup = document.getElementById("close-popup");
         const closePopupBtn = document.getElementById("close-popup-btn");
-
         function closeWelcomePopup() {
           welcomePopup.classList.add("hidden");
           document.body.removeEventListener("touchmove", preventScroll);
         }
-
         closePopup.addEventListener("click", closeWelcomePopup);
         closePopupBtn.addEventListener("click", closeWelcomePopup);
-
         // Load appetizers by default
         categoryItems[0].click();
       });
-
       function loadProducts(category) {
         if (category === "welcome") {
           document.getElementById("welcome-section").classList.remove("hidden");
@@ -1136,7 +1116,6 @@
             .parentElement.classList.add("hidden");
           return;
         }
-
         document.getElementById("welcome-section").classList.add("hidden");
         document
           .getElementById("products-container")
@@ -1144,32 +1123,28 @@
         const productsContainer = document.getElementById("products-container");
         const categoryTitle = document.getElementById("category-title");
         const categoryDescription = document.getElementById("category-description");
-
         categoryTitle.textContent = menuData[category].title;
         categoryDescription.textContent = menuData[category].description;
-
         // Clear previous products
         productsContainer.innerHTML = "";
-
         // Add new products
         menuData[category].items.forEach((item) => {
           const productCard = document.createElement("div");
           productCard.className = "bg-[#2C2C2C] rounded-lg shadow-md overflow-hidden";
           productCard.innerHTML = `
-            <div class="relative h-48 overflow-hidden cursor-pointer product-image">
-              <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover object-top">
-            </div>
-            <div class="p-4">
-              <div class="flex justify-between items-start mb-2">
-                <h3 class="text-lg font-bold text-white">${item.name}</h3>
-                <span class="text-primary font-bold">${item.price} تومان</span>
-              </div>
-              <p class="text-gray-400 text-sm">${item.description}</p>
-            </div>
-          `;
+      <div class="relative h-48 overflow-hidden cursor-pointer product-image">
+      <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover object-top">
+      </div>
+      <div class="p-4">
+      <div class="flex justify-between items-start mb-2">
+      <h3 class="text-lg font-bold text-white">${item.name}</h3>
+      <span class="text-primary font-bold">${item.price} تومان</span>
+      </div>
+      <p class="text-gray-400 text-sm">${item.description}</p>
+      </div>
+      `;
           productsContainer.appendChild(productCard);
         });
-
         // Add click event to product images
         const productImages = document.querySelectorAll(".product-image");
         productImages.forEach((image) => {
