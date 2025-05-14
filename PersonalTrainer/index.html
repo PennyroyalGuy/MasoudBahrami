@@ -96,6 +96,99 @@
     </style>
   </head>
   <body class="bg-gray-100 text-gray-800">
+    <!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    /* استایل پوشش تار پس‌زمینه */
+    #demoModalOverlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    /* استایل پنجره مودال */
+    #demoModal {
+      background: #fff;
+      padding: 30px 20px;
+      border-radius: 20px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      font-family: sans-serif;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    #demoModal h2 {
+      margin-bottom: 15px;
+      color: #444;
+    }
+
+    #demoModal p {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    #demoModal .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #888;
+    }
+
+    #demoModal .info {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #333;
+      direction: ltr;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Modal Structure -->
+<div id="demoModalOverlay">
+  <div id="demoModal">
+    <button class="close-btn" onclick="closeModal()">×</button>
+    <h2>توجه</h2>
+    <p>
+      این وب‌سایت یک نسخه‌ی دمو است که توسط <strong>مسعود بهرامی</strong> برای کسب‌وکار شما طراحی شده.<br>
+      تمامی بخش‌ها، رنگ‌ها و محتوا قابل شخصی‌سازی کامل بر اساس سلیقه و نیاز شما هستند.
+    </p>
+    <div class="info">
+      وب‌سایت: <a href="https://pennyroyalguy.github.io/MasoudBahrami" target="_blank">pennyroyalguy.github.io/MasoudBahrami</a><br>
+      تماس: 09334479527
+    </div>
+  </div>
+</div>
+
+<script>
+  function closeModal() {
+    document.getElementById('demoModalOverlay').style.display = 'none';
+  }
+
+  // باز شدن خودکار با تأخیر (اختیاری)
+  // window.onload = function() {
+  //   setTimeout(() => {
+  //     document.getElementById('demoModalOverlay').style.display = 'flex';
+  //   }, 500);
+  // }
+</script>
+
+</body>
+</html>
     <!-- Nav Bar -->
     <nav class="fixed top-0 w-full bg-white shadow-md z-50 py-3 px-4">
       <div class="flex justify-between items-center">
