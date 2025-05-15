@@ -5,6 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>فروشگاه پرده | خرید آنلاین انواع پرده</title>
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <style>
+      .welcome-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        z-index: 1000;
+        max-width: 90%;
+        width: 500px;
+        direction: rtl;
+      }
+      .popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+      }
+      @media (max-width: 768px) {
+        .welcome-popup {
+          padding: 1.5rem;
+          width: 85%;
+        }
+      }
+    </style>
+    =======
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,126 +56,126 @@
     <style>
       :where([class^="ri-"])::before { content: "\f3c2"; }
       body {
-          font-family: 'Vazirmatn', sans-serif;
+      font-family: 'Vazirmatn', sans-serif;
       }
       input[type="range"]::-webkit-slider-thumb {
-          -webkit-appearance: none;
-          appearance: none;
-          width: 16px;
-          height: 16px;
-          border-radius: 50%;
-          background: #3b82f6;
-          cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #3b82f6;
+      cursor: pointer;
       }
       input[type="range"]::-moz-range-thumb {
-          width: 16px;
-          height: 16px;
-          border-radius: 50%;
-          background: #3b82f6;
-          cursor: pointer;
-          border: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #3b82f6;
+      cursor: pointer;
+      border: none;
       }
       .custom-checkbox {
-          position: relative;
-          display: inline-block;
-          width: 20px;
-          height: 20px;
-          margin-left: 8px;
+      position: relative;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-left: 8px;
       }
       .custom-checkbox input {
-          opacity: 0;
-          width: 0;
-          height: 0;
+      opacity: 0;
+      width: 0;
+      height: 0;
       }
       .checkmark {
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 20px;
-          height: 20px;
-          background-color: #fff;
-          border: 2px solid #e5e7eb;
-          border-radius: 4px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 20px;
+      height: 20px;
+      background-color: #fff;
+      border: 2px solid #e5e7eb;
+      border-radius: 4px;
       }
       .custom-checkbox input:checked ~ .checkmark {
-          background-color: #3b82f6;
-          border-color: #3b82f6;
+      background-color: #3b82f6;
+      border-color: #3b82f6;
       }
       .checkmark:after {
-          content: "";
-          position: absolute;
-          display: none;
+      content: "";
+      position: absolute;
+      display: none;
       }
       .custom-checkbox input:checked ~ .checkmark:after {
-          display: block;
+      display: block;
       }
       .custom-checkbox .checkmark:after {
-          right: 6px;
-          top: 2px;
-          width: 6px;
-          height: 12px;
-          border: solid white;
-          border-width: 0 2px 2px 0;
-          transform: rotate(45deg);
+      right: 6px;
+      top: 2px;
+      width: 6px;
+      height: 12px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
       }
       .custom-switch {
-          position: relative;
-          display: inline-block;
-          width: 40px;
-          height: 24px;
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 24px;
       }
       .custom-switch input {
-          opacity: 0;
-          width: 0;
-          height: 0;
+      opacity: 0;
+      width: 0;
+      height: 0;
       }
       .switch-slider {
-          position: absolute;
-          cursor: pointer;
-          top: 0;
-          right: 0;
-          left: 0;
-          bottom: 0;
-          background-color: #e5e7eb;
-          transition: .4s;
-          border-radius: 24px;
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: #e5e7eb;
+      transition: .4s;
+      border-radius: 24px;
       }
       .switch-slider:before {
-          position: absolute;
-          content: "";
-          height: 18px;
-          width: 18px;
-          right: 3px;
-          bottom: 3px;
-          background-color: white;
-          transition: .4s;
-          border-radius: 50%;
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      right: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
       }
       .custom-switch input:checked + .switch-slider {
-          background-color: #3b82f6;
+      background-color: #3b82f6;
       }
       .custom-switch input:checked + .switch-slider:before {
-          transform: translateX(-16px);
+      transform: translateX(-16px);
       }
       .product-card:hover .quick-view {
-          opacity: 1;
+      opacity: 1;
       }
       .color-option {
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          cursor: pointer;
-          position: relative;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
       }
       .color-option.selected::after {
-          content: "";
-          position: absolute;
-          top: -3px;
-          right: -3px;
-          left: -3px;
-          bottom: -3px;
-          border: 2px solid #3b82f6;
-          border-radius: 50%;
+      content: "";
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      left: -3px;
+      bottom: -3px;
+      border: 2px solid #3b82f6;
+      border-radius: 50%;
       }
     </style>
     <script>
@@ -167,16 +201,58 @@
     </script>
   </head>
   <body class="bg-gray-50 min-h-screen">
+    <div class="popup-overlay" id="popupOverlay"></div>
+    <div class="welcome-popup" id="welcomePopup">
+      <h2 class="text-xl font-bold mb-4 text-gray-800">توجه</h2>
+      <p class="text-gray-600 mb-6 leading-relaxed">
+        این وب‌سایت یک نسخه‌ی دمو است که توسط "مسعود بهرامی" برای کسب‌وکار شما
+        طراحی شده.<br />
+        تمامی بخش‌ها، رنگ‌ها و محتوا قابل شخصی‌سازی کامل بر اساس سلیقه و نیاز و
+        برند شما هستند.
+      </p>
+      <div class="mb-6">
+        <h3 class="font-medium text-gray-800 mb-2">راه های ارتباطی:</h3>
+        <ul class="space-y-2">
+          <li class="flex items-center text-gray-600">
+            <i class="ri-global-line ml-2"></i>
+            <a
+              href="https://pennyroyalguy.github.io/MasoudBahrami"
+              target="_blank"
+              class="hover:text-primary"
+              >pennyroyalguy.github.io/MasoudBahrami</a
+            >
+          </li>
+          <li class="flex items-center text-gray-600">
+            <i class="ri-phone-line ml-2"></i>
+            <a href="tel:09334479527" class="hover:text-primary">09334479527</a>
+          </li>
+          <li class="flex items-center text-gray-600">
+            <i class="ri-telegram-line ml-2"></i>
+            <a
+              href="https://t.me/pennyroyalguy"
+              target="_blank"
+              class="hover:text-primary"
+              >t.me/pennyroyalguy</a
+            >
+          </li>
+        </ul>
+      </div>
+      <button
+        id="closePopup"
+        class="w-full bg-primary text-white py-2 px-4 rounded-button hover:bg-primary/90 transition-colors"
+      >
+        متوجه شدم
+      </button>
+    </div>
     <!-- Header -->
     <header class="sticky top-0 z-50 bg-white shadow-sm">
       <div
-        class="container mx-auto px-4 py-4 flex items-center justify-between"
+        class="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0"
       >
         <!-- Logo -->
         <div class="font-['Pacifico'] text-2xl text-primary">logo</div>
-
         <!-- Search Bar -->
-        <div class="relative w-1/3">
+        <div class="relative w-full md:w-1/3">
           <input
             type="text"
             placeholder="جستجوی محصولات..."
@@ -188,9 +264,8 @@
             </div>
           </div>
         </div>
-
         <!-- User Actions -->
-        <div class="flex items-center space-x-6 space-x-reverse">
+        <div class="flex items-center space-x-4 md:space-x-6 space-x-reverse">
           <div class="relative group">
             <div
               class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 cursor-pointer"
@@ -201,7 +276,6 @@
               class="absolute -top-1 -left-1 bg-primary text-white text-xs w-5 h-5 flex items-center justify-center rounded-full"
               >3</span
             >
-
             <!-- Mini Cart -->
             <div
               class="absolute left-0 mt-2 w-72 bg-white shadow-lg rounded-md p-4 hidden group-hover:block"
@@ -279,14 +353,12 @@
               </div>
             </div>
           </div>
-
           <div class="relative group">
             <div
               class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 cursor-pointer"
             >
               <i class="ri-user-line text-gray-700"></i>
             </div>
-
             <!-- User Menu -->
             <div
               class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 hidden group-hover:block"
@@ -316,11 +388,12 @@
           </div>
         </div>
       </div>
-
       <!-- Categories Menu -->
-      <nav class="bg-gray-100">
+      <nav class="bg-gray-100 overflow-x-auto">
         <div class="container mx-auto px-4">
-          <ul class="flex items-center space-x-8 space-x-reverse">
+          <ul
+            class="flex items-center space-x-8 space-x-reverse whitespace-nowrap"
+          >
             <li class="py-3">
               <a
                 href="#"
@@ -495,7 +568,6 @@
         </div>
       </nav>
     </header>
-
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
       <div class="flex flex-wrap -mx-4">
@@ -544,7 +616,6 @@
                   </label>
                 </div>
               </div>
-
               <div class="border-b border-gray-100 pb-4 mb-4">
                 <h4 class="font-medium text-sm text-gray-700 mb-3">رنگ</h4>
                 <div class="flex flex-wrap gap-2">
@@ -610,7 +681,6 @@
                   ></div>
                 </div>
               </div>
-
               <div class="border-b border-gray-100 pb-4 mb-4">
                 <h4 class="font-medium text-sm text-gray-700 mb-3">
                   محدوده قیمت
@@ -629,7 +699,6 @@
                   <span class="text-xs text-gray-500">تا 5,000,000 تومان</span>
                 </div>
               </div>
-
               <div class="border-b border-gray-100 pb-4 mb-4">
                 <h4 class="font-medium text-sm text-gray-700 mb-3">سایز</h4>
                 <div class="space-y-2">
@@ -669,7 +738,6 @@
                   </label>
                 </div>
               </div>
-
               <div class="border-b border-gray-100 pb-4 mb-4">
                 <h4 class="font-medium text-sm text-gray-700 mb-3">
                   طرح و مدل
@@ -712,7 +780,6 @@
                   </label>
                 </div>
               </div>
-
               <div>
                 <h4 class="font-medium text-sm text-gray-700 mb-3">
                   سایر ویژگی‌ها
@@ -742,7 +809,6 @@
                 </div>
               </div>
             </div>
-
             <div class="flex gap-2">
               <button
                 class="w-full py-2 px-4 bg-primary text-white rounded-button text-sm whitespace-nowrap"
@@ -757,9 +823,8 @@
             </div>
           </div>
         </div>
-
         <!-- Products Grid -->
-        <div class="w-3/4 px-4">
+        <div class="w-full md:w-3/4 px-4">
           <div class="mb-6 flex items-center justify-between">
             <h2 class="text-xl font-medium text-gray-800">
               پرده‌های مخمل (24 محصول)
@@ -777,8 +842,7 @@
               </select>
             </div>
           </div>
-
-          <div class="grid grid-cols-3 gap-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             <!-- Product Card 1 -->
             <div
               class="bg-white rounded-lg shadow-sm overflow-hidden product-card group"
@@ -833,7 +897,6 @@
                 </div>
               </div>
             </div>
-
             <!-- Product Card 2 -->
             <div
               class="bg-white rounded-lg shadow-sm overflow-hidden product-card group"
@@ -880,7 +943,6 @@
                 </div>
               </div>
             </div>
-
             <!-- Product Card 3 -->
             <div
               class="bg-white rounded-lg shadow-sm overflow-hidden product-card group"
@@ -935,7 +997,6 @@
                 </div>
               </div>
             </div>
-
             <!-- Product Card 4 -->
             <div
               class="bg-white rounded-lg shadow-sm overflow-hidden product-card group"
@@ -982,7 +1043,6 @@
                 </div>
               </div>
             </div>
-
             <!-- Product Card 5 -->
             <div
               class="bg-white rounded-lg shadow-sm overflow-hidden product-card group"
@@ -1034,7 +1094,6 @@
                 </div>
               </div>
             </div>
-
             <!-- Product Card 6 -->
             <div
               class="bg-white rounded-lg shadow-sm overflow-hidden product-card group"
@@ -1090,7 +1149,6 @@
               </div>
             </div>
           </div>
-
           <!-- Pagination -->
           <div class="mt-10 flex justify-center">
             <nav class="flex items-center">
@@ -1134,7 +1192,6 @@
           </div>
         </div>
       </div>
-
       <!-- Recommended Products -->
       <div class="mt-16">
         <h2 class="text-xl font-medium text-gray-800 mb-6">محصولات پیشنهادی</h2>
@@ -1193,7 +1250,6 @@
                 </div>
               </div>
             </div>
-
             <!-- Recommended Product 2 -->
             <div
               class="bg-white rounded-lg shadow-sm overflow-hidden product-card group min-w-[280px] max-w-[280px]"
@@ -1240,7 +1296,6 @@
                 </div>
               </div>
             </div>
-
             <!-- Recommended Product 3 -->
             <div
               class="bg-white rounded-lg shadow-sm overflow-hidden product-card group min-w-[280px] max-w-[280px]"
@@ -1295,7 +1350,6 @@
                 </div>
               </div>
             </div>
-
             <!-- Recommended Product 4 -->
             <div
               class="bg-white rounded-lg shadow-sm overflow-hidden product-card group min-w-[280px] max-w-[280px]"
@@ -1342,7 +1396,6 @@
                 </div>
               </div>
             </div>
-
             <!-- Recommended Product 5 -->
             <div
               class="bg-white rounded-lg shadow-sm overflow-hidden product-card group min-w-[280px] max-w-[280px]"
@@ -1395,7 +1448,6 @@
               </div>
             </div>
           </div>
-
           <!-- Scroll Buttons -->
           <button
             class="absolute top-1/2 right-0 transform -translate-y-1/2 w-10 h-10 bg-white shadow-md rounded-full flex items-center justify-center text-gray-700 z-10"
@@ -1413,7 +1465,7 @@
     <!-- Footer -->
     <footer class="bg-gray-800 text-white mt-16">
       <div class="container mx-auto px-4 py-12">
-        <div class="grid grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           <div>
             <div class="font-['Pacifico'] text-2xl text-white mb-4">logo</div>
             <p class="text-gray-300 text-sm leading-relaxed mb-4">
@@ -1447,7 +1499,6 @@
               </a>
             </div>
           </div>
-
           <div>
             <h4 class="text-lg font-medium mb-4">دسترسی سریع</h4>
             <ul class="space-y-2">
@@ -1483,7 +1534,6 @@
               </li>
             </ul>
           </div>
-
           <div>
             <h4 class="text-lg font-medium mb-4">خدمات مشتریان</h4>
             <ul class="space-y-2">
@@ -1519,7 +1569,6 @@
               </li>
             </ul>
           </div>
-
           <div>
             <h4 class="text-lg font-medium mb-4">تماس با ما</h4>
             <ul class="space-y-3">
@@ -1551,7 +1600,6 @@
                 <span class="text-gray-300 text-sm">info@curtainshop.com</span>
               </li>
             </ul>
-
             <div class="mt-6">
               <h5 class="text-sm font-medium mb-3">عضویت در خبرنامه</h5>
               <div class="flex">
@@ -1569,7 +1617,6 @@
             </div>
           </div>
         </div>
-
         <div
           class="border-t border-gray-700 mt-10 pt-6 flex justify-between items-center"
         >
@@ -1601,9 +1648,36 @@
         </div>
       </div>
     </footer>
-
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        // Welcome popup
+        const popup = document.getElementById("welcomePopup");
+        const overlay = document.getElementById("popupOverlay");
+        const closeBtn = document.getElementById("closePopup");
+        function showPopup() {
+          popup.style.display = "block";
+          overlay.style.display = "block";
+          document.body.style.overflow = "hidden";
+        }
+        function closePopup() {
+          popup.style.display = "none";
+          overlay.style.display = "none";
+          document.body.style.overflow = "auto";
+        }
+        closeBtn.addEventListener("click", closePopup);
+        overlay.addEventListener("click", closePopup);
+        showPopup();
+        // Mobile menu
+        const menuBtn = document.createElement("button");
+        menuBtn.className =
+          "md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-gray-100";
+        menuBtn.innerHTML = '<i class="ri-menu-line text-gray-700"></i>';
+        const nav = document.querySelector("nav");
+        const header = document.querySelector("header");
+        header.firstElementChild.prepend(menuBtn);
+        menuBtn.addEventListener("click", function () {
+          nav.classList.toggle("hidden");
+        });
         // Color options selection
         const colorOptions = document.querySelectorAll(".color-option");
         colorOptions.forEach((option) => {
@@ -1616,4 +1690,3 @@
     </script>
   </body>
 </html>
-
