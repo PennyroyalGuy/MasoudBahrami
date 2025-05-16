@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>کاتالوگ خدمات آرایشی</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#D8BFD8", secondary: "#F0E6EF" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
+      body {
+        font-family: 'Vazirmatn', sans-serif;
+        background-color: #F9F5F6;
+      }
+      .service-card {
+        transition: all 0.3s ease;
+      }
+      .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+    </style>
+  </head>
+  <body class="overflow-x-hidden">
+    <!-- Header -->
+    <header class="bg-white shadow-sm py-4 px-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <div class="font-['Pacifico'] text-2xl text-primary">logo</div>
+        <div class="text-sm text-gray-500">
+          <p>تاریخ: ۱۶ اردیبهشت ۱۴۰۴</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-6">
+      <!-- Intro Section -->
+      <section class="text-center mb-8">
+        <h1 class="text-2xl font-bold mb-2">کاتالوگ خدمات آرایشی سارا</h1>
+        <p class="text-gray-600 mb-4">لیست خدمات و قیمت‌ها - بهار ۱۴۰۴</p>
+        <div class="w-20 h-1 bg-primary mx-auto"></div>
+      </section>
+
+      <!-- Services Section -->
+      <section class="mb-8">
+        <div class="grid grid-cols-1 gap-4">
+          <!-- Service Category 1 -->
+          <div class="bg-white rounded-lg shadow-sm p-4">
+            <h2 class="text-lg font-bold mb-3 flex items-center">
+              <i class="ri-scissors-line ri-lg mr-2 text-primary"></i>
+              خدمات مو
+            </h2>
+            <div class="space-y-2">
+              <div
+                class="flex justify-between items-center py-2 border-b border-gray-100"
+              >
+                <span>کوتاهی مو</span>
+                <span class="text-gray-700">۱۵۰,۰۰۰ تومان</span>
+              </div>
+              <div
+                class="flex justify-between items-center py-2 border-b border-gray-100"
+              >
+                <span>رنگ مو</span>
+                <span class="text-gray-700">۳۵۰,۰۰۰ تومان</span>
+              </div>
+              <div
+                class="flex justify-between items-center py-2 border-b border-gray-100"
+              >
+                <span>هایلایت</span>
+                <span class="text-gray-700">۴۵۰,۰۰۰ تومان</span>
+              </div>
+              <div
+                class="flex justify-between items-center py-2 border-b border-gray-100"
+              >
+                <span>براشینگ</span>
+                <span class="text-gray-700">۱۰۰,۰۰۰ تومان</span>
+              </div>
+              <div class="flex justify-between items-center py-2">
+                <span>شینیون</span>
+                <span class="text-gray-700">۳۰۰,۰۰۰ تومان</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service Category 2 -->
+          <div class="bg-white rounded-lg shadow-sm p-4">
+            <h2 class="text-lg font-bold mb-3 flex items-center">
+              <i class="ri-brush-line ri-lg mr-2 text-primary"></i>
+              خدمات ناخن
+            </h2>
+            <div class="space-y-2">
+              <div
+                class="flex justify-between items-center py-2 border-b border-gray-100"
+              >
+                <span>مانیکور ساده</span>
+                <span class="text-gray-700">۱۲۰,۰۰۰ تومان</span>
+              </div>
+              <div
+                class="flex justify-between items-center py-2 border-b border-gray-100"
+              >
+                <span>پدیکور</span>
+                <span class="text-gray-700">۱۵۰,۰۰۰ تومان</span>
+              </div>
+              <div
+                class="flex justify-between items-center py-2 border-b border-gray-100"
+              >
+                <span>کاشت ناخن</span>
+                <span class="text-gray-700">۳۵۰,۰۰۰ تومان</span>
+              </div>
+              <div class="flex justify-between items-center py-2">
+                <span>طراحی ناخن</span>
+                <span class="text-gray-700">۸۰,۰۰۰ تومان</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service Category 3 -->
+          <div class="bg-white rounded-lg shadow-sm p-4">
+            <h2 class="text-lg font-bold mb-3 flex items-center">
+              <i class="ri-palette-line ri-lg mr-2 text-primary"></i>
+              آرایش صورت
+            </h2>
+            <div class="space-y-2">
+              <div
+                class="flex justify-between items-center py-2 border-b border-gray-100"
+              >
+                <span>میکاپ ملایم</span>
+                <span class="text-gray-700">۲۵۰,۰۰۰ تومان</span>
+              </div>
+              <div
+                class="flex justify-between items-center py-2 border-b border-gray-100"
+              >
+                <span>میکاپ مجلسی</span>
+                <span class="text-gray-700">۴۰۰,۰۰۰ تومان</span>
+              </div>
+              <div
+                class="flex justify-between items-center py-2 border-b border-gray-100"
+              >
+                <span>میکاپ عروس</span>
+                <span class="text-gray-700">۸۰۰,۰۰۰ تومان</span>
+              </div>
+              <div class="flex justify-between items-center py-2">
+                <span>پاکسازی صورت</span>
+                <span class="text-gray-700">۲۰۰,۰۰۰ تومان</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service Category 4 -->
+          <div class="bg-white rounded-lg shadow-sm p-4">
+            <h2 class="text-lg font-bold mb-3 flex items-center">
+              <i class="ri-eye-line ri-lg mr-2 text-primary"></i>
+              خدمات ابرو و مژه
+            </h2>
+            <div class="space-y-2">
+              <div
+                class="flex justify-between items-center py-2 border-b border-gray-100"
+              >
+                <span>اصلاح ابرو</span>
+                <span class="text-gray-700">۸۰,۰۰۰ تومان</span>
+              </div>
+              <div
+                class="flex justify-between items-center py-2 border-b border-gray-100"
+              >
+                <span>هاشور ابرو</span>
+                <span class="text-gray-700">۶۰۰,۰۰۰ تومان</span>
+              </div>
+              <div
+                class="flex justify-between items-center py-2 border-b border-gray-100"
+              >
+                <span>کاشت مژه</span>
+                <span class="text-gray-700">۲۵۰,۰۰۰ تومان</span>
+              </div>
+              <div class="flex justify-between items-center py-2">
+                <span>لیفت مژه</span>
+                <span class="text-gray-700">۲۰۰,۰۰۰ تومان</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Special Packages -->
+      <section class="mb-8">
+        <h2 class="text-xl font-bold mb-4 text-center">پکیج‌های ویژه</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div
+            class="bg-primary bg-opacity-10 rounded-lg p-4 border border-primary border-opacity-20"
+          >
+            <h3 class="font-bold mb-2">پکیج عروس</h3>
+            <p class="text-sm text-gray-600 mb-2">
+              شامل میکاپ، شینیون، کاشت ناخن و اصلاح ابرو
+            </p>
+            <p class="font-bold text-primary">۱,۵۰۰,۰۰۰ تومان</p>
+          </div>
+          <div
+            class="bg-primary bg-opacity-10 rounded-lg p-4 border border-primary border-opacity-20"
+          >
+            <h3 class="font-bold mb-2">پکیج مجلسی</h3>
+            <p class="text-sm text-gray-600 mb-2">
+              شامل میکاپ، براشینگ و مانیکور
+            </p>
+            <p class="font-bold text-primary">۶۵۰,۰۰۰ تومان</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Info -->
+      <section class="bg-white rounded-lg shadow-sm p-4 mb-8">
+        <h2 class="text-lg font-bold mb-3">اطلاعات تماس</h2>
+        <div class="space-y-3">
+          <div class="flex items-center">
+            <div
+              class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-20 rounded-full"
+            >
+              <i class="ri-phone-line text-primary"></i>
+            </div>
+            <span class="mr-3 text-gray-700">۰۹۱۲۳۴۵۶۷۸۹</span>
+          </div>
+          <div class="flex items-center">
+            <div
+              class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-20 rounded-full"
+            >
+              <i class="ri-map-pin-line text-primary"></i>
+            </div>
+            <span class="mr-3 text-gray-700"
+              >تهران، خیابان ولیعصر، کوچه گلستان، پلاک ۱۲</span
+            >
+          </div>
+          <div class="flex items-center">
+            <div
+              class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-20 rounded-full"
+            >
+              <i class="ri-time-line text-primary"></i>
+            </div>
+            <span class="mr-3 text-gray-700"
+              >شنبه تا پنجشنبه: ۹ صبح تا ۷ شب</span
+            >
+          </div>
+          <div class="flex items-center">
+            <div
+              class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-20 rounded-full"
+            >
+              <i class="ri-instagram-line text-primary"></i>
+            </div>
+            <span class="mr-3 text-gray-700">sara_beauty</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Notes -->
+      <section class="bg-secondary bg-opacity-30 rounded-lg p-4 mb-8">
+        <h2 class="text-lg font-bold mb-2">نکات مهم</h2>
+        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+          <li>لطفاً برای رزرو نوبت، حداقل یک روز قبل هماهنگ کنید</li>
+          <li>در صورت کنسلی، حداقل ۳ ساعت قبل اطلاع دهید</li>
+          <li>قیمت‌ها ممکن است بسته به حجم کار تغییر کند</li>
+          <li>امکان پرداخت با کارت بانکی فراهم است</li>
+        </ul>
+      </section>
+
+      <!-- Booking Button -->
+      <div class="text-center mb-8">
+        <a
+          href="https://wa.me/989123456789"
+          class="bg-primary text-white px-6 py-3 rounded-button inline-flex items-center shadow-md hover:shadow-lg transition cursor-pointer"
+        >
+          <i class="ri-whatsapp-line ri-lg ml-2"></i>
+          <span>رزرو نوبت از طریق واتساپ</span>
+        </a>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="bg-white py-4 border-t border-gray-100 text-center text-sm text-gray-500"
+    >
+      <p>© ۱۴۰۴ سالن زیبایی سارا. تمامی حقوق محفوظ است.</p>
+    </footer>
+
+    <!-- Demo Popup -->
+    <div
+      id="demo-popup"
+      class="fixed inset-0 bg-black bg-opacity-50 z-[9999] hidden"
+    >
+      <div
+        class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-xl w-[90%] max-w-md"
+      >
+        <div class="text-center">
+          <h3 class="text-xl font-bold mb-4">توجه</h3>
+          <p class="text-gray-600 mb-4">
+            این کاتالوگ آنلاین یک نسخه‌ی دمو است که توسط "مسعود بهرامی" برای
+            کسب‌وکار شما طراحی شده. تمامی بخش‌ها، رنگ‌ها و محتوا قابل شخصی‌سازی
+            کامل بر اساس سلیقه و برند و نیاز شما هستند.
+          </p>
+          <div class="mb-4">
+            <p class="font-semibold mb-2">برای اطلاعات بیشتر:</p>
+            <p class="mb-1">
+              وب‌سایت:
+              <a
+                href="https://pennyroyalguy.github.io/MasoudBahrami"
+                target="_blank"
+                class="text-primary hover:underline"
+                >pennyroyalguy.github.io/MasoudBahrami</a
+              >
+            </p>
+            <p>
+              شماره تماس:
+              <a href="tel:09334479527" class="text-primary hover:underline"
+                >09334479527</a
+              >
+            </p>
+          </div>
+          <button
+            id="close-popup"
+            class="bg-primary text-white px-6 py-2 rounded-button hover:bg-opacity-90 transition"
+          >
+            متوجه شدم
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const demoPopup = document.getElementById("demo-popup");
+        const closePopupBtn = document.getElementById("close-popup");
+
+        setTimeout(() => {
+          demoPopup.classList.remove("hidden");
+        }, 1000);
+        closePopupBtn.addEventListener("click", () => {
+          demoPopup.classList.add("hidden");
+        });
+      });
+    </script>
+  </body>
+</html>
