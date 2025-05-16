@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>فروشگاه عطر و ادکلن</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#D4AF37", secondary: "#1E293B" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+      font-family: 'Noto Sans Arabic', sans-serif;
+      }
+      .popup-overlay {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+      .popup-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      }
+      .popup-content {
+      transform: scale(0.9);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+      .popup-overlay.active .popup-content {
+      transform: scale(1);
+      opacity: 1;
+      }
+      .hero-section {
+      background-image: url('https://readdy.ai/api/search-image?query=Luxury%20perfume%20bottles%20on%20elegant%20dark%20background%2C%20golden%20light%20reflections%2C%20minimalist%20composition%2C%20high-end%20perfume%20photography%2C%20black%20and%20gold%20theme%2C%20professional%20product%20photography%2C%20soft%20lighting%2C%20premium%20fragrance%20showcase%2C%20sophisticated%20and%20elegant&width=375&height=500&seq=1&orientation=portrait');
+      background-size: cover;
+      background-position: center;
+      }
+      .scroll-reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+      }
+      input:focus, textarea:focus {
+      outline: none;
+      border-color: #D4AF37;
+      }
+    </style>
+  </head>
+  <body class="bg-white text-gray-800">
+    <!-- Navbar -->
+    <nav class="fixed w-full top-0 bg-white/90 backdrop-blur-sm z-50 shadow-sm">
+      <div
+        class="max-w-[375px] mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <div class="text-xl font-['Pacifico'] text-primary">logo</div>
+        <div class="flex items-center space-x-3 space-x-reverse">
+          <a
+            href="#contact"
+            class="text-sm font-medium text-gray-700 hover:text-primary transition-colors"
+            >تماس با ما</a
+          >
+          <a
+            href="#about"
+            class="text-sm font-medium text-gray-700 hover:text-primary transition-colors"
+            >درباره ما</a
+          >
+          <a
+            href="#gallery"
+            class="text-sm font-medium text-gray-700 hover:text-primary transition-colors"
+            >گالری</a
+          >
+        </div>
+      </div>
+    </nav>
+    <!-- Welcome Popup -->
+    <div
+      class="popup-overlay fixed inset-0 bg-black/80 z-[60] flex items-center justify-center"
+    >
+      <div
+        class="popup-content bg-white rounded-xl shadow-xl max-w-[340px] p-6 relative mx-4"
+      >
+        <button
+          id="closePopup"
+          class="absolute top-4 left-4 w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700 cursor-pointer"
+        >
+          <i class="ri-close-line ri-lg"></i>
+        </button>
+        <h3 class="text-lg font-bold text-center mb-4">توجه</h3>
+        <p class="text-sm text-gray-700 leading-relaxed mb-4">
+          این کاتالوگ آنلاین یک نسخه‌ی دمو است که توسط "مسعود بهرامی" برای
+          کسب‌وکار شما طراحی شده. تمامی بخش‌ها، رنگ‌ها و محتوا قابل شخصی‌سازی
+          کامل بر اساس سلیقه و برند و نیاز شما هستند.
+        </p>
+        <div class="bg-gray-50 p-3 rounded-lg mb-4">
+          <p class="text-sm font-medium mb-2">برای اطلاعات بیشتر:</p>
+          <p class="text-sm mb-1">
+            <span class="text-gray-600">وب‌سایت: </span>
+            <a
+              href="https://pennyroyalguy.github.io/MasoudBahrami"
+              class="text-primary underline"
+              >pennyroyalguy.github.io/MasoudBahrami</a
+            >
+          </p>
+          <p class="text-sm font-mono">
+            <span class="text-gray-600">شماره تماس: </span>
+            <span class="font-medium">۰۹۳۳۴۴۷۹۵۲۷</span>
+          </p>
+        </div>
+        <button
+          id="confirmPopup"
+          class="w-full py-2.5 bg-primary text-white font-medium rounded-button hover:bg-primary/90 transition-colors cursor-pointer"
+        >
+          متوجه شدم
+        </button>
+      </div>
+    </div>
+    <!-- Hero Section -->
+    <section class="hero-section h-[550px] flex items-end mt-[48px]">
+      <div class="max-w-[375px] mx-auto px-6 pb-12 w-full">
+        <div
+          class="bg-black/50 backdrop-blur-sm p-6 rounded-xl text-white scroll-reveal"
+        >
+          <h1 class="text-2xl font-bold mb-2">عطر و ادکلن لوکس</h1>
+          <p class="text-lg font-light mb-4">امضای شخصیت شما، رایحه شماست</p>
+        </div>
+      </div>
+    </section>
+    <!-- About Section -->
+    <section id="about" class="py-12 bg-gray-50">
+      <div class="max-w-[375px] mx-auto px-6">
+        <div class="scroll-reveal">
+          <h2 class="text-xl font-bold mb-6 text-center relative">
+            <span class="inline-block relative">
+              درباره ما
+              <span
+                class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-0.5 bg-primary"
+              ></span>
+            </span>
+          </h2>
+          <p class="text-gray-700 leading-relaxed mb-6">
+            ما در فروشگاه عطر و ادکلن لوکس، با بیش از ۱۵ سال تجربه در زمینه عطر
+            و ادکلن، مفتخریم که برترین و اصیل‌ترین رایحه‌های جهان را به شما
+            معرفی کنیم. تیم متخصص ما با دانش عمیق در زمینه نت‌های بویایی، به شما
+            کمک می‌کند تا رایحه‌ای متناسب با شخصیت و سبک زندگی خود پیدا کنید.
+          </p>
+          <div class="grid grid-cols-3 gap-4 mb-6">
+            <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+              <div
+                class="w-10 h-10 flex items-center justify-center mx-auto mb-2 text-primary"
+              >
+                <i class="ri-award-line ri-xl"></i>
+              </div>
+              <h3 class="text-sm font-medium">کیفیت برتر</h3>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+              <div
+                class="w-10 h-10 flex items-center justify-center mx-auto mb-2 text-primary"
+              >
+                <i class="ri-user-star-line ri-xl"></i>
+              </div>
+              <h3 class="text-sm font-medium">مشاوره تخصصی</h3>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+              <div
+                class="w-10 h-10 flex items-center justify-center mx-auto mb-2 text-primary"
+              >
+                <i class="ri-shield-check-line ri-xl"></i>
+              </div>
+              <h3 class="text-sm font-medium">تضمین اصالت</h3>
+            </div>
+          </div>
+          <p class="text-gray-700 leading-relaxed">
+            ما معتقدیم که انتخاب عطر یک تجربه شخصی و هنری است. هر رایحه داستان
+            خاص خود را دارد و می‌تواند بیانگر شخصیت، احساسات و خاطرات شما باشد.
+            ما اینجا هستیم تا به شما کمک کنیم تا رایحه‌ای را پیدا کنید که داستان
+            شما را به بهترین شکل روایت کند.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-12">
+      <div class="max-w-[375px] mx-auto px-6">
+        <div class="scroll-reveal">
+          <h2 class="text-xl font-bold mb-6 text-center relative">
+            <span class="inline-block relative">
+              گالری
+              <span
+                class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-0.5 bg-primary"
+              ></span>
+            </span>
+          </h2>
+          <div class="grid grid-cols-2 gap-3 mb-3">
+            <div class="aspect-square rounded-lg overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=Luxury%20perfume%20display%20in%20high-end%20store%2C%20elegant%20glass%20shelves%2C%20soft%20golden%20lighting%2C%20premium%20fragrance%20bottles%2C%20minimalist%20luxury%20retail%20interior%2C%20sophisticated%20atmosphere%2C%20professional%20retail%20photography&width=180&height=180&seq=2&orientation=squarish"
+                alt="نمایشگاه عطر"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="aspect-square rounded-lg overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=Close-up%20of%20premium%20perfume%20bottles%20with%20gold%20accents%2C%20luxury%20fragrance%20packaging%2C%20elegant%20composition%2C%20high-end%20product%20photography%2C%20black%20and%20gold%20theme%2C%20soft%20lighting%2C%20premium%20brand%20showcase&width=180&height=180&seq=3&orientation=squarish"
+                alt="بطری‌های عطر"
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-3">
+            <div class="aspect-square rounded-lg overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=Perfume%20testing%20area%20in%20luxury%20store%2C%20scent%20sampling%20station%2C%20elegant%20design%2C%20premium%20retail%20experience%2C%20sophisticated%20interior%2C%20soft%20lighting%2C%20high-end%20customer%20experience&width=120&height=120&seq=4&orientation=squarish"
+                alt="تست عطر"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="aspect-square rounded-lg overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=Luxury%20perfume%20ingredients%2C%20raw%20materials%20for%20fragrance%20creation%2C%20elegant%20composition%20of%20flowers%20and%20essential%20oils%2C%20premium%20fragrance%20components%2C%20artistic%20arrangement%2C%20soft%20lighting&width=120&height=120&seq=5&orientation=squarish"
+                alt="مواد اولیه عطر"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="aspect-square rounded-lg overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=Elegant%20perfume%20gift%20box%20packaging%2C%20luxury%20fragrance%20presentation%2C%20premium%20unboxing%20experience%2C%20high-end%20product%20photography%2C%20sophisticated%20gift%20wrapping%2C%20black%20and%20gold%20theme&width=120&height=120&seq=6&orientation=squarish"
+                alt="بسته‌بندی هدیه"
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Featured Products -->
+    <section class="py-12 bg-gray-50">
+      <div class="max-w-[375px] mx-auto px-6">
+        <div class="scroll-reveal">
+          <h2 class="text-xl font-bold mb-6 text-center relative">
+            <span class="inline-block relative">
+              محصولات پرفروش این ماه
+              <span
+                class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-0.5 bg-primary"
+              ></span>
+            </span>
+          </h2>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+              <div class="h-40 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=Luxury%20mens%20perfume%20bottle%20with%20dark%20background%2C%20elegant%20black%20and%20gold%20design%2C%20premium%20fragrance%20for%20men%2C%20sophisticated%20packaging%2C%20high-end%20product%20photography%2C%20minimalist%20composition&width=180&height=160&seq=7&orientation=portrait"
+                  alt="عطر مردانه"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-3">
+                <h3 class="font-medium text-sm mb-1">بلک اوپیوم رویال</h3>
+                <p class="text-xs text-gray-500 mb-2">عطر مردانه لوکس</p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">۲,۸۵۰,۰۰۰ تومان</span>
+                  <button
+                    class="w-8 h-8 flex items-center justify-center bg-primary/10 text-primary rounded-full cursor-pointer"
+                  >
+                    <i class="ri-shopping-bag-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+              <div class="h-40 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=Luxury%20womens%20perfume%20bottle%20with%20elegant%20design%2C%20feminine%20fragrance%20packaging%2C%20soft%20gold%20and%20pink%20accents%2C%20premium%20product%20photography%2C%20sophisticated%20composition%2C%20high-end%20perfume%20presentation&width=180&height=160&seq=8&orientation=portrait"
+                  alt="عطر زنانه"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-3">
+                <h3 class="font-medium text-sm mb-1">گلدن روز پریمیوم</h3>
+                <p class="text-xs text-gray-500 mb-2">عطر زنانه لوکس</p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">۳,۱۲۰,۰۰۰ تومان</span>
+                  <button
+                    class="w-8 h-8 flex items-center justify-center bg-primary/10 text-primary rounded-full cursor-pointer"
+                  >
+                    <i class="ri-shopping-bag-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+              <div class="h-40 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=Luxury%20unisex%20perfume%20bottle%20with%20minimalist%20design%2C%20elegant%20glass%20and%20metal%2C%20premium%20fragrance%20packaging%2C%20sophisticated%20neutral%20colors%2C%20high-end%20product%20photography%2C%20clean%20composition&width=180&height=160&seq=9&orientation=portrait"
+                  alt="عطر یونیسکس"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-3">
+                <h3 class="font-medium text-sm mb-1">امبر وود اکسکلوسیو</h3>
+                <p class="text-xs text-gray-500 mb-2">عطر یونیسکس</p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">۳,۴۵۰,۰۰۰ تومان</span>
+                  <button
+                    class="w-8 h-8 flex items-center justify-center bg-primary/10 text-primary rounded-full cursor-pointer"
+                  >
+                    <i class="ri-shopping-bag-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+              <div class="h-40 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=Luxury%20gift%20set%20of%20premium%20perfumes%2C%20elegant%20packaging%2C%20multiple%20fragrance%20bottles%20in%20presentation%20box%2C%20high-end%20gift%20collection%2C%20sophisticated%20product%20photography%2C%20premium%20unboxing%20experience&width=180&height=160&seq=10&orientation=portrait"
+                  alt="ست هدیه"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-3">
+                <h3 class="font-medium text-sm mb-1">ست هدیه رویال</h3>
+                <p class="text-xs text-gray-500 mb-2">مجموعه لوکس</p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">۶,۹۰۰,۰۰۰ تومان</span>
+                  <button
+                    class="w-8 h-8 flex items-center justify-center bg-primary/10 text-primary rounded-full cursor-pointer"
+                  >
+                    <i class="ri-shopping-bag-line"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="py-12">
+      <div class="max-w-[375px] mx-auto px-6">
+        <div class="scroll-reveal">
+          <h2 class="text-xl font-bold mb-6 text-center relative">
+            <span class="inline-block relative">
+              تماس با ما
+              <span
+                class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-0.5 bg-primary"
+              ></span>
+            </span>
+          </h2>
+          <div class="bg-white rounded-lg shadow-sm p-5 mb-6">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full ml-3"
+              >
+                <i class="ri-map-pin-line ri-lg"></i>
+              </div>
+              <div>
+                <h3 class="font-medium text-sm">آدرس فروشگاه</h3>
+                <p class="text-xs text-gray-600">
+                  تهران، خیابان ولیعصر، نرسیده به پارک ساعی، پاساژ رز، طبقه دوم،
+                  پلاک ۲۵
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center mb-4">
+              <div
+                class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full ml-3"
+              >
+                <i class="ri-time-line ri-lg"></i>
+              </div>
+              <div>
+                <h3 class="font-medium text-sm">ساعات کاری</h3>
+                <p class="text-xs text-gray-600">
+                  شنبه تا پنجشنبه: ۱۰ صبح تا ۹ شب<br />جمعه: ۱۱ صبح تا ۶ عصر
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div
+                class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full ml-3"
+              >
+                <i class="ri-phone-line ri-lg"></i>
+              </div>
+              <div>
+                <h3 class="font-medium text-sm">شماره تماس</h3>
+                <p class="text-xs text-gray-600">۰۲۱-۸۸۷۵۶۴۳۲</p>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-lg overflow-hidden h-[200px] shadow-sm">
+            <div
+              class="w-full h-full bg-cover bg-center"
+              style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png')"
+            ></div>
+          </div>
+          <div class="mt-6 flex justify-center space-x-4 space-x-reverse">
+            <a
+              href="#"
+              class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full hover:bg-primary hover:text-white transition-colors cursor-pointer"
+            >
+              <i class="ri-instagram-line ri-lg"></i>
+            </a>
+            <a
+              href="#"
+              class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full hover:bg-primary hover:text-white transition-colors cursor-pointer"
+            >
+              <i class="ri-whatsapp-line ri-lg"></i>
+            </a>
+            <a
+              href="#"
+              class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full hover:bg-primary hover:text-white transition-colors cursor-pointer"
+            >
+              <i class="ri-telegram-line ri-lg"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="py-6 bg-gray-900 text-white">
+      <div class="max-w-[375px] mx-auto px-6 text-center">
+        <div class="text-xl font-['Pacifico'] text-primary mb-3">logo</div>
+        <p class="text-sm text-gray-400 mb-4">امضای شخصیت شما، رایحه شماست</p>
+        <div class="flex justify-center space-x-6 space-x-reverse mb-4">
+          <a
+            href="#"
+            class="text-gray-400 hover:text-primary transition-colors cursor-pointer text-sm"
+            >صفحه اصلی</a
+          >
+          <a
+            href="#about"
+            class="text-gray-400 hover:text-primary transition-colors cursor-pointer text-sm"
+            >درباره ما</a
+          >
+          <a
+            href="#gallery"
+            class="text-gray-400 hover:text-primary transition-colors cursor-pointer text-sm"
+            >گالری</a
+          >
+          <a
+            href="#contact"
+            class="text-gray-400 hover:text-primary transition-colors cursor-pointer text-sm"
+            >تماس</a
+          >
+        </div>
+        <p class="text-xs text-gray-500">© ۱۴۰۴ تمامی حقوق محفوظ است.</p>
+      </div>
+    </footer>
+    <!-- Floating WhatsApp Button -->
+    <a
+      href="https://wa.me/989123456789"
+      class="fixed bottom-6 left-6 w-14 h-14 flex items-center justify-center bg-green-500 text-white rounded-full shadow-lg z-40 cursor-pointer hover:bg-green-600 transition-colors"
+    >
+      <i class="ri-whatsapp-line ri-xl"></i>
+    </a>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Popup handling
+        const popup = document.querySelector(".popup-overlay");
+        const closePopupBtn = document.getElementById("closePopup");
+        const confirmPopupBtn = document.getElementById("confirmPopup");
+        function closePopup() {
+          popup.classList.remove("active");
+          setTimeout(() => {
+            popup.style.display = "none";
+          }, 300);
+        }
+        closePopupBtn.addEventListener("click", closePopup);
+        confirmPopupBtn.addEventListener("click", closePopup);
+        // Show popup with animation
+        setTimeout(() => {
+          popup.classList.add("active");
+        }, 500);
+        // Scroll reveal animation
+        const scrollRevealElements = document.querySelectorAll(".scroll-reveal");
+        function checkScroll() {
+          scrollRevealElements.forEach((element) => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            if (elementTop < windowHeight * 0.85) {
+              element.classList.add("visible");
+            }
+          });
+        }
+        // Initial check
+        checkScroll();
+        // Check on scroll
+        window.addEventListener("scroll", checkScroll);
+      });
+    </script>
+  </body>
+</html>
