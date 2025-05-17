@@ -537,7 +537,7 @@
                 </li>
               </ul>
               <a
-                href="https://wa.me/989123456789"
+                href="https://wa.me/989122209960"
                 target="_blank"
                 class="bg-[#25D366] text-white px-6 py-3 !rounded-button inline-flex items-center cursor-pointer hover:bg-opacity-90 transition-all"
               >
@@ -566,7 +566,7 @@
     </section>
     <!-- WhatsApp Floating Button -->
     <a
-      href="https://wa.me/989123456789"
+      href="https://wa.me/989122209960"
       target="_blank"
       class="fixed bottom-6 left-6 z-50 bg-[#25D366] w-14 h-14 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-opacity-90 transition-all"
     >
@@ -686,7 +686,7 @@
                   <span>۰۹۱۲۳۴۵۶۷۸۹</span>
                 </div>
                 <a
-                  href="https://wa.me/989123456789"
+                  href="https://wa.me/989122209960"
                   target="_blank"
                   class="mt-4 bg-[#25D366] text-white px-4 py-2 !rounded-button inline-flex items-center cursor-pointer hover:bg-opacity-90 transition-all"
                 >
@@ -987,14 +987,15 @@
         closeWelcomeModal.addEventListener("click", hideWelcomeModal);
         confirmWelcomeModal.addEventListener("click", hideWelcomeModal);
         // Smooth scroll to catalog section
-        document
-          .querySelector('a[href="#products"]')
-          .addEventListener("click", function (e) {
-            e.preventDefault();
-            document.querySelector("#products").scrollIntoView({
-              behavior: "smooth",
-            });
-          });
+        // فقط روی کلیک اجرا شود نه هنگام لود صفحه
+document.querySelectorAll('a[href="#products"]').forEach(link => {
+  link.addEventListener("click", function(e) {
+    e.preventDefault();
+    if (e.isTrusted) { // فقط روی کلیک واقعی کاربر اجرا شود
+      document.querySelector("#products").scrollIntoView({ behavior: "smooth" });
+    }
+  });
+});
       });
     </script>
   </body>
