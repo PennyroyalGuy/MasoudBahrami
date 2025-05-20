@@ -1,0 +1,387 @@
+دایان:
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منوی کافه</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #F2F2F2;
+            color: #333;
+            overflow-x: hidden;
+            padding-bottom: 20px;
+        }
+        
+        .container {
+            max-width: 100%;
+            padding: 20px;
+            position: relative;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #8E1616;
+        }
+        
+        /* Main Menu Container */
+        .menu-wrapper {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+            perspective: 1000px;
+        }
+        
+        /* Central Circle with Indentation */
+        .central-area {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            background-color: #222;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.4),
+                inset 0 0 50px rgba(0, 0, 0, 0.7);
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #F2F2F2;
+            font-weight: bold;
+            font-size: 22px;
+            transform-style: preserve-3d;
+            transform: translateZ(-20px);
+        }
+        
+        /* Orbiting Circles */
+        .orbit-path {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            border: 2px dashed rgba(142, 22, 22, 0.2);
+            animation: rotate 30s linear infinite;
+        }
+        
+        .orbit-path:nth-child(2) {
+            width: 550px;
+            height: 550px;
+            animation: rotate-reverse 40s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes rotate-reverse {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+        
+        .menu-item {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background-color: #222;
+            color: #F2F2F2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-size: 14px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            transform-style: preserve-3d;
+        }
+        
+        .menu-item:hover {
+            background-color: #8E1616;
+            transform: scale(1.15) translateZ(20px);
+            box-shadow: 0 8px 25px rgba(142, 22, 22, 0.4);
+        }
+        
+        .menu-item img {
+            width: 35px;
+            height: 35px;
+            margin-bottom: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Content Styles */
+        .content-container {
+            display: none;
+            animation: fadeIn 0.6s ease-out;
+            margin-top: 30px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+
+to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .content-box {
+            background-color: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+            border: 1px solid #eee;
+        }
+        
+        .content-box h2 {
+            color: #8E1616;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 22px;
+        }
+        
+        .menu-item-content {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px dashed #e0e0e0;
+            align-items: center;
+        }
+        
+        .menu-item-content:last-child {
+            border-bottom: none;
+        }
+        
+        .item-name {
+            font-weight: 500;
+            font-size: 16px;
+        }
+        
+        .item-price {
+            color: #8E1616;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        /* Floating Effect */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .menu-wrapper {
+                height: 400px;
+            }
+            
+            .central-area {
+                width: 250px;
+                height: 250px;
+                font-size: 20px;
+            }
+            
+            .orbit-path {
+                width: 380px;
+                height: 380px;
+            }
+            
+            .orbit-path:nth-child(2) {
+                width: 480px;
+                height: 480px;
+            }
+            
+            .menu-item {
+                width: 80px;
+                height: 80px;
+                font-size: 13px;
+            }
+            
+            .menu-item img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .menu-wrapper {
+                height: 350px;
+            }
+            
+            .central-area {
+                width: 200px;
+                height: 200px;
+                font-size: 18px;
+            }
+            
+            .orbit-path {
+                width: 320px;
+                height: 320px;
+            }
+            
+            .orbit-path:nth-child(2) {
+                width: 400px;
+                height: 400px;
+            }
+            
+            .menu-item {
+                width: 70px;
+                height: 70px;
+                font-size: 12px;
+            }
+            
+            .menu-item img {
+                width: 25px;
+                height: 25px;
+            }
+            
+            .content-box {
+                padding: 20px;
+            }
+            
+            .item-name, .item-price {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>منوی کافه</h1>
+        
+        <div class="menu-wrapper">
+            <div class="orbit-path"></div>
+            <div class="orbit-path"></div>
+            <div class="central-area">منوی کافه</div>
+            <!-- Menu items will be added dynamically -->
+        </div>
+        
+        <!-- Content Sections -->
+        <div id="hot-coffee" class="content-container">
+            <div class="content-box">
+                <h2>قهوه گرم</h2>
+                <div class="menu-item-content">
+                    <span class="item-name">دوپيو</span>
+                    <span class="item-price">95</span>
+                </div>
+
+<div class="menu-item-content">
+                    <span class="item-name">آمريكانو</span>
+                    <span class="item-price">115</span>
+                </div>
+                <!-- Other items... -->
+            </div>
+        </div>
+        
+        <!-- Other content sections... -->
+        
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuWrapper = document.querySelector('.menu-wrapper');
+            const orbitPaths = document.querySelectorAll('.orbit-path');
+            
+            // Menu items data
+            const menuItems = [
+                { id: 'hot-coffee', name: 'قهوه گرم', icon: 'img/hot-coffee.png' },
+                { id: 'iced-coffee', name: 'آیس کافی', icon: 'img/iced-coffee.png' },
+                { id: 'hot-drinks', name: 'نوشیدنی گرم', icon: 'img/hot-drink.png' },
+                { id: 'cold-drinks', name: 'نوشیدنی سرد', icon: 'img/cold-drink.png' },
+                { id: 'shakes', name: 'شیک', icon: 'img/shake.png' },
+                { id: 'arabic-coffee', name: 'قهوه عربیک', icon: 'img/arabic-coffee.png' },
+                { id: 'tea', name: 'چای و دمنوش', icon: 'img/tea.png' }
+            ];
+            
+            // Position menu items in orbits with 3D effect
+            const orbit1Radius = 225;
+            const orbit2Radius = 275;
+            const center = { x: 225, y: 225 };
+            
+            // First orbit (4 items)
+            for (let i = 0; i < 4; i++) {
+                const angle = (i * (2 * Math.PI / 4)) - Math.PI/4;
+                const x = center.x + orbit1Radius * Math.cos(angle) - 45;
+                const y = center.y + orbit1Radius * Math.sin(angle) - 45;
+                
+                createMenuItem(menuItems[i], x, y, angle);
+            }
+            
+            // Second orbit (remaining items)
+            for (let i = 4; i < menuItems.length; i++) {
+                const angle = ((i-4) * (2 * Math.PI / (menuItems.length-4))) + Math.PI/4;
+                const x = center.x + orbit2Radius * Math.cos(angle) - 45;
+                const y = center.y + orbit2Radius * Math.sin(angle) - 45;
+                
+                createMenuItem(menuItems[i], x, y, angle);
+            }
+            
+            function createMenuItem(item, x, y, angle) {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'menu-item';
+                menuItem.style.left = ${x}px;
+                menuItem.style.top = ${y}px;
+                menuItem.setAttribute('data-target', item.id);
+                
+                // Add subtle 3D effect based on position
+                const depth = Math.sin(angle) * 15;
+                menuItem.style.transform = translateZ(${depth}px);
+                
+                menuItem.innerHTML = 
+                    <img src="${item.icon}" alt="${item.name}">
+                    <span>${item.name}</span>
+                ;
+                
+                menuItem.addEventListener('click', function() {
+                    // Hide all content containers
+                    document.querySelectorAll('.content-container').forEach(container => {
+                        container.classList.remove('active');
+                    });
+                    
+                    // Show the selected content
+                    const target = document.getElementById(this.getAttribute('data-target'));
+                    target.classList.add('active');
+                    
+                    // Scroll to the content with offset
+                    window.scrollTo({
+                        top: target.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                });
+                
+                // Add floating animation with delay based on position
+
+menuItem.style.animation = float 4s ease-in-out ${angle*2}s infinite;
+                
+                menuWrapper.appendChild(menuItem);
+            }
+            
+            // Show first content by default
+            document.getElementById('hot-coffee').classList.add('active');
+        });
+    </script>
+</body>
+</html>
